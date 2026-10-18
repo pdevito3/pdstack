@@ -51,3 +51,15 @@ _Avoid_: Port, integration
 **Worktree home**:
 The folder where a project keeps its worktrees, by default the sibling `<repo>-worktrees/` folder.
 _Avoid_: Worktree dir, workspace
+
+**Stack pack**:
+A set of standards for one technology stack, for example .NET, that a project selects.
+_Avoid_: Preset, profile, plugin
+
+**Upstream**:
+A source repo that pdstack copies files from: cursor/plugins `pstack/` or pstack-claude.
+_Avoid_: Origin, parent
+
+**Provenance pin**:
+The record that ties one copied file to its upstream, path, and SHA, and states whether pdstack changed it.
+_Avoid_: Lock, fork entry
