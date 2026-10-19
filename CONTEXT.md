@@ -33,7 +33,7 @@ A single-purpose skill that steps call, for example `tdd` or `deslop`.
 _Avoid_: Tool, helper skill
 
 **Principle**:
-A generic engineering rule that shapes decisions in any project, inherited from pstack.
+A generic engineering rule that shapes decisions in any project. Most come from pstack, and pdstack adds its own.
 _Avoid_: Rule, guideline
 
 **Verification**:
