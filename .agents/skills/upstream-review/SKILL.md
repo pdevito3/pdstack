@@ -22,7 +22,7 @@ The script fetches each feed into `.upstreams/<owner>__<repo>` and prints one en
 - A pstack-claude entry is a sync of a cursor commit or a change of its own. A change of its own shows the reason from pstack-claude `tools/forks.json` for each forked file.
 - The Pin column gives the pin status of each pdstack file: `verbatim`, `renamed`, `modified`, a new upstream file with no pin, or "not copied".
 
-Record the `to` sha of each feed from the report header. When no feed has a change, tell the user and stop.
+Record the `to` sha of each feed from the report header. If each `to` sha is the same as its `from` sha, tell the user and stop. If a feed moved with no change, go to step 4 and open the PR that moves its position.
 
 ## 2. Recommend
 
