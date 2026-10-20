@@ -77,7 +77,7 @@ export class Upstreams {
     const dir = join(this.dir, source.replace("/", "__"));
     if (!existsSync(dir)) {
       mkdirSync(this.dir, { recursive: true });
-      execFileSync("git", ["clone", "--quiet", "--filter=blob:none", "--no-checkout", `https://github.com/${source}.git`, dir], { stdio: "inherit" });
+      execFileSync("git", ["clone", "--quiet", "--no-checkout", `https://github.com/${source}.git`, dir], { stdio: "inherit" });
     }
     return dir;
   }
@@ -126,11 +126,12 @@ export function checkProvenance(repoRoot, upstreams) {
   }
 
   // A file in the plugin with no pin must not be a copy of a pstack-claude file.
+  // The adapter manifests are pdstack's own.
   const pstackClaude = feeds["michael-denyer/pstack-claude"];
   if (pstackClaude) {
     for (const rel of listFiles(join(repoRoot, PLUGIN_ROOT))) {
       const local = `${PLUGIN_ROOT}/${rel}`;
-      if (pins[local]) continue;
+      if (pins[local] || rel.startsWith(".claude-plugin/")) continue;
       const path = upstreamPathFor(local, renames);
       if (upstreams.show("michael-denyer/pstack-claude", pstackClaude, path) !== null) {
         errors.push(`${local}: copied from michael-denyer/pstack-claude:${path} but has no pin`);
