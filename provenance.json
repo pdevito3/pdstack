@@ -404,7 +404,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/orchestrate.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Runs the Node port of orch, orch/orch.mjs, with node instead of bun orch.ts."
     },
     "plugins/pdstack/skills/pdstack/playbooks/pause-safely.md": {
       "source": "michael-denyer/pstack-claude",
@@ -553,11 +554,39 @@
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "verbatim"
     },
+    "plugins/pdstack/skills/pdstack/scripts/check-plan.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/check-plan.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
     "plugins/pdstack/skills/pdstack/scripts/check-playbooks.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/check-playbooks.mjs",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "verbatim"
+    },
+    "plugins/pdstack/skills/pdstack/scripts/orch/orch.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/orch/orch.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/orch/orch.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/orch/store.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/orch/store.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
     },
     "plugins/pdstack/skills/pdstack/scripts/resume.mjs": {
       "source": "michael-denyer/pstack-claude",
