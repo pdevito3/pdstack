@@ -5,7 +5,7 @@ import { join, relative, sep } from "node:path";
 export const SOURCES = ["cursor/plugins", "michael-denyer/pstack-claude", "mattpocock/skills"];
 export const STATUSES = ["verbatim", "renamed", "modified"];
 export const PLUGIN_ROOT = "plugins/pdstack";
-const PSTACK_CLAUDE_ROOT = "plugins/pstack";
+export const PSTACK_CLAUDE_ROOT = "plugins/pstack";
 
 export function loadProvenance(repoRoot) {
   return JSON.parse(readFileSync(join(repoRoot, "provenance.json"), "utf8"));
