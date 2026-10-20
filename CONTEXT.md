@@ -41,12 +41,16 @@ Proof on the real surface that the change does what the request asked. Its verdi
 _Avoid_: Testing, validation, check
 
 **Quality loop**:
-The passes that make correct code cleaner, for example deslop and interrogate. It stops at "good enough".
+The upstream passes that make correct code cleaner, for example deslop before a commit and no-comments before review. Each pass has its own stop rule.
 _Avoid_: Polish, cleanup
 
 **Review gate**:
 The defect hunt for bugs, perf, and security issues, with a pass or fail result. It is separate from the quality loop.
 _Avoid_: Code review loop, QA
+
+**Model family**:
+The models of one provider that pdstack can run, for example Claude, or Codex through its CLI. The model sheet names the families that a user has.
+_Avoid_: Provider, vendor, model type
 
 **Harness**:
 The agent host that runs pdstack, for example Claude Code. Claude Code is the primary harness.
@@ -60,12 +64,16 @@ _Avoid_: Port, integration
 The folder where a project keeps its worktrees, by default the sibling `<repo>-worktrees/` folder.
 _Avoid_: Worktree dir, workspace
 
+**Standard**:
+An engineering rule for one technology stack. It always lives in a stack pack. A principle is generic, and a standard is specific to a stack.
+_Avoid_: Convention, best practice
+
 **Stack pack**:
-A set of standards for one technology stack, for example .NET, that a project selects.
+The standards, verification surface, and forensics tools for one technology stack, for example .NET, that a project selects.
 _Avoid_: Preset, profile, plugin
 
 **Upstream**:
-A source repo that pdstack copies files from: cursor/plugins `pstack/` or pstack-claude.
+A source repo that pdstack copies files from: cursor/plugins `pstack/`, pstack-claude, or mattpocock/skills.
 _Avoid_: Origin, parent
 
 **Provenance pin**:
