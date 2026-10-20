@@ -56,8 +56,8 @@ describe("check-sheet.mjs", () => {
     assert.deepEqual(check(undefined), ok);
   });
 
-  test("names each missing role", () => {
-    assert.deepEqual(check(sheet({ [roles[0]]: null, [roles[3]]: null })), invalid(`missing role \`${roles[0]}\`; missing role \`${roles[3]}\``));
+  test("accepts a sheet with role lines deleted, because a deleted line falls back to the skill default", () => {
+    assert.deepEqual(check(sheet({ [roles[0]]: null, [roles[3]]: null })), ok);
   });
 
   const problems = {
@@ -78,8 +78,8 @@ describe("check-sheet.mjs", () => {
   test("reads the Copilot sheet when no path is given", () => {
     const copilotHome = join(home, "copilot-home");
     mkdirSync(copilotHome, { recursive: true });
-    writeFileSync(join(copilotHome, "pdstack-models.md"), sheet({ [roles[0]]: null }));
-    assert.deepEqual(check(undefined, { COPILOT_HOME: copilotHome }, []), invalid(`missing role \`${roles[0]}\``));
+    writeFileSync(join(copilotHome, "pdstack-models.md"), sheet({ [roles[0]]: "" }));
+    assert.deepEqual(check(undefined, { COPILOT_HOME: copilotHome }, []), invalid(`no model in \`${roles[0]}\``));
     mkdirSync(join(home, ".copilot"), { recursive: true });
     writeFileSync(join(home, ".copilot", "pdstack-models.md"), sheet());
     assert.deepEqual(check(undefined, {}, []), ok);

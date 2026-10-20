@@ -977,7 +977,7 @@
       "path": "plugins/pstack/skills/setup-pstack/scripts/sheet.awk",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Node port, because pdstack scripts are Node only (spec sections 9 and 13). Also holds the decoder of read-sheet.sh. Reads the roles from models.json at run time in place of the stamped list. Drops the shell reader hooks (`sheet_read`, `sheet_quote`), because v1 has no hook. Accepts `family <name>: <command>` lines and `<family>:<model>` role values (spec section 10): a family entry needs a family line, a family line needs a valid name and `{model}` in its command, and a family counts as one vendor in a panel."
+      "why": "Node port, because pdstack scripts are Node only (spec sections 9 and 13). Also holds the decoder of read-sheet.sh. Reads the roles from models.json at run time in place of the stamped list. Drops the shell reader hooks (`sheet_read`, `sheet_quote`), because v1 has no hook. Accepts `family <name>: <command>` lines and `<family>:<model>` role values (spec section 10): a family entry needs a family line, a family line needs a valid name and `{model}` in its command, and a family counts as one vendor in a panel. Accepts a missing role line, because the sheet says that a deleted line falls back to the skill default, and the upstream rule is for the Copilot hook that v1 does not ship."
     },
     "plugins/pdstack/skills/setup-pdstack/SKILL.md": {
       "source": "michael-denyer/pstack-claude",

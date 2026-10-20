@@ -84,8 +84,8 @@ export function familyEntry(entry) {
 // Parses the sheet lines. Returns:
 // - values: the last line's value for each known role and `default effort`
 // - families: the command template of each well-formed family line
-// - problems: what is wrong with the sheet, or [] when it is well formed: a
-//   missing role, an entry that is not inherit-parent, auto, a model ID, or
+// - problems: what is wrong with the sheet, or [] when it is well formed: an
+//   entry that is not inherit-parent, auto, a model ID, or
 //   `<family>:<model>` with an optional effort, a family entry with no family
 //   line, a family line with a bad name or no `{model}`, a default effort that
 //   is not session or a level, or a panel with models from fewer than two
@@ -112,7 +112,6 @@ export function parseSheet(lines, spec = sheetRoles()) {
   }
 
   const problems = [];
-  for (const role of roles) if (!values.has(role)) problems.push(`missing role \`${role}\``);
   const effort = values.get("default effort");
   if (effort !== undefined && effort !== "session" && !efforts.has(effort)) {
     problems.push("default effort is not session or a level");
