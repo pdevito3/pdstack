@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+// Runs as CommonJS or ESM alike, since an extensionless file has no type.
+import("./cli.mjs").then(async ({ main }) => {
+  process.exitCode = await main(process.argv.slice(2));
+});

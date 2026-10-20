@@ -566,6 +566,160 @@
       "status": "modified",
       "why": "Stores checkpoints under <git-common-dir>/pdstack/resume/ in place of pstack/resume/."
     },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/cli.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies. The commander options move to options.mjs, on node:util parseArgs."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/cli.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/deadline.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/deadline.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/fakes.test-helper.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/github.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/github.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/integrity.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/integrity.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/landing.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/landing.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/live-merge-safety.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/live-merge-safety.mjs",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Runs ship-pr with node instead of bun."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/policy.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/policy.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/render.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/render.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/ship-pr": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/ship-pr",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node entry point for the Node port, with no dependency bootstrap."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/shipping-cli.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/shipping-cli.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies. The commander subcommands move to options.mjs, on node:util parseArgs."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/shipping-cli.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/shipping-cli.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies. The fake gh test is skipped on Windows, which cannot spawn a shebang script, and is run once before the timed runs, since macOS checks a new executable on its first run."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/shipping.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/shipping.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/shipping.test-helper.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/shipping.test-helper.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/shipping.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/shipping.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/transport.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/transport.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies. The fake gh test is skipped on Windows, which cannot spawn a shebang script, and is run once before the timed runs, since macOS checks a new executable on its first run."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/types.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/types.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript original, with no dependencies. The types become JSDoc typedefs, and types.compile.ts is dropped."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/watch-pr": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/watch-pr",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node entry point for the Node port, with no dependency bootstrap."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/wrapper.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/wrapper.test.ts",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+    },
     "plugins/pdstack/skills/pdstack/scripts/worktree-audit.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/worktree-audit.mjs",
