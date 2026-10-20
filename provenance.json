@@ -668,7 +668,7 @@
       "path": "plugins/pstack/skills/principle-model-the-domain/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Adds the CONTEXT.md glossary rule."
+      "why": "Adds the glossary rule for GLOSSARY.md or CONTEXT.md."
     },
     "plugins/pdstack/skills/principle-never-block-on-the-human/SKILL.md": {
       "source": "michael-denyer/pstack-claude",

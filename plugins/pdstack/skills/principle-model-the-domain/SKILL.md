@@ -19,7 +19,7 @@ Reach for:
 - A queue, cache, index, graph, tree, or normalized collection where the access pattern calls for it.
 - Any other structure that fits. When none fits, work out what the code must never allow and how the data gets read, then find the structure that encodes exactly that.
 
-Use the project's glossary. If the repo has a `CONTEXT.md`, use its terms for the names in code. Add a new domain term to it through the **pdstack:domain-modeling** skill.
+Use the project's glossary: `GLOSSARY.md`, or `CONTEXT.md` in a repo that has no `GLOSSARY.md`. Use its terms for the names in code. Add a new domain term to that file through the **pdstack:domain-modeling** skill.
 
 Do not force an abstraction. Prefer boring code if the current shape is already clear, local, and unlikely to grow. Be skeptical of an abstraction that adds indirection without removing branches, duplicated rules, invalid states, or lifecycle risk.
 
