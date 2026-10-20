@@ -5,10 +5,19 @@
       "release-type": "simple",
       "package-name": "pdstack",
       "bump-minor-pre-major": true,
+      "initial-version": "0.1.0",
       "include-component-in-tag": false,
       "extra-files": [
-        { "type": "json", "path": "plugins/pdstack/.claude-plugin/plugin.json", "jsonpath": "$.version" },
-        { "type": "json", "path": ".claude-plugin/marketplace.json", "jsonpath": "$.plugins[0].version" }
+        {
+          "type": "json",
+          "path": "plugins/pdstack/.claude-plugin/plugin.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": ".claude-plugin/marketplace.json",
+          "jsonpath": "$.plugins[0].version"
+        }
       ]
     }
   }
