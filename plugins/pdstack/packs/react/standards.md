@@ -80,11 +80,11 @@ Apply these standards only to files that match the globs. Project docs win over 
 
 ### 9. Put state in the first place that fits
 
-**Rule:** Choose the first item that fits. Calculate the value during render. Form input goes in React Hook Form. One value in one component goes in `useState`. Values that change together go in `useReducer`. State that survives a reload or goes in a link goes in route search params. State that distant components share goes in a small context.
+**Rule:** Choose the first item that fits. Calculate the value during render. Form input goes in React Hook Form. One value in one component goes in `useState`. Values that change together go in `useReducer`. State that survives a reload or goes in a link goes in route search params. A preference of this browser that must survive a browser restart, with no link to share it, goes in `localStorage`, read and written by a small hook. State that distant components share goes in a small context.
 
 **Why:** Each step up adds a source of truth and more renders. Most state needs no storage.
 
-**Violation:** A global store library added to the app. `useState` for a filter that a link must share. A context for state that one component uses.
+**Violation:** A global store library added to the app. `useState` for a filter that a link must share. A context for state that one component uses. A search param for a preference that must survive a browser restart.
 
 ### 10. Calculate, do not store
 
