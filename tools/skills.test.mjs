@@ -51,3 +51,8 @@ test("checkVersions compares the two manifests", () => {
   assert.deepEqual(checkVersions(manifests("0.1.0", "0.1.0")), []);
   assert.equal(checkVersions(manifests("0.1.0", "0.2.0")).length, 1);
 });
+
+test("lintSkills reports a user-only skill that is hidden", () => {
+  const root = repo({ "plugins/pdstack/skills/a/SKILL.md": "---\nname: a\ndescription: d\ndisable-model-invocation: true\nuser-invocable: false\n---\n" });
+  assert.deepEqual(lintSkills(root), ["plugins/pdstack/skills/a/SKILL.md: a skill that only the user can call must not be hidden"]);
+});

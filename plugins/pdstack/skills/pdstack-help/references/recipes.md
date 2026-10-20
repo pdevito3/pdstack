@@ -48,4 +48,4 @@ Swap in the real paths, skills, and done checks. Informal wording works.
 - `/pdstack full autopilot on this queue. each item is independent.`
 - `/pdstack autopilot these changes but stack them, don't ship. i'll land the stack.`
 - `/reflect capture what we learned so the next run doesn't repeat it.` Approve only edits that change a future decision.
-- `/bro` restates the last reply in plain words.
+- `/wait-what` restates the last reply in plain words.

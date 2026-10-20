@@ -96,7 +96,7 @@ try {
     throw new Error('usage: resume.mjs begin|publish|read --project <directory> [--note <file> --artifact <file> ...]');
   if (operation !== 'publish' && (values.note || values.artifact.length)) throw new Error('only publish accepts files');
   const project = identity(values.project);
-  const store = join(project.gitDir, 'pstack', 'resume');
+  const store = join(project.gitDir, 'pdstack', 'resume');
   if (operation === 'read') {
     try {
       lstatSync(join(store, 'latest.json'));

@@ -1,6 +1,6 @@
 # Resume storage
 
-Pause and pickup share one project locator. The `resume.mjs` command under `skills/pdstack/scripts/` resolves the project's Git common directory and stores checkpoints under its `pstack/resume/` directory. `latest.json` points to the latest complete checkpoint and records the worktree, branch, timestamp, note, and requested artifacts with content hashes.
+Pause and pickup share one project locator. The `resume.mjs` command under `skills/pdstack/scripts/` resolves the project's Git common directory and stores checkpoints under its `pdstack/resume/` directory. `latest.json` points to the latest complete checkpoint and records the worktree, branch, timestamp, note, and requested artifacts with content hashes.
 
 Claude Code, Codex, and other runtimes use this same command and location. Runtime-specific home directories and transcript encodings do not affect lookup. Git worktrees of the same repository share the locator, and Git excludes its contents from commits. This requires a local Git checkout whose common directory survives the interruption. It does not survive deleting or recloning the repository; transfer the complete checkpoint to durable storage before that happens and give the resumed session its locator.
 

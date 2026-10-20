@@ -72,7 +72,7 @@ The default answer is `/pdstack`, which runs most of the others when its steps n
 | Strip comments before review, using a reviewer that didn't write them | [`/no-comments`](../no-comments/SKILL.md) |
 | Clean AI tells out of prose | [`/unslop`](../unslop/SKILL.md) |
 | Write docs, an RFC, a README, a PR description, or a commit message to a standard | [`/technical-writing`](../technical-writing/SKILL.md) |
-| Hear the last reply again in plain words | [`/bro`](../bro/SKILL.md) |
+| Hear the last reply again in plain words | [`/wait-what`](../wait-what/SKILL.md) |
 | Give agents a scripted way to drive the app and prove behavior | [`/create-verification-skill`](../create-verification-skill/SKILL.md) |
 | Bring a verification skill and its feature map back in line with the app | [`/maintain-verification-skill`](../maintain-verification-skill/SKILL.md) |
 | Formally verify a race, invariant, or other property that tests rarely reach | [`/create-formal-verification-skill`](../create-formal-verification-skill/SKILL.md) |
@@ -100,7 +100,7 @@ Close calls:
 Not in pdstack:
 
 - The Cursor driver skills have no port. The driver policy in pdstack's Non-negotiables names the Claude Code equivalents, the `run` skill and a project `verify` skill.
-- `/loop` is a Claude Code bundled skill, and the **plugin-dev:skill-development** skill is Claude Code's skill-authoring guidance.
+- `/loop` is a Claude Code bundled skill, and the **writing-for-agents** skill is the skill-authoring guidance that pdstack bundles.
 - pstack has no orchestrate skill. Orchestrate is a `/pdstack` playbook. If the slash menu shows an orchestrate command, another plugin provides it.
 
 ## Playbooks and principles

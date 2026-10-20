@@ -56,6 +56,7 @@ export function lintSkills(repoRoot) {
     if (!fields.name) errors.push(`${shown}: name is required`);
     if (!fields.description) errors.push(`${shown}: description is required`);
     if (fields.name && fields.name !== basename(dir)) errors.push(`${shown}: name ${fields.name} does not match folder ${basename(dir)}`);
+    if (fields["disable-model-invocation"] === "true" && fields["user-invocable"] === "false") errors.push(`${shown}: a skill that only the user can call must not be hidden`);
     names.add(basename(dir));
   }
 

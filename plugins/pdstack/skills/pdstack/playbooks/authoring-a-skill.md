@@ -2,7 +2,7 @@
 
 **You own the skill's voice.**
 
-1. Use the **plugin-dev:skill-development** skill (Claude Code's authoring guidance for SKILL.md files).
+1. Read `SKILL.md` and `SKILL-MECHANICS.md` of the **writing-for-agents** skill (`../../writing-for-agents/`) by path, and follow them.
 2. Validate the skill: frontmatter has `name` and `description`, referenced files exist, cross-skill links resolve.
 3. Test cases if structural. Skip if subjective.
 4. Run **Opening a PR**.

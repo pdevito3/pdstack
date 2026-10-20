@@ -97,8 +97,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/automate-me/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "Reads writing-for-agents in place of plugin-dev:skill-development."
     },
     "plugins/pdstack/skills/babysit/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -275,8 +275,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/ketchup/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "Points /bro to wait-what."
     },
     "plugins/pdstack/skills/maintain-formal-verification-skill/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -316,19 +316,22 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-help/references/recipes.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Points /bro to wait-what."
     },
     "plugins/pdstack/skills/pdstack-help/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-help/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Points /bro to wait-what, and names writing-for-agents in place of plugin-dev:skill-development."
     },
     "plugins/pdstack/skills/pdstack/playbooks/authoring-a-skill.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/authoring-a-skill.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
+      "status": "modified",
+      "why": "Reads writing-for-agents by path in place of plugin-dev:skill-development."
     },
     "plugins/pdstack/skills/pdstack/playbooks/autonomous-run.md": {
       "source": "michael-denyer/pstack-claude",
@@ -394,7 +397,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/opening-a-pr.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md."
     },
     "plugins/pdstack/skills/pdstack/playbooks/orchestrate.md": {
       "source": "michael-denyer/pstack-claude",
@@ -430,7 +434,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/runtime-forensics.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
+      "status": "modified",
+      "why": "Points the Chrome capture and CDP eval words to forensics.md of the matching stack pack, and writes captures to forensicsDir."
     },
     "plugins/pdstack/skills/pdstack/playbooks/session-pickup.md": {
       "source": "michael-denyer/pstack-claude",
@@ -448,7 +453,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/trace-forensics.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
+      "status": "modified",
+      "why": "Points the browser trace tooling to forensics.md of the matching stack pack."
     },
     "plugins/pdstack/skills/pdstack/playbooks/visual-parity.md": {
       "source": "michael-denyer/pstack-claude",
@@ -526,7 +532,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/references/resume-storage.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Stores checkpoints under <git-common-dir>/pdstack/resume/ in place of pstack/resume/."
     },
     "plugins/pdstack/skills/pdstack/scripts/.prettierignore": {
       "source": "michael-denyer/pstack-claude",
@@ -556,7 +563,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/resume.mjs",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
+      "status": "modified",
+      "why": "Stores checkpoints under <git-common-dir>/pdstack/resume/ in place of pstack/resume/."
     },
     "plugins/pdstack/skills/pdstack/scripts/worktree-audit.mjs": {
       "source": "michael-denyer/pstack-claude",
@@ -568,7 +576,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -658,7 +667,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/principle-model-the-domain/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
+      "status": "modified",
+      "why": "Adds the CONTEXT.md glossary rule."
     },
     "plugins/pdstack/skills/principle-never-block-on-the-human/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -737,7 +747,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/references/synthesizer.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
+      "status": "modified",
+      "why": "Names writing-for-agents in place of plugin-dev:skill-development."
     },
     "plugins/pdstack/skills/reflect/references/tooling-reviewer.md": {
       "source": "michael-denyer/pstack-claude",
@@ -755,8 +766,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "Hands skill authoring to the Authoring a skill playbook and writing-for-agents in place of plugin-dev:skill-development."
     },
     "plugins/pdstack/skills/setup-pdstack/copilot.md": {
       "source": "michael-denyer/pstack-claude",
@@ -869,8 +880,7 @@
       "source": "mattpocock/skills",
       "path": "skills/productivity/wait-what/SKILL.md",
       "sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
-      "status": "renamed",
-      "hide": true
+      "status": "verbatim"
     },
     "plugins/pdstack/skills/what-did-i-get-done/SKILL.md": {
       "source": "michael-denyer/pstack-claude",

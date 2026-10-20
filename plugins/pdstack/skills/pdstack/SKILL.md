@@ -15,18 +15,22 @@ Use the session's task-tracking tools for the todolist. On Claude Code these are
 
 ## Non-negotiables
 
-The Principles section below grounds every trigger. In your reply, name each principle that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session.
+The Principles section below grounds every trigger. In your reply, name each principle and standard that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session.
 
 Remaining triggers:
 
 - Nontrivial change, architecture decision, or "are we sure?" → the **how** skill.
 - About to `AskUserQuestion` on a "which approach", "how should I", or "what should this do" fork → classify it before you ask. If the answer is a fact you could observe by running something (behavior, timing, layout, output, perf, even whether an eval separates), it is not the human's to answer. Sketch it via the Prototype playbook (`playbooks/prototype.md`) and let the result decide. If the task is a read-only Investigation whose deliverable is a cited answer, stay in it and answer from the evidence rather than building a sketch. Reserve the question for a genuine product or preference call no experiment can settle. Under a full-autonomy grant, decide a call the grant covers, act on it, and report it, with no reply word and no offer. Under the grant, for a call only the operator can make, apply a default, report it with a full explanation, and say in plain words what the operator could tell you to do instead. The operator answers in their own words. Never give a shorthand token to type back. Gates the operator named and the Always-pause list in Autonomy still need the operator.
-- Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**.
+- Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**. Keep decisions in a pure core and I/O in a thin shell per **principle-functional-core**.
+- Code in files that match the globs of a stack pack in `stackPacks` of `.agents/pdstack.json` → read that pack's `standards.md` (`../../packs/<pack>/standards.md`) before you write the code.
+- Verification → read `verification.md` of the matching stack pack first, then use the project `verify` skill, then `run`.
+- Runtime or trace forensics → read `forensics.md` of the matching stack pack.
+- Rules conflict → project docs win over stack packs, and stack packs win over principles. A standard that overrides a principle names it.
 - Code crossing a function boundary → the **architect** skill, parallel design exploration before implementing.
 - Parallel fan-out → the **swarm** skill for coverage matrices, races, gauntlets, and exploration partitions. Use **arena** for design or code bakeoffs with base selection and grafting.
 - Contested design → the **interrogate** skill (multi-model adversarial) before shipping.
 - Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
-- Any prose surface, your reply to the user included → the **unslop** skill. Write the reply per **Writing the reply**. Agent-facing prose also follows the **plugin-dev:skill-development** skill (Claude Code's authoring guidance for SKILL.md files).
+- Any prose surface, your reply to the user included → the **unslop** skill. Write the reply per **Writing the reply**. Agent-facing prose also follows the **writing-for-agents** skill (read `../writing-for-agents/SKILL.md`, and `SKILL-MECHANICS.md` for a SKILL.md).
 - Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`/technical-writing`), on top of **unslop**.
 - Before commit → the **deslop** skill (`/deslop`).
 - Before review → the **no-comments** skill (`/no-comments`).
@@ -60,6 +64,8 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 **Architecture**
 
 - **Model the Domain.** Writing stateful logic, or code that branches a lot or repeats a shape assumption across files. Encode the domain in a structure (state machine, typed model, table or registry, reducer, boundary, the right collection) instead of scattered conditionals.
+- **Functional Core.** Writing business logic, or a change that mixes decisions with I/O. Decisions live in pure functions, and a thin shell does the I/O.
+- **Rich Domain Model.** Writing or changing a business rule for an entity or a domain concept. Behavior lives on the entity, behind intent-named methods and self-validating value objects.
 - **Boundary Discipline.** Wiring validation, error handling, or framework adapters. Guards at system boundaries, trust internal types, keep business logic pure.
 - **Type System Discipline.** Designing types or a signature in any typed language. Make illegal states unrepresentable, brand primitives, parse external data at boundaries.
 - **Make Operations Idempotent.** Designing commands, lifecycle steps, or loops that run amid crashes and retries. Converge to the same end state.
@@ -100,6 +106,10 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 **Defaults for every `Agent` call.** `run_in_background: true`, full tool access (do not pick a subagent_type that strips MCP), file pointers not inlined context, explicit model per role (configurable via `/setup-pdstack`. Role defaults in [Models](#models), with "judgment and prose" covering prose and judgment). Code delegates tier by difficulty. The hardest changes (cross-cutting design, gnarly concurrency, subtle algorithms) go to your strongest-judgment model (default in [Models](#models)), whether the task needs judgment on vague intent or is a precisely specified sequence of steps to execute to the letter. Trivial mechanical edits go to your fast code model, the worker model. Every other code change uses its playbook's role line, and prose and judgment use the single-role default. Multi-model panels run the configured panel for diversity, with defaults enumerated in each panel skill's Models section (`arena`, `architect`, `interrogate`). Per-role `/setup-pdstack` lines override these defaults and the model choices in the routed skills (`how`, `why`, `arena`, `swarm`, `architect`, `interrogate`, `reflect`). A role with no line keeps its default, and a role line of `inherit-parent` or `auto` runs that role on the parent session's model (omit `model` on the `Agent` call).
 
 **Match the model to the job.** Before each spawn, start from the role's line or default and pick the reasoning level the job needs, set as [Reasoning effort](#reasoning-effort) describes. The role's `@level`, or the sheet's `default effort` line, sets its starting level, and `session` starts from the session's level. Raise it one step, up to max, for the hardest or subtlest work. Lower it one step for judgment and two or more steps for routine work. Claude Code sets fast mode for the whole session, so a spawn changes only its effort. Verification is the exception and stays on the `swarm workers` model and effort (default in the **swarm** skill's Models section). Change only the effort level, and keep the model the role names, so a diverse panel stays diverse. If the model does not take that level, use its nearest level. A role on `auto` or `inherit-parent` stays on the parent model. If the `Agent` tool rejects the adjusted level, do not try another level. Use the role's line or default and say so.
+
+**Worktrees go in the worktree home.** Every pdstack worktree goes in `worktreeHome` from `.agents/pdstack.json`, or in `../<repo>-worktrees` when the key is absent. This covers code delegates, autopilot owners, orchestrate workers, forensics proofs, and the worktree of Opening a PR.
+
+**Other model families.** A role value `<family>:<model>` names a model outside Claude. Run that role with `node <plugin>/scripts/run-external.mjs --family <family> --model <model> --prompt-file <file>` in the background, in the role's worktree, and read the output file it prints. If a role asks for a different model family and the sheet has no other family, use a different Claude model from the one that did the work, and state the gap in one line, for example "No other family is configured. The judge was `fable`."
 
 You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. A second opinion is the same prompt against a different model. Agreement is high-signal.
 
