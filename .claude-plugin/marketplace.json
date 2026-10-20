@@ -1,0 +1,16 @@
+{
+  "name": "pdstack",
+  "owner": {
+    "name": "Paul DeVito",
+    "url": "https://github.com/pdevito3"
+  },
+  "description": "A personal, harness-agnostic agent workflow derived from pstack.",
+  "plugins": [
+    {
+      "name": "pdstack",
+      "source": "./plugins/pdstack",
+      "description": "Sends each request to a playbook that plans, builds, verifies, and opens a PR. Derived from pstack by Lauren Tan (poteto) and pstack-claude by Michael Denyer.",
+      "version": "0.0.0"
+    }
+  ]
+}

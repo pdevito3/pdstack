@@ -1,0 +1,12 @@
+{
+  "feeds": {},
+  "renames": [
+    ["poteto-mode", "pdstack"],
+    ["poteto-help", "pdstack-help"],
+    ["poteto-agent", "pdstack-agent"],
+    ["setup-pstack", "setup-pdstack"],
+    ["pstack-models.md", "pdstack-models.md"],
+    ["pstack:", "pdstack:"]
+  ],
+  "pins": {}
+}
