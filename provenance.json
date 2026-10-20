@@ -775,11 +775,57 @@
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "renamed"
     },
+    "plugins/pdstack/skills/setup-pdstack/scripts/check-sheet.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/setup-pstack/scripts/check-sheet.sh",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port of check-sheet.sh and check-sheet.awk, because pdstack scripts are Node only (spec sections 9 and 13). Same CLI, default sheet, output, and exit codes. Also checks family lines and `<family>:<model>` values through sheet.mjs (spec section 10)."
+    },
+    "plugins/pdstack/skills/setup-pdstack/scripts/read-sheet.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/setup-pstack/scripts/read-sheet.sh",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port, because pdstack scripts are Node only (spec sections 9 and 13). Same CLI, output, and exit codes. The decoder lives in sheet.mjs."
+    },
+    "plugins/pdstack/skills/setup-pdstack/scripts/sheet.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/setup-pstack/scripts/sheet.awk",
+      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "status": "modified",
+      "why": "Node port, because pdstack scripts are Node only (spec sections 9 and 13). Also holds the decoder of read-sheet.sh. Reads the roles from models.json at run time in place of the stamped list. Drops the shell reader hooks (`sheet_read`, `sheet_quote`), because v1 has no hook. Accepts `family <name>: <command>` lines and `<family>:<model>` role values (spec section 10): a family entry needs a family line, a family line needs a valid name and `{model}` in its command, and a family counts as one vendor in a panel."
+    },
     "plugins/pdstack/skills/setup-pdstack/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/setup-pstack/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs."
+    },
+    "plugins/pdstack/skills/setup-pdstack/templates/domain.md": {
+      "source": "mattpocock/skills",
+      "path": "skills/engineering/setup-matt-pocock-skills/domain.md",
+      "sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/setup-pdstack/templates/issue-tracker-github.md": {
+      "source": "mattpocock/skills",
+      "path": "skills/engineering/setup-matt-pocock-skills/issue-tracker-github.md",
+      "sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/setup-pdstack/templates/issue-tracker-gitlab.md": {
+      "source": "mattpocock/skills",
+      "path": "skills/engineering/setup-matt-pocock-skills/issue-tracker-gitlab.md",
+      "sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/setup-pdstack/templates/issue-tracker-local.md": {
+      "source": "mattpocock/skills",
+      "path": "skills/engineering/setup-matt-pocock-skills/issue-tracker-local.md",
+      "sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "status": "verbatim"
     },
     "plugins/pdstack/skills/sharpen/SKILL.md": {
       "source": "michael-denyer/pstack-claude",

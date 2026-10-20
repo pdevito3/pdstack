@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdevito3/pdstack/blob/main/plugins/pdstack/schemas/pdstack.schema.json",
+  "title": "pdstack project config",
+  "description": "The project config at .agents/pdstack.json. Every key is optional. An absent key takes its default.",
+  "type": "object",
+  "properties": {
+    "worktreeHome": {
+      "description": "The folder where the project keeps its worktrees, relative to the repo root. Default: ../<repo>-worktrees.",
+      "type": "string",
+      "minLength": 1
+    },
+    "stackPacks": {
+      "description": "The stack packs that the project selects. Default: [].",
+      "type": "array",
+      "items": { "enum": ["dotnet", "react", "ios"] },
+      "uniqueItems": true
+    },
+    "planPath": {
+      "description": "The folder where multi-phase-plan writes the plan. Default: ~/.claude/orchestrate/<slug>/docs/.",
+      "type": "string",
+      "minLength": 1
+    },
+    "forensicsDir": {
+      "description": "The folder where the forensics playbooks write captured files. Default: $TMPDIR/pdstack/<repo>/<timestamp>/.",
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}
