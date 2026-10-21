@@ -49,7 +49,7 @@ The primary surface is the Aspire app host, which starts the API, its database, 
 
    Record the status, the headers (`Location`, `X-Pagination`), and the body. For gRPC, use `grpcurl` with the proto. For MCP, call the tool through an MCP client.
 
-6. Prove the failure paths too. Send a request that breaks a domain rule. Confirm a 422 problem details body with the camelCase field name in `errors`. Confirm 404 for a missing ID, and 409 for a duplicate unique value.
+6. Prove the failure paths too. Send a request that breaks a domain rule. Confirm a 422 problem details body with the camelCase field name in `errors`. A request that fails a request rule, such as a query parameter out of range, gets the status that the project docs give, often 400. Confirm 404 for a missing ID, and 409 for a duplicate unique value.
 
 7. Read side effects back. Read the changed entity with a GET. Find the request trace and confirm the spans, the SQL, and any domain event handler work.
 
