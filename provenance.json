@@ -30,6 +30,10 @@
       "pdstack:"
     ]
   ],
+  "drops": [
+    "On Codex, read the [platform mapping](../pdstack/references/codex-tools.md), including its per-skill notes, before following this skill.\n\n",
+    "On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.\n\n"
+  ],
   "pins": {
     "plugins/pdstack/agents/comment-sicko.md": {
       "source": "michael-denyer/pstack-claude",
@@ -98,7 +102,7 @@
       "path": "plugins/pstack/skills/automate-me/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Reads writing-for-agents in place of plugin-dev:skill-development."
+      "why": "Reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/babysit/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -324,7 +328,7 @@
       "path": "plugins/pstack/skills/poteto-help/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Points /bro to wait-what, and names writing-for-agents in place of plugin-dev:skill-development."
+      "why": "Points /bro to wait-what, and names writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/pdstack/playbooks/authoring-a-skill.md": {
       "source": "michael-denyer/pstack-claude",
@@ -481,18 +485,6 @@
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/pdstack/references/codex-tools.md": {
-      "source": "michael-denyer/pstack-claude",
-      "path": "plugins/pstack/skills/poteto-mode/references/codex-tools.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
-    },
-    "plugins/pdstack/skills/pdstack/references/copilot-tools.md": {
-      "source": "michael-denyer/pstack-claude",
-      "path": "plugins/pstack/skills/poteto-mode/references/copilot-tools.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
-    },
     "plugins/pdstack/skills/pdstack/references/licenses/LICENSE": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/references/licenses/LICENSE",
@@ -520,12 +512,6 @@
     "plugins/pdstack/skills/pdstack/references/merge-safety.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/references/merge-safety.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
-    },
-    "plugins/pdstack/skills/pdstack/references/pi-tools.md": {
-      "source": "michael-denyer/pstack-claude",
-      "path": "plugins/pstack/skills/poteto-mode/references/pi-tools.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "renamed"
     },
@@ -760,7 +746,7 @@
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development."
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -950,13 +936,7 @@
       "path": "plugins/pstack/skills/reflect/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Hands skill authoring to the Authoring a skill playbook and writing-for-agents in place of plugin-dev:skill-development."
-    },
-    "plugins/pdstack/skills/setup-pdstack/copilot.md": {
-      "source": "michael-denyer/pstack-claude",
-      "path": "plugins/pstack/skills/setup-pstack/copilot.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "why": "Hands skill authoring to the Authoring a skill playbook and writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/setup-pdstack/scripts/check-sheet.mjs": {
       "source": "michael-denyer/pstack-claude",
@@ -984,7 +964,7 @@
       "path": "plugins/pstack/skills/setup-pstack/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs."
+      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/setup-pdstack/templates/domain.md": {
       "source": "mattpocock/skills",

@@ -6,8 +6,6 @@ user-invocable: false
 
 # Show me your work
 
-On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.
-
 Keep one canonical log.
 
 ## The format

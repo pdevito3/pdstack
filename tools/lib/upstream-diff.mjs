@@ -255,7 +255,7 @@ export function applyPin({ repoRoot, upstreams, local, sha }) {
   if (upstream === null) throw new Error(`${local}: ${pin.source}@${short(fullSha)} has no ${pin.path}`);
   const file = join(repoRoot, local);
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, expectedText(upstream, pin, provenance.renames));
+  writeFileSync(file, expectedText(upstream, pin, provenance.renames, provenance.drops));
   pin.sha = fullSha;
   writeFileSync(join(repoRoot, "provenance.json"), `${JSON.stringify(provenance, null, 2)}\n`);
   return fullSha;

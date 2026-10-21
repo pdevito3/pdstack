@@ -5,12 +5,6 @@ description: Configure which models pstack uses per role, the model families it 
 
 # Setup pstack
 
-On Codex, read the [platform mapping](../pdstack/references/codex-tools.md), including its per-skill notes, before following this skill.
-
-On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.
-
-On GitHub Copilot, follow [the Copilot setup](copilot.md) in place of steps 1, 3, 4, and 7 and step 6's header.
-
 On another runtime, read [Other runtimes](#other-runtimes) below for where the sheet lives and how it loads; the steps are the same.
 
 Write the current runtime's per-role model override sheet, using the path in [Other runtimes](#other-runtimes). Each pstack skill names a default model inline; the override sheet adapts those defaults to the models you actually have access to.
@@ -26,8 +20,6 @@ Claude Code has no auto-applied "rules" mechanism like Cursor's `.mdc`. The Clau
 ```
 
 with `<config>` written as the resolved path, so the file is loaded as context for every session.
-
-The Codex home directory is `$CODEX_HOME` when that variable is set and `~/.codex` otherwise. This skill calls it `<codex-home>`.
 
 ## Steps
 
@@ -103,8 +95,6 @@ Then run `node <this skill's directory>/scripts/check-sheet.mjs <sheet path>`, w
 
 On Claude Code, if `<config>/CLAUDE.md` does not already include `<config>/pdstack-models.md`, append an `@` line naming the sheet's resolved path, such as `@~/.claude/pdstack-models.md`, so the model rows load on every session. If the user prefers project scope, add the include to the project's `CLAUDE.md` instead.
 
-On Codex, paste the model rows and the `default effort` line into `<codex-home>/AGENTS.md`; Codex has no `@` include.
-
 ### 8. Confirm
 
 Tell the user where the override was written, how its model rows load, and which model families it has. With no family besides Claude, say: "No other model family is configured. Roles that ask for a different family use a different Claude model." Re-running this skill updates the override sheet.
@@ -165,9 +155,6 @@ The role lines are the same everywhere. What differs is the sheet path, how the 
 | Runtime | Sheet | Load | List models | Status |
 | --- | --- | --- | --- | --- |
 | Claude Code | `<config>/pdstack-models.md` | `@<config>/pdstack-models.md` in `<config>/CLAUDE.md` | the `Agent` tool's model parameter | verified live |
-| Codex | `<codex-home>/pdstack-models.md` | model rows: paste into `<codex-home>/AGENTS.md`; hook setting: read by the plugin | your configured Codex models, see [codex-tools.md](../pdstack/references/codex-tools.md#model-names) | hook contract tested; discovery verified |
-| Pi | `pdstack-models.md` in the Pi agent directory, `$PI_CODING_AGENT_DIR` or `~/.pi/agent` | read by the pstack Pi extension, model rows and hook setting both; no include line | `pi --list-models`, see [pi-tools.md](../pdstack/references/pi-tools.md#model-names) and its `setup-pdstack` note | extension contract tested offline; live results in the repository's `docs/pi-equivalence.md` |
-| GitHub Copilot (CLI and app) | `${COPILOT_HOME:-~/.copilot}/pdstack-models.md` | the plugin hook checks it and injects its role lines at session start; skills-only installs read it with `view` | the `task` tool's `model` enum, see [copilot-tools.md](../pdstack/references/copilot-tools.md#model-names) | hook contract tested; CLI install smoke-tested |
 | opencode | `~/.config/opencode/pdstack-models.md` | add the path to the `instructions` array in `opencode.json` | the `models` slash command in the session | from published docs, no live session |
 | Gemini CLI | `~/.gemini/pdstack-models.md` | `@~/.gemini/pdstack-models.md` in `~/.gemini/GEMINI.md` | the `model` slash command in the session | from published docs, no live session |
 | Prime Agent | no documented sheet path; Prime's configuration chooses models | | | no live session |

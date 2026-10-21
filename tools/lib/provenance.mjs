@@ -24,10 +24,16 @@ export function hideSkill(text) {
   return `---\n${match[1]}\nuser-invocable: false\n---\n${text.slice(match[0].length)}`;
 }
 
+export function applyDrops(text, drops) {
+  let out = text;
+  for (const drop of drops) out = out.split(drop).join("");
+  return out;
+}
+
 // The local text a pin expects, from the upstream text.
-export function expectedText(upstream, pin, renames) {
+export function expectedText(upstream, pin, renames, drops = []) {
   if (pin.status === "verbatim") return upstream;
-  let text = applyRenames(upstream.toString("utf8"), renames);
+  let text = applyDrops(applyRenames(upstream.toString("utf8"), renames), drops);
   if (pin.hide) text = hideSkill(text);
   return Buffer.from(text, "utf8");
 }
@@ -42,8 +48,9 @@ export function upstreamPathFor(localPath, renames) {
 
 export function validatePins(provenance) {
   const errors = [];
-  const { pins = {}, renames, feeds } = provenance;
+  const { pins = {}, renames, drops = [], feeds } = provenance;
   if (!Array.isArray(renames)) errors.push("renames: must be an array of [from, to] pairs");
+  if (!Array.isArray(drops) || drops.some((drop) => typeof drop !== "string" || drop === "")) errors.push("drops: must be an array of non-empty strings");
   if (typeof feeds !== "object" || feeds === null) errors.push("feeds: must be an object");
   for (const [local, pin] of Object.entries(pins)) {
     if (!SOURCES.includes(pin.source)) errors.push(`${local}: unknown source ${pin.source}`);
@@ -106,7 +113,8 @@ export function checkProvenance(repoRoot, upstreams) {
   const provenance = loadProvenance(repoRoot);
   const errors = validatePins(provenance);
   if (errors.length) return errors;
-  const { pins, renames, feeds } = provenance;
+  const { pins, renames, drops = [], feeds } = provenance;
+  const usedDrops = new Set();
 
   for (const [local, pin] of Object.entries(pins)) {
     const localFile = join(repoRoot, local);
@@ -120,10 +128,16 @@ export function checkProvenance(repoRoot, upstreams) {
       errors.push(`${local}: ${pin.source}@${pin.sha.slice(0, 8)} has no ${pin.path}`);
       continue;
     }
-    if (!readFileSync(localFile).equals(expectedText(upstream, pin, renames))) {
+    if (pin.status === "renamed") {
+      const renamed = applyRenames(upstream.toString("utf8"), renames);
+      for (const drop of drops) if (renamed.includes(drop)) usedDrops.add(drop);
+    }
+    if (!readFileSync(localFile).equals(expectedText(upstream, pin, renames, drops))) {
       errors.push(`${local}: differs from ${pin.source}@${pin.sha.slice(0, 8)}:${pin.path} (status ${pin.status})`);
     }
   }
+
+  for (const drop of drops) if (!usedDrops.has(drop)) errors.push(`drops: no renamed file has ${JSON.stringify(drop.slice(0, 60))}`);
 
   // A file in the plugin with no pin must not be a copy of a pstack-claude file.
   // The adapter manifests are pdstack's own.

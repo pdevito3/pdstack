@@ -6,10 +6,6 @@ user-invocable: false
 
 # Arena
 
-On Codex, read the [platform mapping](../pdstack/references/codex-tools.md), including its per-skill notes, before following this skill.
-
-On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.
-
 Open a todolist with one entry per phase (Frame, Fan out, Cross-judge, Pick, Graft, Verify) before launching anything.
 
 ## Phase A: Frame

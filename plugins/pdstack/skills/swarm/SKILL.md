@@ -6,10 +6,6 @@ user-invocable: false
 
 # Swarm
 
-On Codex, read the [platform mapping](../pdstack/references/codex-tools.md), including its per-skill notes, before following this skill.
-
-On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.
-
 ## Start
 
 Open a todolist with one entry per phase before launching anything.

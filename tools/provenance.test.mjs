@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
-import { applyRenames, checkProvenance, hideSkill, upstreamPathFor, validatePins } from "./lib/provenance.mjs";
+import { applyDrops, applyRenames, checkProvenance, hideSkill, upstreamPathFor, validatePins } from "./lib/provenance.mjs";
 
 const SHA = "a".repeat(40);
 const RENAMES = [["poteto-mode", "pdstack"], ["poteto-agent", "pdstack-agent"], ["pstack:", "pdstack:"]];
@@ -81,6 +81,22 @@ test("checkProvenance proves verbatim, renamed, and hidden pins", () => {
     { feeds: { [src]: SHA }, renames: RENAMES, pins },
   );
   assert.equal(checkProvenance(bad, upstreams).length, 2);
+});
+
+test("applyDrops removes each paragraph", () => {
+  assert.equal(applyDrops("# A\n\nOn Codex, read x.\n\nbody\n", ["On Codex, read x.\n\n"]), "# A\n\nbody\n");
+});
+
+test("checkProvenance applies drops to renamed pins and flags an unused drop", () => {
+  const src = "michael-denyer/pstack-claude";
+  const upstreams = new FakeUpstreams({ [`${src}@${SHA}:plugins/pstack/skills/deslop/SKILL.md`]: "# Deslop\n\nSee poteto-mode.\n\nbody\n" });
+  const pins = { "plugins/pdstack/skills/deslop/SKILL.md": { source: src, path: "plugins/pstack/skills/deslop/SKILL.md", sha: SHA, status: "renamed" } };
+  const files = { "plugins/pdstack/skills/deslop/SKILL.md": "# Deslop\n\nbody\n" };
+  assert.deepEqual(checkProvenance(repo(files, { feeds: { [src]: SHA }, renames: RENAMES, drops: ["See pdstack.\n\n"], pins }), upstreams), []);
+  assert.deepEqual(checkProvenance(repo(files, { feeds: { [src]: SHA }, renames: RENAMES, drops: ["See pdstack.\n\n", "gone\n"], pins }), upstreams), [
+    'drops: no renamed file has "gone\\n"',
+  ]);
+  assert.deepEqual(validatePins({ feeds: {}, renames: [], drops: [""], pins: {} }), ["drops: must be an array of non-empty strings"]);
 });
 
 test("checkProvenance flags an unpinned copy", () => {

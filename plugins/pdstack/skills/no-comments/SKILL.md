@@ -6,10 +6,6 @@ user-invocable: false
 
 # No comments
 
-On Codex, read the [platform mapping](../pdstack/references/codex-tools.md), including its per-skill notes, before following this skill.
-
-On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.
-
 Spawn comment-sicko. Act on accepted findings.
 
 Defer to comment-sicko's fresh perspective.

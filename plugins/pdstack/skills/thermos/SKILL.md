@@ -6,10 +6,6 @@ user-invocable: false
 
 # Thermos
 
-On Codex, read the [platform mapping](../pdstack/references/codex-tools.md), including its per-skill notes, before following this skill.
-
-On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.
-
 Run the two thermo review passes as async background subagents in parallel, then synthesize their results.
 
 ## Workflow

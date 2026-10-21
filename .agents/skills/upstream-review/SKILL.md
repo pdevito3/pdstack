@@ -57,7 +57,7 @@ git worktree add ../pdstack-worktrees/upstream-review-<yyyy-mm-dd> -b upstream-r
 
 Apply the approved changes of each feed, oldest first. For each pdstack file, use the sha of the latest approved change that touches it. The text at that sha holds every earlier upstream change to the file. When an earlier change to the same file is skipped, adapt the file instead.
 
-- `verbatim` or `renamed` file: copy it again from its source. The command applies the `renames` table and `hide` as the provenance check does, and sets the pin `sha`:
+- `verbatim` or `renamed` file: copy it again from its source. The command applies the `renames` table, the `drops` list, and `hide` as the provenance check does, and sets the pin `sha`:
 
   ```sh
   node tools/upstream-diff.mjs --apply <pdstack-path> --to <sha>
