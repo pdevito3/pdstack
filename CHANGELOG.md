@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.1](https://github.com/pdevito3/pdstack/compare/v0.1.0...v0.1.1) (2026-10-21)
+
+
+### Bug Fixes
+
+* **pdstack:** read pack standards when planning and before the PR ([9389b32](https://github.com/pdevito3/pdstack/commit/9389b3222567ae4e6a07c95ce2280861437dc7fb))
+* **pdstack:** run the watch-pr and ship-pr scripts with node ([0359f97](https://github.com/pdevito3/pdstack/commit/0359f973e744cd4ca506505f46d4f226b9c73e7b))
+* **provenance:** drop the Codex, Pi, and Copilot mappings ([b178497](https://github.com/pdevito3/pdstack/commit/b178497192b093265b714d97ee2364f5016a2b1c))
+
 ## 0.1.0 (2026-10-20)
 
 
