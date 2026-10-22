@@ -63,7 +63,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/models.json",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "The strongest tier is `opus` and the panel is `opus`, `sonnet`, `haiku`, with no `fable`, because the user wants no default to run Fable."
     },
     "plugins/pdstack/skills/architect/references/design-red-flags.md": {
       "source": "michael-denyer/pstack-claude",
@@ -87,15 +88,15 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/architect/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "The default runners drop `fable`, because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
     "plugins/pdstack/skills/arena/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/arena/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "The default runners and cross-judge pool drop `fable`, because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
     "plugins/pdstack/skills/automate-me/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -272,8 +273,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/interrogate/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "The default reviewers drop `fable` (three reviewers, A to C), because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
     "plugins/pdstack/skills/ketchup/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -402,7 +403,7 @@
       "path": "plugins/pstack/skills/poteto-mode/playbooks/opening-a-pr.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md."
+      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate step, one independent thermo-nuclear-review pass before the PR (issue #14), and adds the gate to the PR subagent line."
     },
     "plugins/pdstack/skills/pdstack/playbooks/orchestrate.md": {
       "source": "michael-denyer/pstack-claude",
@@ -746,7 +747,7 @@
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only. Adds the review gate line before Opening a PR, sets the strongest judgment default to `opus`, and runs `fable` only when the user names it."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -964,7 +965,7 @@
       "path": "plugins/pstack/skills/setup-pstack/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
+      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only. The sheet and the default panel have no `fable`."
     },
     "plugins/pdstack/skills/setup-pdstack/templates/domain.md": {
       "source": "mattpocock/skills",
@@ -1055,8 +1056,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/thermo-nuclear-review/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "Adds Concurrency Guidelines, because the review gate in opening-a-pr runs this skill, and an eval on 11 cases showed that one-pass reviews miss interleaving bugs (issue #14). Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
     "plugins/pdstack/skills/thermos/SKILL.md": {
       "source": "michael-denyer/pstack-claude",

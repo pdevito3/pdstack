@@ -1,9 +1,9 @@
 {
   "tiers": {
     "default": "opus",
-    "strongest": "fable",
+    "strongest": "opus",
     "worker": "sonnet",
-    "panel": ["opus", "fable", "sonnet", "haiku"]
+    "panel": ["opus", "sonnet", "haiku"]
   },
   "efforts": ["low", "medium", "high", "xhigh", "max"],
   "defaultEffort": "session",

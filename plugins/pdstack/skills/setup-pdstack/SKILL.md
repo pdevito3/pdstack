@@ -71,18 +71,18 @@ bug-fix: opus
 perf-issue: opus
 hillclimb: opus
 judgment and prose: opus
-strongest judgment: fable
+strongest judgment: opus
 how explorer: opus
 how explainer: opus
 why investigators: opus
 why synthesizer: opus
 reflect tooling: opus
 reflect judgment, divergent, synthesizer: opus
-arena runners: opus, fable, sonnet, haiku
-arena cross-judge pool: opus, fable, sonnet, haiku
+arena runners: opus, sonnet, haiku
+arena cross-judge pool: opus, sonnet, haiku
 swarm workers: opus
-architect runners: opus, fable, sonnet, haiku
-interrogate reviewers: opus, fable, sonnet, haiku
+architect runners: opus, sonnet, haiku
+interrogate reviewers: opus, sonnet, haiku
 
 default effort: session
 ```
@@ -164,7 +164,7 @@ The role lines are the same everywhere. What differs is the sheet path, how the 
 Stamped from `plugins/pstack/models.json` (edit there, rerun `tools/generate.mjs`).
 
 - Available Claude models: `opus`, `fable`, `sonnet`, `haiku`
-- Default panel: `opus`, `fable`, `sonnet`, `haiku`
+- Default panel: `opus`, `sonnet`, `haiku`
 - Reasoning effort levels: `low`, `medium`, `high`, `xhigh`, `max`
 - Default reasoning effort: `session`
 - Single-role default: `opus`

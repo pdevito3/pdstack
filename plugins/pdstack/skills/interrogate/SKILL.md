@@ -29,9 +29,8 @@ Launch all reviewers in a single message with the `Agent` tool, one per entry on
 | Subagent | Default model |
 |----------|---------------|
 | Reviewer A | `opus` |
-| Reviewer B | `fable` |
-| Reviewer C | `sonnet` |
-| Reviewer D | `haiku` |
+| Reviewer B | `sonnet` |
+| Reviewer C | `haiku` |
 
 Each reviewer gets `subagent_type: "general-purpose"`, `readonly: true`, and `model` set to its configured entry, or its table default when there is no configured line. Omit `model` for an `auto` or `inherit-parent` entry, so that reviewer runs on the parent model.
 
