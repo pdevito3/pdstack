@@ -45,7 +45,7 @@ The upstream passes that make correct code cleaner, for example deslop before a 
 _Avoid_: Polish, cleanup
 
 **Review gate**:
-The defect hunt for bugs, perf, and security issues, with a pass or fail result. It is separate from the quality loop.
+The independent defect hunt for bugs, concurrency, breaking changes, and security issues before a PR, with a pass or fail result. It passes when no high or medium finding stays open without a reason. It is separate from the quality loop, and from the operator's review before merge in a multi-phase plan.
 _Avoid_: Code review loop, QA
 
 **Model family**:

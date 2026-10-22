@@ -182,7 +182,7 @@ Role defaults, stamped from `plugins/pstack/models.json` (edit there, rerun `too
 - judgment and prose: `opus`
 - strongest judgment: `opus`
 
-Run `fable` only on a role that the user's sheet sets to `fable`, or when the user names it for the task. If you think a task needs `fable`, ask the user before you use it.
+Run `fable` only on a role that the user's sheet sets to `fable`, or when the user names it for the task. If you think a task needs `fable`, ask the user before you use it. Under a full-autonomy grant, use `opus` and report that `fable` can fit the task better.
 
 ## Reasoning effort
 
