@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/pdevito3/pdstack/compare/v0.1.1...v0.2.0) (2026-10-22)
+
+
+### Features
+
+* **pdstack:** add a review gate before the PR and stop default Fable runs ([#35](https://github.com/pdevito3/pdstack/issues/35)) ([1b1490d](https://github.com/pdevito3/pdstack/commit/1b1490d96879659a3a84811291e7193c7df28f0e))
+
+
+### Bug Fixes
+
+* **packs:** separate request rules from domain rules in dotnet verification ([a636c91](https://github.com/pdevito3/pdstack/commit/a636c91ec37bdb8eb795ed909b493b7f2e5dfca2))
+
 ## [0.1.1](https://github.com/pdevito3/pdstack/compare/v0.1.0...v0.1.1) (2026-10-21)
 
 
