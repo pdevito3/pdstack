@@ -1,7 +1,6 @@
 ---
 name: upstream-review
 description: Review the upstream changes since the reviewed feed positions in provenance.json, decide a verdict for each, and apply the approved ones in one PR. Use for "upstream review", "review upstream", "sync upstream", "check for pstack or pstack-claude updates", or moving the feeds forward.
-disable-model-invocation: true
 ---
 
 # Upstream review
