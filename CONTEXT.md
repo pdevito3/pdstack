@@ -46,7 +46,7 @@ _Avoid_: Polish, cleanup
 
 **Review gate**:
 The independent defect hunt for bugs, concurrency, breaking changes, and security issues before a PR, with a pass or fail result. It passes when no high or medium finding stays open without a reason. It is separate from the quality loop, and from the operator's review before merge in a multi-phase plan.
-_Avoid_: Code review loop, QA
+_Avoid_: Code review loop, QA, and the **Review gate** label of a multi-phase plan, which is the operator's review
 
 **Model family**:
 The models of one provider that pdstack can run, for example Claude, or Codex through its CLI. The model sheet names the families that a user has.
