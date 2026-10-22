@@ -64,7 +64,9 @@ Apply the approved changes of each feed, oldest first. For each pdstack file, us
   ```
 
 - `modified` file: read the new upstream text with `git -C .upstreams/<owner>__<repo> show <sha>:<path>`. Apply the local change again on it, with the pin `why` as the guide. Set the pin `sha` to the full sha.
-- New upstream file: add a pin with `source`, `path`, `sha`, and `status`. A leaf skill `SKILL.md` is `renamed` with `"hide": true`. Then run `--apply` for it.
+- New upstream file: add a pin with `source`, `path`, `sha`, and `status`. A leaf skill `SKILL.md` is `renamed` with `"hide": true`. If upstream marks it `disable-model-invocation: true`, leave out `hide`, and use `verbatim` when no rename or drop changes the text. Then run `--apply` for it.
+- A pin with a cursor/plugins source that pstack-claude now translates: set its `source` and `path` to the pstack-claude file. Make it `renamed` when the text differs only by the renames or drops. Run `--apply` for a `verbatim` or `renamed` pin, and apply a `modified` pin again by hand.
+- A skipped change can touch pins that do not move in this review. Write what to undo into each of those pins now: a `drops` entry for a whole paragraph that a `renamed` file carries, or the `why` of a `modified` pin. A drop can remove only a whole paragraph, and a drop that no `renamed` file has is an error.
 - Deleted upstream file: delete the pdstack file and its pin, and remove the references to it.
 - Adapted change: make the change, then set the pin `status` to `modified` with a `why`.
 

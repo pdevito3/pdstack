@@ -1,7 +1,7 @@
 {
   "feeds": {
-    "cursor/plugins": "29fa9382c9c250d134f6a2f1aa86c01c5f63119d",
-    "michael-denyer/pstack-claude": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+    "cursor/plugins": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "michael-denyer/pstack-claude": "903e7385382389806c59d6989b6274e24165082b",
     "mattpocock/skills": "5beb35b040e3de97e54fa9e386d7e42d15c295c2"
   },
   "renames": [
@@ -32,7 +32,8 @@
   ],
   "drops": [
     "On Codex, read the [platform mapping](../pdstack/references/codex-tools.md), including its per-skill notes, before following this skill.\n\n",
-    "On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.\n\n"
+    "On GitHub Copilot, read the [platform mapping](../pdstack/references/copilot-tools.md), including its per-skill notes, before following this skill.\n\n",
+    "On Muse, read the [platform mapping](../pdstack/references/muse-tools.md), including its per-skill notes, before following this skill.\n\n"
   ],
   "pins": {
     "plugins/pdstack/agents/comment-sicko.md": {
@@ -44,7 +45,7 @@
     "plugins/pdstack/agents/pdstack-agent.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/agents/poteto-agent.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "1ecb936645d08185a30ad307728f6d141d0d01b3",
       "status": "renamed"
     },
     "plugins/pdstack/agents/thermo-nuclear-code-quality-review-subagent.md": {
@@ -101,9 +102,9 @@
     "plugins/pdstack/skills/automate-me/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/automate-me/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
       "status": "modified",
-      "why": "Reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
+      "why": "Reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/babysit/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -327,9 +328,9 @@
     "plugins/pdstack/skills/pdstack-help/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-help/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
       "status": "modified",
-      "why": "Points /bro to wait-what, and names writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
+      "why": "Points /bro to wait-what, and names writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only. Adds the /statechart row from cursor/plugins eb4db2b, which pstack-claude has not translated yet."
     },
     "plugins/pdstack/skills/pdstack/playbooks/authoring-a-skill.md": {
       "source": "michael-denyer/pstack-claude",
@@ -371,7 +372,7 @@
     "plugins/pdstack/skills/pdstack/playbooks/eval.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/eval.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/pdstack/playbooks/feature.md": {
@@ -446,7 +447,7 @@
     "plugins/pdstack/skills/pdstack/playbooks/session-pickup.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/session-pickup.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/pdstack/playbooks/shipping.md": {
@@ -471,7 +472,7 @@
     "plugins/pdstack/skills/pdstack/playbooks/worktree-cleanup.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/worktree-cleanup.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "867f2fe1643d51a3623d8b52ef652397ee161fb2",
       "status": "renamed"
     },
     "plugins/pdstack/skills/pdstack/references/agents/comment-sicko.md": {
@@ -747,7 +748,7 @@
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only. Adds the review gate line before Opening a PR, sets the strongest judgment default to `opus`, and runs `fable` only when the user names it."
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. Adds the review gate line before Opening a PR, sets the strongest judgment default to `opus`, and runs `fable` only when the user names it."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -897,20 +898,20 @@
     "plugins/pdstack/skills/recall/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/recall/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
       "status": "renamed",
       "hide": true
     },
     "plugins/pdstack/skills/reflect/references/divergent-reviewer.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/references/divergent-reviewer.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "1ecb936645d08185a30ad307728f6d141d0d01b3",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/reflect/references/judgment-reviewer.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/references/judgment-reviewer.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "1ecb936645d08185a30ad307728f6d141d0d01b3",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/reflect/references/synthesizer.md": {
@@ -923,8 +924,21 @@
     "plugins/pdstack/skills/reflect/references/tooling-reviewer.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/references/tooling-reviewer.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "1ecb936645d08185a30ad307728f6d141d0d01b3",
       "status": "verbatim"
+    },
+    "plugins/pdstack/skills/reflect/scripts/claude-project-dir.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/reflect/scripts/claude-project-dir.mjs",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/reflect/scripts/claude-project-dir.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "tests/claude-project-dir.test.mjs",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
+      "status": "modified",
+      "why": "Node port of the Bun test, on node:test with no dependencies, next to the script it tests."
     },
     "plugins/pdstack/skills/reflect/scripts/find-transcript.mjs": {
       "source": "michael-denyer/pstack-claude",
@@ -935,9 +949,9 @@
     "plugins/pdstack/skills/reflect/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
       "status": "modified",
-      "why": "Hands skill authoring to the Authoring a skill playbook and writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
+      "why": "Hands skill authoring to the Authoring a skill playbook and writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/setup-pdstack/scripts/check-sheet.mjs": {
       "source": "michael-denyer/pstack-claude",
@@ -965,7 +979,7 @@
       "path": "plugins/pstack/skills/setup-pstack/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only. The sheet and the default panel have no `fable`."
+      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. The sheet and the default panel have no `fable`."
     },
     "plugins/pdstack/skills/setup-pdstack/templates/domain.md": {
       "source": "mattpocock/skills",
@@ -1013,9 +1027,82 @@
     "plugins/pdstack/skills/show-me-your-work/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/show-me-your-work/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "903e7385382389806c59d6989b6274e24165082b",
       "status": "renamed",
       "hide": true
+    },
+    "plugins/pdstack/skills/statechart/SKILL.md": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/SKILL.md",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/chart-to-tla.mjs": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/chart-to-tla.mjs",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/compare-charts.mjs": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/compare-charts.mjs",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/lib.mjs": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/lib.mjs",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/model/OutputFolder.cfg": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/model/OutputFolder.cfg",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/model/OutputFolder.map.mjs": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/model/OutputFolder.map.mjs",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/model/OutputFolder.tla": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/model/OutputFolder.tla",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/statechart.mjs": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/statechart.mjs",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/statechart.test.mjs": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/test/statechart.test.mjs",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "modified",
+      "why": "Resolves the temp folder to its real path, because macOS links /var to /private/var and TLC prints the real path. Skips the rename preload tests off Linux, because LD_PRELOAD works only there, and says so in the skip reason. Builds the expected relative paths with join, so the error message test passes on Windows."
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/sync.mmd": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/test/sync.mmd",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/upload.mmd": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/test/upload.mmd",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/tlc-to-chart.mjs": {
+      "source": "cursor/plugins",
+      "path": "pstack/skills/statechart/scripts/tlc-to-chart.mjs",
+      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+      "status": "verbatim"
     },
     "plugins/pdstack/skills/swarm/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
