@@ -32,6 +32,16 @@ It can be easy to break developers' ability to run / build the code locally. You
 ## Feature Leak Guidelines
 The codebase might carefully gate features behind feature flags or internal-only checks. You MUST NOT allow any features that are meant to be behind a feature gate leak. These leaks are often subtle. Be VERY careful and thorough.
 
+## Concurrency Guidelines
+Concurrency bugs pass review because each changed line looks correct on its own. For each piece of state the change reads or writes, find every path that can run at the same time as the new code: concurrent requests, background jobs and timers, other processes or nodes, retries and redelivery, UI events that arrive while an await is pending, and startup and shutdown. Then check:
+- Check-then-act and read-modify-write on shared state with no lock, transaction, or atomic operation.
+- Ordering between async steps, and code that assumes one await finishes before another event arrives.
+- Lock and transaction scope: work outside the boundary that must be inside it, and slow I/O or waits held inside it.
+- Cancellation, dispose, and shutdown: work that still runs after its lease, connection, channel, or subscription is released or closed.
+- Retries and redelivery that are not idempotent, and work that two workers or two nodes can run at the same time.
+- Caches and in-memory copies that go stale when another writer changes the source.
+Report a concurrency finding only with a concrete interleaving: name the two paths and the order of events that breaks the code.
+
 ## Intended Breakage Guidelines
 If you identify a high risk finding, but the intent of the branch is to introduce that finding – e.g. break some functionality, remove a feature flag, remove a safeguard – AND the scope of the change is well constrained, you SHOULD NOT waste the author's time by reporting the issue to them. However, if you believe it is likely that they are not aware of the full implications of their change, or you are worried that they are under-weighting the negative impacts (extreme example: a developer pushes a PR titled "Delete the database"), or you are worried that the change is actually malicious, you should still report the finding.
 

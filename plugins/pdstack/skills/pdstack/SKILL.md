@@ -26,6 +26,7 @@ Remaining triggers:
 - Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**. Keep decisions in a pure core and I/O in a thin shell per **principle-functional-core**.
 - Code in files that match the globs of a stack pack (the `Globs:` line at the top of each pack file) in `stackPacks` of `.agents/pdstack.json` → read that pack's `standards.md` (`../../packs/<pack>/standards.md`) before you plan or write the code. Give its path to each delegate and reviewer.
 - Before **Opening a PR**, review the diff against `standards.md` of each matching stack pack. Fix each violation, or name the project doc that overrides the standard.
+- Before **Opening a PR** → the review gate in `playbooks/opening-a-pr.md`, one independent `thermo-nuclear-review` pass over the diff.
 - Verification → read `verification.md` of the matching stack pack first, then use the project `verify` skill, then `run`.
 - Runtime or trace forensics → read `forensics.md` of the matching stack pack.
 - Rules conflict → project docs win over stack packs, and stack packs win over principles. A standard that overrides a principle names it.
@@ -112,7 +113,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 **Worktrees go in the worktree home.** Every pdstack worktree goes in `worktreeHome` from `.agents/pdstack.json`, or in `../<repo>-worktrees` when the key is absent. This covers code delegates, autopilot owners, orchestrate workers, forensics proofs, and the worktree of Opening a PR.
 
-**Other model families.** A role value `<family>:<model>` names a model outside Claude. Run that role with `node <plugin>/scripts/run-external.mjs --family <family> --model <model> --prompt-file <file>` in the background, in the role's worktree, and read the output file it prints. If a role asks for a different model family and the sheet has no other family, use a different Claude model from the one that did the work, and state the gap in one line, for example "No other family is configured. The judge was `fable`." The `show-me-your-work` audit and the orchestrate verifier have no sheet line. They take an entry from `arena cross-judge pool` whose family differs from the one that did the work.
+**Other model families.** A role value `<family>:<model>` names a model outside Claude. Run that role with `node <plugin>/scripts/run-external.mjs --family <family> --model <model> --prompt-file <file>` in the background, in the role's worktree, and read the output file it prints. If a role asks for a different model family and the sheet has no other family, use a different Claude model from the one that did the work, and state the gap in one line, for example "No other family is configured. The judge was `sonnet`." The `show-me-your-work` audit and the orchestrate verifier have no sheet line. They take an entry from `arena cross-judge pool` whose family differs from the one that did the work.
 
 You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. A second opinion is the same prompt against a different model. Agreement is high-signal.
 
@@ -179,7 +180,9 @@ Role defaults, stamped from `plugins/pstack/models.json` (edit there, rerun `too
 - perf-issue: `opus`
 - hillclimb: `opus`
 - judgment and prose: `opus`
-- strongest judgment: `fable`
+- strongest judgment: `opus`
+
+Run `fable` only on a role that the user's sheet sets to `fable`, or when the user names it for the task. If you think a task needs `fable`, ask the user before you use it.
 
 ## Reasoning effort
 

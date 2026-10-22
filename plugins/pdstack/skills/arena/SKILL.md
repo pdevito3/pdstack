@@ -51,8 +51,8 @@ One synthesized artifact, with a short synthesis note alongside naming the base 
 
 Role defaults, stamped from `plugins/pstack/models.json` (edit there, rerun `tools/generate.mjs`). A matching role line in the `pdstack-models.md` override sheet overrides each at runtime; `/setup-pdstack` writes it and lists its path per runtime.
 
-- arena runners: `opus`, `fable`, `sonnet`, `haiku`
-- arena cross-judge pool: `opus`, `fable`, `sonnet`, `haiku`
+- arena runners: `opus`, `sonnet`, `haiku`
+- arena cross-judge pool: `opus`, `sonnet`, `haiku`
 
 ## Reasoning effort
 
