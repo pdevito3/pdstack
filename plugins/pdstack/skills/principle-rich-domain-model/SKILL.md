@@ -25,4 +25,4 @@ Put the behavior of an entity on the entity. Handlers and services do not change
 
 The sign that you skipped this is a handler that sets three fields in a row, or a validation rule copied into a second handler.
 
-The stack pack for the project gives the patterns for its language, for example the `dotnet` pack for C#.
+The project docs give the concrete patterns, for example the factory names, the exception types, and the event base class.
