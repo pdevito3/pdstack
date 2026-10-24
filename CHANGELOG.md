@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/pdevito3/pdstack/compare/v0.2.0...v0.3.0) (2026-10-24)
+
+
+### Features
+
+* **pdstack:** take the statechart skill and the transcript fixes from upstream ([#36](https://github.com/pdevito3/pdstack/issues/36)) ([0acdd4f](https://github.com/pdevito3/pdstack/commit/0acdd4fe21f585da3b702a3ef555bc0704661474))
+
 ## [0.2.0](https://github.com/pdevito3/pdstack/compare/v0.1.1...v0.2.0) (2026-10-22)
 
 
