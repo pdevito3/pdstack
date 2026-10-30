@@ -20,6 +20,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
         with:
@@ -28,8 +29,42 @@ jobs:
         with:
           node-version: 24
       - name: Unit tests
-        run: node --test '**/*.test.{js,mjs,ts}'
+        run: node --test '**/*.test.mjs'
       - name: Skill lint and version match
         run: node tools/lint-skills.mjs
       - name: Provenance
         run: node tools/check-provenance.mjs
+
+  # The statechart suite runs on Linux only, as upstream runs it. Its tests use
+  # sh, mkfifo, ps, and POSIX signals, and the render tests install Pele and
+  # Mermaid with npm.
+  statechart:
+    name: Statechart scripts
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: plugins/pdstack/skills/statechart/scripts
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      # TLC_TOOL in run.ts pins the release and checksum that the skill installs
+      # with mise, so the job checks the same jar.
+      - name: Download TLC
+        env:
+          TLA2TOOLS: ${{ runner.temp }}/tla2tools.jar
+        run: |
+          set -eo pipefail
+          pin=$(node -e 'const [, sum, version] = require("fs").readFileSync("run.ts", "utf8").match(/const TLC_TOOL =\s*"[^"]*sha256:([0-9a-f]{64})\]@([^"]+)"/); console.log(version, sum);')
+          read -r version sum <<< "$pin"
+          curl --fail --location --output "$TLA2TOOLS" "https://github.com/tlaplus/tlaplus/releases/download/v$version/tla2tools.jar"
+          echo "$sum  $TLA2TOOLS" | sha256sum --check
+      - name: Test
+        env:
+          TLA2TOOLS: ${{ runner.temp }}/tla2tools.jar
+          XDG_CACHE_HOME: ${{ runner.temp }}/xdg
+        run: JAVA="$(command -v java)" node --test 'test/*.test.ts'

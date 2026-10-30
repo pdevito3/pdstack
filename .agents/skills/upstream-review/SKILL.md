@@ -74,7 +74,8 @@ Move every `feeds` position to the `to` sha of its feed from step 1, also for sk
 Run the checks. All must pass:
 
 ```sh
-node --test '**/*.test.{js,mjs,ts}'
+node --test '**/*.test.mjs'
+(cd plugins/pdstack/skills/statechart/scripts && node --test 'test/*.test.ts')
 node tools/lint-skills.mjs
 node tools/check-provenance.mjs
 ```
