@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 24
       - name: Unit tests
-        run: node --test
+        run: node --test '**/*.test.{js,mjs,ts}'
       - name: Skill lint and version match
         run: node tools/lint-skills.mjs
       - name: Provenance

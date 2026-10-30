@@ -74,7 +74,7 @@ Move every `feeds` position to the `to` sha of its feed from step 1, also for sk
 Run the checks. All must pass:
 
 ```sh
-node --test
+node --test '**/*.test.{js,mjs,ts}'
 node tools/lint-skills.mjs
 node tools/check-provenance.mjs
 ```

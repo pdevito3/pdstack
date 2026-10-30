@@ -29,7 +29,7 @@ claude --plugin-dir ~/repos/pdstack/plugins/pdstack
 Run the checks before you commit:
 
 ```sh
-node --test
+node --test '**/*.test.{js,mjs,ts}'
 node tools/lint-skills.mjs
 node tools/check-provenance.mjs
 ```
