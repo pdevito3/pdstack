@@ -1,8 +1,9 @@
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { delimiter, join } from "node:path";
 import { describe, it } from "node:test";
+import { pathToFileURL } from "node:url";
 import { expect } from "./expect.test-helper.mjs";
 import { WatchDeadline } from "./deadline.mjs";
 import {
@@ -876,7 +877,7 @@ describe("context and stack discovery", () => {
 
   it("terminates when an unrelated fork opens main against main", () => {
     // Bound the subprocess so this regression reports a failure instead of hanging the suite.
-    const program = `import { orderStack } from ${JSON.stringify(join(import.meta.dirname, "github.mjs"))};
+    const program = `import { orderStack } from ${JSON.stringify(pathToFileURL(join(import.meta.dirname, "github.mjs")).href)};
       console.log(JSON.stringify(orderStack(${JSON.stringify(context)}, "main", [
         { number: 41, headRefName: "main", baseRefName: "main", headRepository: { owner: "contributor", repo: "repo" } },
         { number: 42, headRefName: "feature", baseRefName: "main", headRepository: { owner: "owner", repo: "repo" } }
@@ -891,7 +892,8 @@ describe("context and stack discovery", () => {
     expect(JSON.parse(child.stdout).map((item) => item.number)).toEqual([42]);
   });
 
-  it("requests and parses fork identity from gh before stack discovery", () => {
+  // The fake gh is a shebang script on PATH, which Windows cannot spawn.
+  it("requests and parses fork identity from gh before stack discovery", { skip: process.platform === "win32" ? "needs a shebang script as gh" : false }, () => {
     const directory = mkdtempSync(join(tmpdir(), "watch-pr-fork-"));
     try {
       writeFileSync(
@@ -905,8 +907,8 @@ printf '%s\\n' '[{"number":42,"headRefName":"feature","baseRefName":"main","head
 `,
         { mode: 0o755 }
       );
-      const program = `import { GhGitHubReader } from ${JSON.stringify(join(import.meta.dirname, "github.mjs"))};
-        import { WatchDeadline } from ${JSON.stringify(join(import.meta.dirname, "deadline.mjs"))};
+      const program = `import { GhGitHubReader } from ${JSON.stringify(pathToFileURL(join(import.meta.dirname, "github.mjs")).href)};
+        import { WatchDeadline } from ${JSON.stringify(pathToFileURL(join(import.meta.dirname, "deadline.mjs")).href)};
         console.log(JSON.stringify(await new GhGitHubReader(new WatchDeadline(0, Date.now)).openPullRequests({ owner: "owner", repo: "repo" })));`;
       const child = spawnSync(
         process.execPath,
@@ -914,7 +916,7 @@ printf '%s\\n' '[{"number":42,"headRefName":"feature","baseRefName":"main","head
         {
           encoding: "utf8",
           timeout: 2000,
-          env: { ...process.env, PATH: directory + ":" + process.env.PATH },
+          env: { ...process.env, PATH: `${directory}${delimiter}${process.env.PATH}` },
         }
       );
       expect(child.error).toBe(undefined);
