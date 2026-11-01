@@ -1,7 +1,7 @@
 {
   "name": "pdstack",
   "displayName": "pdstack",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Sends each request to a playbook that plans, builds, verifies, and opens a PR. Derived from pstack by Lauren Tan (poteto) and pstack-claude by Michael Denyer.",
   "author": {
     "name": "Paul DeVito",
