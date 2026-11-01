@@ -1,8 +1,8 @@
 {
   "feeds": {
-    "cursor/plugins": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
-    "michael-denyer/pstack-claude": "903e7385382389806c59d6989b6274e24165082b",
-    "mattpocock/skills": "5beb35b040e3de97e54fa9e386d7e42d15c295c2"
+    "cursor/plugins": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
+    "michael-denyer/pstack-claude": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+    "mattpocock/skills": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   "renames": [
     [
@@ -39,7 +39,7 @@
     "plugins/pdstack/agents/comment-sicko.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/agents/comment-sicko.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
     "plugins/pdstack/agents/pdstack-agent.md": {
@@ -63,9 +63,87 @@
     "plugins/pdstack/models.json": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/models.json",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "The strongest tier is `opus` and the panel is `opus`, `sonnet`, `haiku`, with no `fable`, because the user wants no default to run Fable."
+      "why": "The strongest tier is `opus` and the panel is `opus`, `sonnet`, `haiku`, with no `fable`, because the user wants no default to run Fable. Keeps the codex, pi, and muse blocks as upstream has them, because no pdstack code reads them."
+    },
+    "plugins/pdstack/pi/agent-text.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/agent-text.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "renamed"
+    },
+    "plugins/pdstack/pi/agent-tools.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/agent-tools.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "renamed"
+    },
+    "plugins/pdstack/pi/agents.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/agents.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/pi/ask.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/ask.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/pi/child.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/child.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/pi/config.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/config.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "renamed"
+    },
+    "plugins/pdstack/pi/index.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/index.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/pi/one-shot.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/one-shot.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/pi/path-skills.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/path-skills.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "renamed"
+    },
+    "plugins/pdstack/pi/prompt.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/prompt.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "renamed"
+    },
+    "plugins/pdstack/pi/schedule.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/schedule.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/pi/sleep-wait.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/sleep-wait.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/pi/worktree.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/pi/worktree.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
     },
     "plugins/pdstack/skills/architect/references/design-red-flags.md": {
       "source": "michael-denyer/pstack-claude",
@@ -95,7 +173,7 @@
     "plugins/pdstack/skills/arena/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/arena/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "The default runners and cross-judge pool drop `fable`, because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
@@ -109,7 +187,7 @@
     "plugins/pdstack/skills/babysit/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/babysit/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -137,7 +215,7 @@
     "plugins/pdstack/skills/create-formal-verification-skill/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/create-formal-verification-skill/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -162,7 +240,7 @@
     "plugins/pdstack/skills/create-verification-skill/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/create-verification-skill/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -235,7 +313,7 @@
     "plugins/pdstack/skills/how/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/how/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -246,36 +324,19 @@
       "status": "renamed",
       "hide": true
     },
-    "plugins/pdstack/skills/interrogate/references/code-quality-review.md": {
-      "source": "michael-denyer/pstack-claude",
-      "path": "plugins/pstack/skills/interrogate/references/code-quality-review.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
-    },
-    "plugins/pdstack/skills/interrogate/references/lead-judgment.md": {
-      "source": "michael-denyer/pstack-claude",
-      "path": "plugins/pstack/skills/interrogate/references/lead-judgment.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
-    },
-    "plugins/pdstack/skills/interrogate/references/reviewer-prompt.md": {
-      "source": "michael-denyer/pstack-claude",
-      "path": "plugins/pstack/skills/interrogate/references/reviewer-prompt.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
-    },
-    "plugins/pdstack/skills/interrogate/references/rubric.md": {
-      "source": "michael-denyer/pstack-claude",
-      "path": "plugins/pstack/skills/interrogate/references/rubric.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "verbatim"
-    },
     "plugins/pdstack/skills/interrogate/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/interrogate/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "The default reviewers drop `fable` (three reviewers, A to C), because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
+      "why": "The default reviewers drop `fable` (`opus`, `sonnet`, `haiku`), because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
+    },
+    "plugins/pdstack/skills/ketchup-video/SKILL.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/ketchup-video/SKILL.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "renamed",
+      "hide": true
     },
     "plugins/pdstack/skills/ketchup/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -287,14 +348,14 @@
     "plugins/pdstack/skills/maintain-formal-verification-skill/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/maintain-formal-verification-skill/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
     "plugins/pdstack/skills/maintain-verification-skill/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/maintain-verification-skill/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -308,7 +369,7 @@
     "plugins/pdstack/skills/no-comments/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/no-comments/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -321,16 +382,16 @@
     "plugins/pdstack/skills/pdstack-help/references/recipes.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-help/references/recipes.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Points /bro to wait-what."
     },
     "plugins/pdstack/skills/pdstack-help/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-help/SKILL.md",
-      "sha": "903e7385382389806c59d6989b6274e24165082b",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "Points /bro to wait-what, and names writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only. Adds the /statechart row from cursor/plugins eb4db2b, which pstack-claude has not translated yet."
+      "why": "Points /bro to wait-what, and names writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/pdstack/playbooks/authoring-a-skill.md": {
       "source": "michael-denyer/pstack-claude",
@@ -342,25 +403,25 @@
     "plugins/pdstack/skills/pdstack/playbooks/autonomous-run.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/autonomous-run.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed"
     },
     "plugins/pdstack/skills/pdstack/playbooks/autopilot-full.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/autopilot-full.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed"
     },
     "plugins/pdstack/skills/pdstack/playbooks/autopilot-stack.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/autopilot-stack.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/pdstack/playbooks/babysit.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/babysit.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed"
     },
     "plugins/pdstack/skills/pdstack/playbooks/bug-fix.md": {
@@ -396,13 +457,13 @@
     "plugins/pdstack/skills/pdstack/playbooks/multi-phase-plan.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/multi-phase-plan.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed"
     },
     "plugins/pdstack/skills/pdstack/playbooks/opening-a-pr.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/opening-a-pr.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate step, one independent thermo-nuclear-review pass before the PR (issue #14), and adds the gate to the PR subagent line."
     },
@@ -478,7 +539,7 @@
     "plugins/pdstack/skills/pdstack/references/agents/comment-sicko.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/references/agents/comment-sicko.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/pdstack/references/bugbot-triage.md": {
@@ -514,7 +575,13 @@
     "plugins/pdstack/skills/pdstack/references/merge-safety.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/references/merge-safety.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "renamed"
+    },
+    "plugins/pdstack/skills/pdstack/references/pi-tools.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/references/pi-tools.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed"
     },
     "plugins/pdstack/skills/pdstack/references/resume-storage.md": {
@@ -527,7 +594,7 @@
     "plugins/pdstack/skills/pdstack/scripts/.prettierignore": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/.prettierignore",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/pdstack/scripts/.prettierrc.json": {
@@ -539,13 +606,13 @@
     "plugins/pdstack/skills/pdstack/scripts/check-plan.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/check-plan.mjs",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/pdstack/scripts/check-plan.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/check-plan.test.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Node port of the Bun TypeScript original, with no dependencies."
     },
@@ -565,14 +632,14 @@
     "plugins/pdstack/skills/pdstack/scripts/orch/orch.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Node port of the Bun TypeScript original, with no dependencies."
     },
     "plugins/pdstack/skills/pdstack/scripts/orch/store.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/orch/store.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Node port of the Bun TypeScript original, with no dependencies."
     },
@@ -621,7 +688,7 @@
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/github.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
     },
@@ -656,7 +723,7 @@
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/policy.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
     },
@@ -746,9 +813,9 @@
     "plugins/pdstack/skills/pdstack/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. Adds the review gate line before Opening a PR, sets the strongest judgment default to `opus`, and runs `fable` only when the user names it."
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line before Opening a PR, sets the strongest judgment default to `opus`, and runs `fable` only when the user names it."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -789,7 +856,7 @@
     "plugins/pdstack/skills/principle-explain-the-number/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/principle-explain-the-number/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/principle-fix-root-causes/SKILL.md": {
@@ -949,7 +1016,7 @@
     "plugins/pdstack/skills/reflect/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/SKILL.md",
-      "sha": "903e7385382389806c59d6989b6274e24165082b",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Hands skill authoring to the Authoring a skill playbook and writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only."
     },
@@ -977,7 +1044,7 @@
     "plugins/pdstack/skills/setup-pdstack/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/setup-pstack/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
       "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. The sheet and the default panel have no `fable`."
     },
@@ -990,13 +1057,13 @@
     "plugins/pdstack/skills/setup-pdstack/templates/issue-tracker-github.md": {
       "source": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills/issue-tracker-github.md",
-      "sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "sha": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/setup-pdstack/templates/issue-tracker-gitlab.md": {
       "source": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills/issue-tracker-gitlab.md",
-      "sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "sha": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
       "status": "verbatim"
     },
     "plugins/pdstack/skills/setup-pdstack/templates/issue-tracker-local.md": {
@@ -1008,7 +1075,7 @@
     "plugins/pdstack/skills/sharpen/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/sharpen/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -1031,83 +1098,2442 @@
       "status": "renamed",
       "hide": true
     },
-    "plugins/pdstack/skills/statechart/SKILL.md": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/SKILL.md",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/references/render.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/references/render.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/chart-to-tla.mjs": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/chart-to-tla.mjs",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/backends/cfg.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/backends/cfg.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/compare-charts.mjs": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/compare-charts.mjs",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/backends/mermaid.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/backends/mermaid.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/lib.mjs": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/lib.mjs",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/backends/plain-text.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/backends/plain-text.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/model/OutputFolder.cfg": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/model/OutputFolder.cfg",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/backends/report.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/backends/report.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/model/OutputFolder.map.mjs": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/model/OutputFolder.map.mjs",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/frontends/config.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/config.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/model/OutputFolder.tla": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/model/OutputFolder.tla",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/frontends/dot.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/dot.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/statechart.mjs": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/statechart.mjs",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/frontends/marks.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/marks.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/test/statechart.test.mjs": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/test/statechart.test.mjs",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/frontends/messages.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/messages.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/frontends/spec.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/spec.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/frontends/trace.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/trace.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/frontends/value.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/value.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/frontends/verdict.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/verdict.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/frontends/view.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/frontends/view.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/ir.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/ir.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/package.json": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/package.json",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "Resolves the temp folder to its real path, because macOS links /var to /private/var and TLC prints the real path. Skips the rename preload tests off Linux, because LD_PRELOAD works only there, and says so in the skip reason. Builds the expected relative paths with join, so the error message test passes on Windows."
+      "why": "Drops the fast-check devDependency, because pdstack does not copy the config-fuzz and differential tests that need it, and the Node scripts have no dependencies."
     },
-    "plugins/pdstack/skills/statechart/scripts/test/sync.mmd": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/test/sync.mmd",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/passes/annotate.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/passes/annotate.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/test/upload.mmd": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/test/upload.mmd",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/passes/label.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/passes/label.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
     },
-    "plugins/pdstack/skills/statechart/scripts/tlc-to-chart.mjs": {
-      "source": "cursor/plugins",
-      "path": "pstack/skills/statechart/scripts/tlc-to-chart.mjs",
-      "sha": "4ec7ffa173eaa70d3d9467a627baf0954645a353",
+    "plugins/pdstack/skills/statechart/scripts/passes/lift.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/passes/lift.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/passes/loop-check.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/passes/loop-check.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/passes/paths.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/passes/paths.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/passes/reach.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/passes/reach.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/passes/region-check.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/passes/region-check.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/passes/regions.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/passes/regions.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/pipeline.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/pipeline.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/run.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/run.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/statechart": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/statechart",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/statechart.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/statechart.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/chart.test.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/chart.test.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/charts/Braces.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/charts/Braces.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/charts/Escapes.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/charts/Escapes.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/charts/Phases.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/charts/Phases.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/cli.test.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/cli.test.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/ConfigOracle.java": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/ConfigOracle.java",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus.test.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus.test.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Counter/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Counter/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Counter/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Counter/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Counter/Counter.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Counter/Counter.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Counter/Counter.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Counter/Counter.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Counter/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Counter/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Counter/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Counter/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Counter/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Counter/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Counter/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Counter/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/CounterAction.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/CounterAction.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/CounterAction.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/CounterAction.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-3.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterAction/verdict-3.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/CounterDeadlock.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/CounterDeadlock.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/CounterDeadlock.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/CounterDeadlock.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterDeadlock/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterDeadlock/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/CounterFan.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/CounterFan.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/CounterFan.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/CounterFan.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterFan/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterFan/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/ChartRun.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/ChartRun.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/CounterGuard.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/CounterGuard.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/CounterGuard.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/CounterGuard.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterGuard/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterGuard/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/CounterInitPast.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/CounterInitPast.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/CounterInitPast.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/CounterInitPast.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPast/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPast/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/CounterInitPastHolds.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/CounterInitPastHolds.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/CounterInitPastHolds.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/CounterInitPastHolds.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInitPastHolds/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/CounterInstance.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/CounterInstance.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/CounterInstance.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/CounterInstance.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/CounterSteps.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/CounterSteps.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterInstance/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterInstance/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/CounterJump.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/CounterJump.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/CounterJump.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/CounterJump.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterJump/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterJump/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/CounterLoop.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/CounterLoop.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/CounterLoop.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/CounterLoop.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterLoop/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterLoop/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/CounterOrder.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/CounterOrder.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/CounterOrder.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/CounterOrder.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterOrder/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterOrder/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/CounterRules.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/CounterRules.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/CounterRules.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/CounterRules.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/Moves.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/Moves.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-3.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-3.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-3.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-3.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-4.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterRules/verdict-4.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/CounterStart.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/CounterStart.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/CounterStart.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/CounterStart.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStart/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStart/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStop/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStop/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStop/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStop/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStop/CounterStop.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStop/CounterStop.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStop/CounterStop.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStop/CounterStop.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStop/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStop/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStop/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStop/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStop/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStop/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterStop/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterStop/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/CounterTie.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/CounterTie.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/CounterTie.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/CounterTie.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-3.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-3.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-3.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-3.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-4.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTie/verdict-4.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/CounterTieInGraph.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/CounterTieInGraph.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/CounterTieInGraph.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/CounterTieInGraph.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterTieInGraph/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/CounterView.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/CounterView.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/CounterView.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/CounterView.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/verdict-3.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/verdict-3.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/verdict-3.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/verdict-3.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/verdict-4.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/verdict-4.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/CounterView/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/CounterView/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/DieHard.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/DieHard.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/DieHard.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/DieHard.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/DieHard/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/DieHard/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/FirstRule.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/FirstRule.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/FirstRule.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/FirstRule.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-3.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-3.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-3.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-3.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-4.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-4.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-4.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/FirstRule/verdict-4.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/HiddenClock.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/HiddenClock.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/HiddenClock.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/HiddenClock.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/HiddenClock/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/HiddenClock/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/Login.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/Login.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/Login.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/Login.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Login/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Login/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/LoginGuarded.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/LoginGuarded.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/LoginGuarded.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/LoginGuarded.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginGuarded/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginGuarded/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/LoginParallel.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/LoginParallel.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/LoginParallel.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/LoginParallel.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/LoginParallel/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/LoginParallel/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/MediaPlayer.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/MediaPlayer.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/MediaPlayer.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/MediaPlayer.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayer/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayer/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/MediaPlayerFixed.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/MediaPlayerFixed.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/MediaPlayerFixed.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/MediaPlayerFixed.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerFixed/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/MediaPlayer.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/MediaPlayer.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/MediaPlayerProps.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/MediaPlayerProps.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/MediaPlayerProps.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/MediaPlayerProps.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-3.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-3.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-4.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-4.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-4.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-4.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-5.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-5.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-5.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-5.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-6.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/verdict-6.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/MediaPlayerProps/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/PickWorker/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/PickWorker/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/PickWorker/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/PickWorker/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/PickWorker/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/PickWorker/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/PickWorker/PickWorker.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/PickWorker/PickWorker.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/PickWorker/PickWorker.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/PickWorker/PickWorker.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/PickWorker/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/PickWorker/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/PickWorker/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/PickWorker/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/PickWorker/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/PickWorker/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/Shadow.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/Shadow.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/Shadow.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/Shadow.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/ShadowLib.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/ShadowLib.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/ShadowSub.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/ShadowSub.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/Shadow/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/Shadow/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/SpacedNames.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/SpacedNames.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/SpacedNames.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/SpacedNames.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/SpacedNames/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/SpacedNames/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/TwoPhase.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/TwoPhase.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/TwoPhase.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/TwoPhase.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhase/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhase/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/TwoPhaseFixed.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/TwoPhaseFixed.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/TwoPhaseFixed.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/TwoPhaseFixed.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/view.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TwoPhaseFixed/view.mjs",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/ChartRun.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/ChartRun.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/TypeGuard.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/TypeGuard.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/TypeGuard.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/TypeGuard.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/TypeGuard/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/TypeGuard/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/chart.mmd": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/chart.mmd",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/ChartRun.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/ChartRun.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/graph.dot": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/graph.dot",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/report.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/report.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/UserNoDeadlock.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/UserNoDeadlock.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/UserNoDeadlock.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/UserNoDeadlock.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/verdict-1.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/verdict-1.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/verdict-1.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/verdict-1.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/verdict-2.exit": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/verdict-2.exit",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/verdict-2.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/corpus/UserNoDeadlock/verdict-2.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/grid/Grid.cfg": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/grid/Grid.cfg",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/grid/Grid.tla": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/grid/Grid.tla",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/grid/sany.out": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/grid/sany.out",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/java.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/java.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/labels.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/labels.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/messages.test.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/messages.test.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/pipeline.test.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/pipeline.test.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/plain-tlc.test.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/plain-tlc.test.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/render.test.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/render.test.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/tlc-out.test.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/tlc-out.test.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/test/tlc.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/test/tlc.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/tsconfig.json": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/tsconfig.json",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/scripts/worker.ts": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/scripts/worker.ts",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "verbatim"
+    },
+    "plugins/pdstack/skills/statechart/SKILL.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/statechart/SKILL.md",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "status": "renamed",
+      "hide": true
     },
     "plugins/pdstack/skills/swarm/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/swarm/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -1121,7 +3547,7 @@
     "plugins/pdstack/skills/teach/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/teach/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -1149,7 +3575,7 @@
     "plugins/pdstack/skills/thermos/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/thermos/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -1162,7 +3588,7 @@
     "plugins/pdstack/skills/typescript-best-practices/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/typescript-best-practices/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },
@@ -1261,7 +3687,7 @@
     "plugins/pdstack/skills/why/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/why/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "renamed",
       "hide": true
     },

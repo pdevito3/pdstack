@@ -1,0 +1,8 @@
+{
+  "name": "@cursor-skill/statechart",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.ts"
+  }
+}
