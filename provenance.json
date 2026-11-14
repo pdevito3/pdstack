@@ -815,7 +815,7 @@
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
       "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line before Opening a PR, sets the strongest judgment default to `opus`, and runs `fable` only when the user names it."
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line before Opening a PR, sets the strongest judgment default to `opus`, runs `fable` only when the user names it, and adds the Find state machines playbook."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
