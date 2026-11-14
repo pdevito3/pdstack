@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/pdevito3/pdstack/compare/v0.3.0...v0.4.0) (2026-11-14)
+
+
+### Features
+
+* **pdstack:** add find-state-machines playbook ([#43](https://github.com/pdevito3/pdstack/issues/43)) ([439f326](https://github.com/pdevito3/pdstack/commit/439f32619398469c6eb140637af41eea270567af))
+
 ## [0.3.0](https://github.com/pdevito3/pdstack/compare/v0.2.0...v0.3.0) (2026-11-01)
 
 
