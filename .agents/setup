@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# Prepares an Amp orb for this repository's checks. See README.md#development
+# and .github/workflows/ci.yml for the checks themselves.
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+step() {
+  local name=$1 start=$SECONDS
+  shift
+  echo "==> $name"
+  "$@"
+  echo "<== $name ($((SECONDS - start))s)"
+}
+
+# mise installs TLC and Java exactly as the statechart skill does. ~/.local/bin
+# is already on PATH in the orb's login shells.
+mise="$HOME/.local/bin/mise"
+install_mise() {
+  if [ -x "$mise" ]; then return; fi
+  curl -fsSL https://mise.run | MISE_INSTALL_PATH="$mise" sh
+}
+
+# run.ts pins the TLC release, its checksum, and the Java build. Read them from
+# there so the orb checks the same jar as the skill and CI.
+statechart="plugins/pdstack/skills/statechart/scripts"
+pin() {
+  node -e 'const s = require("fs").readFileSync(process.argv[1], "utf8"); const m = s.match(new RegExp(`const ${process.argv[2]} =\\s*"([^"]+)"`)); if (!m) process.exit(1); console.log(m[1]);' \
+    "$statechart/run.ts" "$1"
+}
+install_tlc() {
+  local tlc java jar java_bin
+  tlc="$(pin TLC_TOOL)"
+  java="$(pin JAVA_TOOL)"
+  MISE_CEILING_PATHS="$repo_root/$statechart" "$mise" install --yes --quiet "$java" "$tlc"
+  jar="$("$mise" where "$tlc")/tla2tools.jar"
+  java_bin="$("$mise" which java --tool "$java")"
+  [ -f "$jar" ]
+
+  # The statechart tests skip TLC unless TLA2TOOLS is set, as in CI. Rewrite the
+  # env file each run so a new pin in run.ts reaches login shells.
+  local env_file="$HOME/.config/pdstack/orb-env.sh"
+  mkdir -p "$(dirname "$env_file")"
+  cat > "$env_file" <<EOF
+export TLA2TOOLS="$jar"
+export JAVA="$java_bin"
+EOF
+  local marker="# pdstack orb environment"
+  if ! grep -Fqx "$marker" "$HOME/.bash_profile" 2>/dev/null; then
+    printf '\n%s\n[ -f "%s" ] && . "%s"\n' "$marker" "$env_file" "$env_file" >> "$HOME/.bash_profile"
+  fi
+}
+
+# tools/check-provenance.mjs and tools/upstream-diff.mjs read the upstream repos
+# from .upstreams/, named as Upstreams.repoDir in tools/lib/provenance.mjs names them.
+sync_upstreams() {
+  local sources source dir
+  sources="$(node -e 'const p = require("./provenance.json"); console.log([...new Set([...Object.keys(p.feeds), ...Object.values(p.pins).map((pin) => pin.source)])].join("\n"));')"
+  for source in $sources; do
+    dir=".upstreams/${source/\//__}"
+    if [ -d "$dir" ]; then
+      git -C "$dir" fetch --quiet origin
+    else
+      mkdir -p .upstreams
+      git clone --quiet --no-checkout "https://github.com/$source.git" "$dir"
+    fi
+  done
+}
+
+# test/render.test.ts installs Pele and Mermaid with npm into
+# ~/.cache/statechart on every run. Install the same packages here so the
+# test's own install finds them in place.
+warm_render_packages() {
+  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/statechart" installs line args
+  installs="$(node -e 'const s = require("fs").readFileSync(process.argv[1], "utf8"); const calls = [...s.matchAll(/install\(\s*"([^"]+)",([^)]*)\)/g)]; if (!calls.length) process.exit(1); for (const [, name, rest] of calls) console.log(name, ...[...rest.matchAll(/"([^"]+)"/g)].map((m) => m[1]));' \
+    "$statechart/test/render.test.ts")"
+  while IFS= read -r line; do
+    read -ra args <<< "$line"
+    npm install --prefix "$cache/${args[0]}" --no-audit --no-fund --save-exact --silent "${args[@]:1}"
+  done <<< "$installs"
+}
+
+step "mise" install_mise
+step "TLC and Java" install_tlc
+step "upstream repos" sync_upstreams
+step "render test packages" warm_render_packages
