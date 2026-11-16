@@ -58,7 +58,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/agents/thermo-nuclear-review-subagent.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Lists the local Concurrency and Failure and Restart sections of thermo-nuclear-review in the rubric line, so that an agent that works from the list does not skip them."
     },
     "plugins/pdstack/models.json": {
       "source": "michael-denyer/pstack-claude",
@@ -3571,7 +3572,7 @@
       "path": "plugins/pstack/skills/thermo-nuclear-review/SKILL.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Adds Concurrency Guidelines, because the review gate in opening-a-pr runs this skill, and an eval on 11 cases showed that one-pass reviews miss interleaving bugs (issue #14). Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
+      "why": "Adds Concurrency Guidelines, because the review gate in opening-a-pr runs this skill, and an eval on 11 cases showed that one-pass reviews miss interleaving bugs (issue #14). Adds Failure and Restart Guidelines and the cross-boundary check-then-act case, because a gate run missed a restart fault, a partial-failure fault, and a broker check-then-act fault. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
     "plugins/pdstack/skills/thermos/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
