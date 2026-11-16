@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/pdevito3/pdstack/compare/v0.4.0...v0.5.0) (2026-11-16)
+
+
+### Features
+
+* **pdstack:** add the merge-risk skill ([#46](https://github.com/pdevito3/pdstack/issues/46)) ([3c83d1a](https://github.com/pdevito3/pdstack/commit/3c83d1a10f51573a396a4b0a7d7ee61df5b90bca))
+
 ## [0.4.0](https://github.com/pdevito3/pdstack/compare/v0.3.0...v0.4.0) (2026-11-14)
 
 
