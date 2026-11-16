@@ -422,8 +422,7 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/babysit.md",
       "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
-      "status": "modified",
-      "why": "Ready also needs a `review-gate: passed` PR comment from the review gate in opening-a-pr, so that babysit never reports an unreviewed PR as merge-ready."
+      "status": "renamed"
     },
     "plugins/pdstack/skills/pdstack/playbooks/bug-fix.md": {
       "source": "michael-denyer/pstack-claude",
@@ -459,7 +458,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/multi-phase-plan.md",
       "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Allows a draft PR when the user asks for one, to match Readiness in opening-a-pr."
     },
     "plugins/pdstack/skills/pdstack/playbooks/opening-a-pr.md": {
       "source": "michael-denyer/pstack-claude",
