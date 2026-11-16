@@ -27,7 +27,7 @@ Remaining triggers:
 - Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**. Keep decisions in a pure core and I/O in a thin shell per **principle-functional-core**.
 - Code in files that match the globs of a stack pack (the `Globs:` line at the top of each pack file) in `stackPacks` of `.agents/pdstack.json` → read that pack's `standards.md` (`../../packs/<pack>/standards.md`) before you plan or write the code. Give its path to each delegate and reviewer.
 - Before **Opening a PR**, review the diff against `standards.md` of each matching stack pack. Fix each violation, or name the project doc that overrides the standard.
-- Before a PR head goes to a human (open ready, mark a draft ready, report done) → the review gate in `playbooks/opening-a-pr.md`, an independent `thermo-nuclear-review` pass over the diff. Drafts and script-opened PRs get it too.
+- Before **Opening a PR**, draft or ready, or a script that opens one → the review gate in `playbooks/opening-a-pr.md`, an independent `thermo-nuclear-review` pass over the diff that ends in a `review-gate:` PR comment.
 - Verification → read `verification.md` of the matching stack pack first, then use the project `verify` skill, then `run`.
 - Runtime or trace forensics → read `forensics.md` of the matching stack pack.
 - Rules conflict → project docs win over stack packs, and stack packs win over principles. A standard that overrides a principle names it.

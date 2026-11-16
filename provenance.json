@@ -422,7 +422,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/babysit.md",
       "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Ready also needs a `review-gate: passed` PR comment from the review gate in opening-a-pr, so that babysit never reports an unreviewed PR as merge-ready."
     },
     "plugins/pdstack/skills/pdstack/playbooks/bug-fix.md": {
       "source": "michael-denyer/pstack-claude",
@@ -465,7 +466,7 @@
       "path": "plugins/pstack/skills/poteto-mode/playbooks/opening-a-pr.md",
       "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate step, an independent thermo-nuclear-review pass before a PR head goes to a human (issue #14), and adds the gate to the PR subagent line. The gate covers drafts and script-opened PRs, splits a diff of more than 2,000 lines by component, and ends in a `review-gate:` PR comment for the head."
+      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate step, an independent thermo-nuclear-review pass before the PR opens (issue #14), and adds the gate to the PR subagent line. The gate covers drafts and script-opened PRs, reruns after feature work, splits a diff of more than 2,000 lines by component, and ends in a `review-gate:` PR comment. Readiness allows a draft when the user asks for one."
     },
     "plugins/pdstack/skills/pdstack/playbooks/orchestrate.md": {
       "source": "michael-denyer/pstack-claude",
@@ -815,7 +816,7 @@
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
       "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line, which runs before a PR head goes to a human, drafts and script-opened PRs included, sets the strongest judgment default to `opus`, runs `fable` only when the user names it, and adds the Find state machines playbook."
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line, which runs before a PR opens, drafts and script-opened PRs included, sets the strongest judgment default to `opus`, runs `fable` only when the user names it, and adds the Find state machines playbook."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
