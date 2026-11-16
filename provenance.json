@@ -58,7 +58,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/agents/thermo-nuclear-review-subagent.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Lists the local Concurrency and Failure and Restart sections of thermo-nuclear-review in the rubric line, so that an agent that works from the list does not skip them."
     },
     "plugins/pdstack/models.json": {
       "source": "michael-denyer/pstack-claude",
