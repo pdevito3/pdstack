@@ -39,7 +39,7 @@ const scenario = process.env.WATCH_FIXTURE;
 appendFileSync(process.env.WATCH_CALLS, JSON.stringify(args) + '\\n');
 if (scenario === 'slow') {
   writeFileSync(process.env.WATCH_PID, String(process.pid));
-  await new Promise(resolve => setTimeout(resolve, 2000));
+  await new Promise(resolve => setTimeout(resolve, 10000));
 }
 const noCi = scenario.startsWith('no-ci');
 const fail = (stderr) => { console.error(stderr); process.exit(1); };
@@ -240,9 +240,9 @@ it("exits 7 with a JSON verdict when gh is not on PATH", { skip }, () => {
 });
 
 it("cancels an in-flight command at the CLI deadline", { skip }, () => {
-  const result = run("slow", ["--timeout", "0.25"]);
+  const result = run("slow", ["--timeout", "1"]);
   expect(result.status).toBe(5);
-  expect(result.elapsed).toBeLessThan(1500);
+  expect(result.elapsed).toBeLessThan(3000);
   expect(JSON.parse(result.stdout.trim())).toMatchObject({ kind: "TIMEOUT" });
   const pid = Number(readFileSync(result.pidFile, "utf8"));
   expect(() => process.kill(pid, 0)).toThrow();
