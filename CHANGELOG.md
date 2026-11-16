@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0](https://github.com/pdevito3/pdstack/compare/v0.5.0...v0.6.0) (2026-11-16)
+
+
+### Features
+
+* **pdstack:** add failure and restart checks to thermo-nuclear-review ([#50](https://github.com/pdevito3/pdstack/issues/50)) ([125850e](https://github.com/pdevito3/pdstack/commit/125850e94cfdf1c2da2f7f12c5d5acae2ed5a618))
+* **pdstack:** run the review gate on drafts and script-opened PRs ([#49](https://github.com/pdevito3/pdstack/issues/49)) ([4b1980c](https://github.com/pdevito3/pdstack/commit/4b1980c960f2096e160157a4c3b3a69f9ccbab83))
+
 ## [0.5.0](https://github.com/pdevito3/pdstack/compare/v0.4.0...v0.5.0) (2026-11-16)
 
 
