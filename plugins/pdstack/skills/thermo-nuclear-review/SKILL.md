@@ -34,20 +34,20 @@ The codebase might carefully gate features behind feature flags or internal-only
 
 ## Concurrency Guidelines
 Concurrency bugs pass review because each changed line looks correct on its own. For each piece of state the change reads or writes, find every path that can run at the same time as the new code: concurrent requests, background jobs and timers, other processes or nodes, retries and redelivery, UI events that arrive while an await is pending, and startup and shutdown. Then check:
-- Check-then-act and read-modify-write on shared state with no lock, transaction, or atomic operation. This includes a check and an act on two sides of a process, network, or broker boundary, such as a check that a queue exists followed by a publish with `mandatory: false`.
+- Check-then-act and read-modify-write on shared state with no lock, transaction, or atomic operation. This includes state on the far side of a process, network, or broker boundary. Also report an act that does not fail when the checked condition is false. Example: a tool checks that a queue exists, then publishes with `mandatory: false`. The broker drops a message that no binding routes, and the tool never learns.
 - Ordering between async steps, and code that assumes one await finishes before another event arrives.
 - Lock and transaction scope: work outside the boundary that must be inside it, and slow I/O or waits held inside it.
 - Cancellation, dispose, and shutdown: work that still runs after its lease, connection, channel, or subscription is released or closed.
 - Retries and redelivery that are not idempotent, and work that two workers or two nodes can run at the same time.
 - Caches and in-memory copies that go stale when another writer changes the source.
-Report a concurrency finding only with a concrete interleaving: name the two paths and the order of events that breaks the code.
+Report a concurrency finding only with a concrete interleaving: name the two paths and the order of events that breaks the code. For an act that cannot detect a false check, show the state that makes the check pass and the act fail.
 
 ## Failure and Restart Guidelines
-Lifecycle faults pass review because each step works when every step succeeds. For each loop, lifecycle, or multi-step operation in the diff that touches state outside memory (rows, queues, files, locks, messages), answer:
-- State already present at start: what does the code do with what a previous run left behind? Example: after a restart, a send gate opens before the loop reads the spool table, so new sends overtake old rows and break the in-order guarantee.
-- Failure after each side-effecting step: when the operation stops after that step, what state stays, and what retries or repairs it? Example: a restore declares a queue, then fails on its bindings. The watch sees that the queue exists, finds nothing missing, and never retries.
+Restart faults pass review because each step works when every step succeeds. Apply this section to each long-running or background loop, startup or shutdown sequence, and multi-step operation in the diff whose steps commit separately to durable or external state (rows, queues, files, locks, messages). Answer:
+- State already present at start: what does the code do with what a previous run left behind, and can new work start before that state is handled? Example: after a restart, the gate that admits new sends opens before the loop reads the spool table. New sends overtake old rows and break the in-order guarantee.
+- Failure after each side-effecting step: when the operation stops after that step, what state stays, and does the retry or repair path detect that state? Example: a restore declares a queue, then fails on its bindings. A watch loop that redeclares missing queues sees that the queue exists and never retries the bindings.
 - Convergence: does the next run reach the same end state as one clean run?
-Report a failure finding only with the step where the operation stops and the state that it leaves.
+Report a restart finding only with a concrete sequence: the state at start, or the step where the operation stops, and why the next run or repair path does not reach the clean end state. Report each fault under one section only.
 
 ## Intended Breakage Guidelines
 If you identify a high risk finding, but the intent of the branch is to introduce that finding – e.g. break some functionality, remove a feature flag, remove a safeguard – AND the scope of the change is well constrained, you SHOULD NOT waste the author's time by reporting the issue to them. However, if you believe it is likely that they are not aware of the full implications of their change, or you are worried that they are under-weighting the negative impacts (extreme example: a developer pushes a PR titled "Delete the database"), or you are worried that the change is actually malicious, you should still report the finding.
