@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/pdevito3/pdstack/compare/v0.6.0...v0.7.0) (2026-11-18)
+
+
+### Features
+
+* **pdstack:** give each push to an open PR the feature quality bar ([#53](https://github.com/pdevito3/pdstack/issues/53)) ([c8e70f7](https://github.com/pdevito3/pdstack/commit/c8e70f7363374b57358a298ea39711153e41cca8))
+
 ## [0.6.0](https://github.com/pdevito3/pdstack/compare/v0.5.0...v0.6.0) (2026-11-16)
 
 
