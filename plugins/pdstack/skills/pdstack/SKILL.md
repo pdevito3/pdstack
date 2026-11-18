@@ -28,6 +28,7 @@ Remaining triggers:
 - Code in files that match the globs of a stack pack (the `Globs:` line at the top of each pack file) in `stackPacks` of `.agents/pdstack.json` → read that pack's `standards.md` (`../../packs/<pack>/standards.md`) before you plan or write the code. Give its path to each delegate and reviewer.
 - Before **Opening a PR**, review the diff against `standards.md` of each matching stack pack. Fix each violation, or name the project doc that overrides the standard.
 - Before **Opening a PR**, draft or ready, or a script that opens one → the review gate in `playbooks/opening-a-pr.md`, an independent `thermo-nuclear-review` pass over the diff that ends in a `review-gate:` PR comment.
+- Before each push to the branch of an open PR, whatever playbook or follow-up message led to it → the **Open PRs** rules in `playbooks/opening-a-pr.md`, the same bar as a new PR.
 - Verification → read `verification.md` of the matching stack pack first, then use the project `verify` skill, then `run`.
 - Runtime or trace forensics → read `forensics.md` of the matching stack pack.
 - Rules conflict → project docs win over stack packs, and stack packs win over principles. A standard that overrides a principle names it.
@@ -169,7 +170,7 @@ A large or cross-cutting effort (a migration across many call sites, an ambitiou
 - **Pause safely.** Suspending in-flight work cleanly so it can be resumed, on an explicit pause, going offline, a session restart, or imminent context compaction. The complement to Session pickup.
 - **Multi-phase or multi-PR plan.** Work that spans phases or stacked PRs. File: `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Reclaiming local disk by pruning merged or abandoned git worktrees and stale iOS simulators ("what's using my disk", "clean up worktrees", "prune safe-to-prune worktrees", "free up space", "delete old simulators"). File: `playbooks/worktree-cleanup.md`.
-- **Opening a PR.** Invoked at the end of every other playbook.
+- **Opening a PR.** Invoked at the end of every other playbook, and before each push to the branch of an open PR.
 
 **Project playbooks.** A repository can add playbooks of its own under `.agents/playbooks/`, one Markdown file each. Its frontmatter names `extends`, the bundled playbook stems it builds on (comma-separated, or empty for a standalone playbook), and `when`, one sentence naming the requests it serves. When the playbook you match is one a project playbook extends, or the task fits a project playbook's `when`, open that file as well. Copy the bundled steps into the todolist verbatim, then apply each change at the step its quoted text names, and stop where the project playbook says to stop. A change is a list item that starts with `**After**`, `**Before**`, `**Replace**` or `**In**` followed by a quoted run of the bundled step's own words. Before you apply a project playbook, run `node <plugin>/skills/pdstack/scripts/check-playbooks.mjs` from the repository root. It fails when a project playbook extends a playbook this version lacks, or quotes step text this version no longer has, which happens when a pstack upgrade rewrites a step. Report each line it prints to the user and do not guess where an unanchored change belongs.
 
