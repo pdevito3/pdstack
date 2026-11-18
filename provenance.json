@@ -424,7 +424,7 @@
       "path": "plugins/pstack/skills/poteto-mode/playbooks/babysit.md",
       "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "Sorts each review comment by size, sends new behavior through Feature or Bug fix as new commits with no rebase, and runs the Open PRs rules of opening-a-pr before each push wave, so fixes get the same bar as feature work (issue #52)."
+      "why": "Sorts each review comment by size, sends new behavior through Feature or Bug fix as new commits with no rebase and no new PR, and runs the Open PRs rules of opening-a-pr before each push wave, so fixes get the same bar as feature work (issue #52)."
     },
     "plugins/pdstack/skills/pdstack/playbooks/bug-fix.md": {
       "source": "michael-denyer/pstack-claude",
@@ -468,7 +468,7 @@
       "path": "plugins/pstack/skills/poteto-mode/playbooks/opening-a-pr.md",
       "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
       "status": "modified",
-      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate step, an independent thermo-nuclear-review pass before the PR opens (issue #14), and adds the gate to the PR subagent line. The gate covers drafts and script-opened PRs, reruns after feature work, splits a diff of more than 2,000 lines by component, and ends in a `review-gate:` PR comment. Readiness allows a draft when the user asks for one. Adds Open PRs, which gives each push to an open PR the same bar: the owning PR in a stack, the base read from the PR, the PRs rules, the standards review, verification, a gate decision from the last own review-gate comment and a range-diff of all work since it, and a restack of child PRs. Early-opened PRs and replay-only pushes keep their own rules (issue #52)."
+      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate step, an independent thermo-nuclear-review pass before the PR opens (issue #14), and adds the gate to the PR subagent line. The gate covers drafts and script-opened PRs, reruns after feature work, splits a diff of more than 2,000 lines by component, and ends in a `review-gate:` PR comment. Readiness allows a draft when the user asks for one. Adds Open PRs, which gives each push to an open PR the same bar: the owning PR in a stack, the base read from the PR, the PRs rules, the standards review, verification, a gate decision from the last own review-gate comment and a range-diff of all work since it, a restack of child PRs, and a question to the user when the owning PR closed without a merge. Early-opened PRs and replay-only pushes keep their own rules (issue #52)."
     },
     "plugins/pdstack/skills/pdstack/playbooks/orchestrate.md": {
       "source": "michael-denyer/pstack-claude",
