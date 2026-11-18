@@ -14,12 +14,13 @@ Invoked at the end of every other playbook, and before each push to the branch o
 
 **Gate comment.** The agent that owns the PR posts one PR comment for each gate, as soon as the PR exists. The comment starts with `review-gate: passed <sha>` or `review-gate: BLOCKED: independent review <sha>`, where `<sha>` is the head the last reviewer read. It lists each finding that stays open, with its reason. Fixes after that review do not change the SHA in the comment.
 
-**Open PRs.** A push to the branch of an open PR gets the same bar as a new PR, whether it comes from Babysit, a build playbook, or a follow-up message in chat. Before each push:
+**Open PRs.** A push to the branch of an open PR gets the same bar as a new PR, whether it comes from Babysit, a build playbook, or a follow-up message in chat. A PR that a playbook opens early, as Autopilot-full does, follows that playbook until its code-ready report. A push that only replays existing commits, such as a rebase, a restack, or a retarget, skips steps 3 and 4, so its patches and its gate stay as they are. Before each other push:
 
-1. Push to the PR that owns the code. In a stack, that can be a lower PR than the one the user names.
-2. Read the PR's base with `gh pr view <pr> --json baseRefName` or `origin pr view <pr>`. A child's base is its parent branch, and it becomes trunk after the parent merges.
-3. Run the **PRs** rules over the new commits, and verify the change on the surface it touches.
-4. Read the PR comments for the last `review-gate:` comment. If none exists, run the gate. Otherwise apply the rerun rule in **Review gate** to the commits in this push only. A rebase onto a changed parent can remove the gated SHA from the branch, so a diff from that SHA also counts the parent's changes.
+1. Push to the PR that owns the code. In a stack, that can be a lower PR than the one the user names. If the owning PR merged or closed, open a new PR on top of the rest of the stack, or off trunk, and run this whole playbook.
+2. Read the PR's base with `gh pr view <pr> --json baseRefName` or `origin pr view <pr>` at each push, because a child's base can change to trunk after its parent merges. Fetch it, and use `origin/<base>` for every diff here and in the gate.
+3. Run the **PRs** rules and the stack-pack standards review over the new commits, and verify the change on the surface it touches.
+4. Find the last `review-gate:` comment posted by the account you post from (`gh api user`). Run the gate when no such comment exists, unless the **Review gate** skip covers the whole PR diff. Run it also when that comment says `BLOCKED`. Otherwise apply the rerun rule to all work since the gated `<sha>`, not only this push. `git range-diff --right-only $(git merge-base <sha> origin/<base>)..<sha> origin/<base>..HEAD` marks each commit since the gate with `>` or `!`. A plain diff from `<sha>` is wrong after a restack, because it also counts the parent's changes. If `git fetch origin <sha>` cannot get the SHA, run the gate.
+5. After a push to a lower PR, restack its children per **Size and stacks** and `references/merge-safety.md`. Inside a babysit, report the restack per `playbooks/babysit.md` step 4.
 
 **Titles.** Conventional Commits `type(scope): subject`, no trailing period. Type such as `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, or `perf`. Scope is the area, such as `pstack` or `pdstack`. Subject is short, imperative, and names a real symbol when one carries the change, for example `fix(pstack): retarget opening-a-pr babysit trigger`.
 
