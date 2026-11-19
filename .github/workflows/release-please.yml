@@ -16,3 +16,6 @@ jobs:
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+          # A PR that github-actions[bot] opens waits for workflow approval, so CI never ran on
+          # release PRs. A token of a user or an app opens the PR, and CI runs without approval.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
