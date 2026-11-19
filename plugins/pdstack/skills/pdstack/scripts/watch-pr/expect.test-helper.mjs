@@ -34,8 +34,24 @@ function project(actual, expected) {
   return actual;
 }
 
+function substitute(actual, expected) {
+  if (expected instanceof StringContaining)
+    return expected.matches(actual) ? expected : actual;
+  if (Array.isArray(expected) && Array.isArray(actual))
+    return actual.map((item, index) => substitute(item, expected[index]));
+  if (isObject(expected) && isObject(actual) && !Array.isArray(actual))
+    return Object.fromEntries(
+      Object.entries(actual).map(([key, item]) => [
+        key,
+        substitute(item, expected[key]),
+      ])
+    );
+  return actual;
+}
+
 // toEqual ignores undefined properties and object types.
 function plain(value) {
+  if (value instanceof StringContaining) return value;
   if (Array.isArray(value)) return value.map(plain);
   if (!isObject(value)) return value;
   return Object.fromEntries(
@@ -75,7 +91,10 @@ function matchers(actual) {
   return {
     toBe: (expected) => assert.strictEqual(actual, expected),
     toEqual: (expected) =>
-      assert.deepStrictEqual(plain(actual), plain(expected)),
+      assert.deepStrictEqual(
+        plain(substitute(actual, expected)),
+        plain(expected)
+      ),
     toMatchObject: (expected) =>
       assert.deepStrictEqual(project(actual, expected), expected),
     toContain: (expected) =>

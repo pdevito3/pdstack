@@ -829,9 +829,9 @@ describe("landing validators", () => {
       "baseRefOid must be a non-empty string",
     ],
   ])
-    it(`${name} rejects with a retryable missing-key failure`, () => {
+    it(`${name} rejects with a retryable missing-field failure`, () => {
       expect(failure(parse)).toEqual({
-        kind: "missing-key",
+        kind: "missing-field",
         retryable: true,
         detail,
       });
@@ -866,7 +866,7 @@ describe("landing validators", () => {
         )
       )
     ).toEqual({
-      kind: "missing-key",
+      kind: "missing-field",
       retryable: true,
       detail: "headRefOid must be a non-empty string",
     });

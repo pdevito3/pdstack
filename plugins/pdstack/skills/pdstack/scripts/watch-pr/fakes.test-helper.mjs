@@ -125,5 +125,9 @@ export function fakeReader(options = {}) {
       calls.push("commitRollups");
       return options.commitRollups ?? [{ oid: "head", state: "SUCCESS" }];
     },
+    async unsettledSuites(_requested, head, checksRead) {
+      calls.push(`unsettledSuites:${head}:${checksRead}`);
+      return options.unsettledSuites ?? [];
+    },
   };
 }

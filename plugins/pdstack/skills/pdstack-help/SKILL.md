@@ -35,14 +35,14 @@ When the model sheet is missing and it matters, ask whether the user wants to pi
 ## Get set up
 
 1. Identify the user's runtime and whether they want a native plugin/package or skills-only installation. Read its section in the [README](https://github.com/michael-denyer/pstack-claude/blob/main/README.md#install) or [shared installation reference](https://github.com/michael-denyer/pstack-claude/blob/main/docs/reference.md#shared-skills-installation), then give the matching install command.
-2. Read [`/setup-pdstack`](../setup-pdstack/SKILL.md), including its Other runtimes table, before explaining model choices, effort, sheet loading, or automatic routing. For a bundled routing hook or extension, use its persistent `session hook: off` setting in the current runtime's sheet to turn routing off. After the model sheet, it offers once each to generate a verification skill and a formal verification skill for the project, unless the project already has one.
+2. Read [`/setup-pdstack`](../setup-pdstack/SKILL.md), including its [Other runtimes](../setup-pdstack/SKILL.md#other-runtimes) table, before explaining model choices, effort, sheet loading, or automatic routing. After the model sheet, it offers once each to generate a verification skill and a formal verification skill for the project, unless the project already has one.
 3. Offer a first task prompt with a goal and a check that can pass or fail, per [`references/prompting.md`](references/prompting.md). Use the current runtime's invocation syntax from the [slash-command reference](https://github.com/michael-denyer/pstack-claude/blob/main/docs/reference.md#slash-commands).
 
-If cost is the worry, say where the tokens go and how to spend less. pstack spends extra tokens on subagents and review panels. Rerun `/setup-pdstack` and pick a lower effort or cheaper models. A role set to `auto` or `inherit-parent` runs on the chat's model, which costs less when the chat runs on a cheaper model. A shorter panel list runs fewer subagents, one for each entry. Save `/pdstack` for work that needs rigor.
+If cost is the worry, say where the tokens go and how to spend fewer. pstack spends extra tokens on subagents and review panels. Rerun `/setup-pdstack` and pick a lower effort or cheaper models. A role set to `auto` or `inherit-parent` runs on the chat's model, which costs less when the chat runs on a cheaper model. A shorter panel list runs fewer subagents, one for each entry. Save `/pdstack` for work that needs rigor.
 
 ## Start a task with `/pdstack`
 
-`/pdstack` matches the task to a playbook, copies the playbook's steps into the todo list, and runs the other skills as the steps need them. A step it skips stays in the list as `skip: <reason>`. A good prompt states the goal and how to tell it's done. It doesn't list skills, because a hand-written sequence tends to drop or reorder steps the playbook would keep. Read [`references/prompting.md`](references/prompting.md) before you help word one.
+`/pdstack` matches the task to a playbook, copies the playbook's steps into the todo list, and runs the other skills as the steps need them. A good prompt states the goal and how to tell it's done. It doesn't list skills, because a hand-written sequence tends to drop or reorder steps the playbook would keep. Read [`references/prompting.md`](references/prompting.md) before you help word one.
 
 For whether later tasks route automatically, use the setup and runtime sources under [Get set up](#get-set-up). Check that routing is enabled for this installation before promising it. Without automatic routing, invoke `pdstack` for each new task. Mid-chat, "new task" makes the mode match a fresh playbook. For subagent defaults, read [pdstack's Subagents section](../pdstack/SKILL.md#subagents) and the current runtime's mapping.
 
@@ -93,16 +93,15 @@ Close calls:
 
 - `/how` explains what the code does. `/why` explains the reasons. `/teach` runs one or both and explains the result plainly.
 - `/arena` gives every worker the same brief and merges the best parts. `/swarm` splits work into slices or a race and returns one report.
-- `/architect` implements right after it settles the design. Add "with checkpoint" to review the design before it writes code.
 - `/interrogate` reviews the diff. `/blast-radius` looks for breakage outside the diff and proves the one fact that makes the change safe. `/merge-risk` rates how much human attention the change needs before merge, and calls `/blast-radius` when a rating turns on who reads the changed code.
 - `/recall` rebuilds context across recent chats. `/ketchup` covers only this chat since the user's last message. Resuming one specific chat or branch is the Session pickup playbook.
-- `/figure-it-out` designs one rigorous run. The Orchestrate playbook runs a program that spans days and many PRs. The Autonomous run playbook drives one task to a finish condition.
+- `/figure-it-out` designs one rigorous run. The Autonomous run playbook drives one task to a finish condition.
 
 Not in pdstack:
 
 - The Cursor driver skills have no port. The driver policy in pdstack's Non-negotiables names the Claude Code equivalents, the `run` skill and a project `verify` skill.
 - `/loop` is a Claude Code bundled skill, and the **writing-for-agents** skill is the skill-authoring guidance that pdstack bundles.
-- pstack has no orchestrate skill. Orchestrate is a `/pdstack` playbook. If the slash menu shows an orchestrate command, another plugin provides it.
+- pstack has no orchestrate skill. If the slash menu shows an orchestrate command, another plugin provides it.
 
 ## Playbooks and principles
 
@@ -115,7 +114,7 @@ Playbooks are step lists inside `/pdstack`, not skills, so they have no slash co
 - "full autopilot on this queue" runs [Autopilot-full](../pdstack/playbooks/autopilot-full.md). "stack them, don't ship" runs [Autopilot-stack](../pdstack/playbooks/autopilot-stack.md). Read the selected playbook's merge rules before explaining what runs unattended.
 - "run the eval playbook" runs Eval.
 
-Without `/pdstack`, a phrase such as "babysit this pr" can start pstack's standalone [`/babysit`](../babysit/SKILL.md) skill instead. The [Playbooks section](../pdstack/SKILL.md#playbooks) lists every playbook and when it applies. Read [Babysit](../pdstack/playbooks/babysit.md) or [Shipping](../pdstack/playbooks/shipping.md) for the port's PR workflow.
+Without `/pdstack`, a phrase such as "babysit this pr" can start pstack's standalone [`/babysit`](../babysit/SKILL.md) skill instead. The [Playbooks section](../pdstack/SKILL.md#playbooks) lists every playbook by name. Read [Babysit](../pdstack/playbooks/babysit.md) or [Shipping](../pdstack/playbooks/shipping.md) for the port's PR workflow.
 
 pstack has no planning skill. Claude Code's plan mode works alongside it. For work that spans phases or stacked PRs, asking `/pdstack` for a plan runs the [Multi-phase plan playbook](../pdstack/playbooks/multi-phase-plan.md), which writes the plan and doesn't implement it. For a design question, the Prototype playbook or `/architect` settles it in code first.
 

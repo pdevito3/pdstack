@@ -10,7 +10,11 @@ import { parsePrNumber } from "./types.mjs";
  */
 
 function invalid(detail) {
-  throw new WatcherQueryError({ kind: "missing-key", retryable: true, detail });
+  throw new WatcherQueryError({
+    kind: "missing-field",
+    retryable: true,
+    detail,
+  });
 }
 
 export function object(value, label) {

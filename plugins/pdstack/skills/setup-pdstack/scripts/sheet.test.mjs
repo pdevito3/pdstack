@@ -56,6 +56,13 @@ describe("check-sheet.mjs", () => {
     assert.deepEqual(check(undefined), ok);
   });
 
+  test("reports a sheet it cannot decode", () => {
+    const oddUtf16 = Buffer.concat([Buffer.from(`\ufeff${sheet()}`, "utf16le"), Buffer.from([0x0a])]);
+    assert.deepEqual(check(oddUtf16), invalid(`cannot decode ${sheetPath}`));
+    const unpaired = Buffer.concat([Buffer.from(`\ufeff${sheet()}`, "utf16le"), Buffer.from([0x00, 0xd8])]);
+    assert.deepEqual(check(unpaired), invalid(`cannot decode ${sheetPath}`));
+  });
+
   test("accepts a sheet with role lines deleted, because a deleted line falls back to the skill default", () => {
     assert.deepEqual(check(sheet({ [roles[0]]: null, [roles[3]]: null })), ok);
   });
@@ -173,6 +180,11 @@ describe("read-sheet.mjs", () => {
   test("prints the decoded sheet", () => {
     writeFileSync(sheetPath, Buffer.from("﻿a: 1\r\nb: 2\r\n", "utf16le"));
     assert.deepEqual(run("read-sheet.mjs", [sheetPath]), { status: 0, out: "a: 1\nb: 2\n", err: "" });
+  });
+
+  test("exits 1 with no output when a UTF-16 sheet cannot be decoded", () => {
+    writeFileSync(sheetPath, Buffer.concat([Buffer.from("\ufeffa: 1\n", "utf16le"), Buffer.from([0x0a])]));
+    assert.deepEqual(run("read-sheet.mjs", [sheetPath]), { status: 1, out: "", err: "" });
   });
 
   test("exits 1 with no output when the sheet cannot be read", () => {

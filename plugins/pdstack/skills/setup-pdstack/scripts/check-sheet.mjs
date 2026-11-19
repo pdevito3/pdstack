@@ -9,12 +9,17 @@
 // The default sheet is GitHub Copilot's, as upstream has it.
 import { homedir } from "node:os";
 import { join } from "node:path";
-import { parseSheet, readSheet } from "./sheet.mjs";
+import { decodeSheet, parseSheet, readSheetBytes } from "./sheet.mjs";
 
 const sheet = process.argv[2] ?? join(process.env.COPILOT_HOME || join(homedir(), ".copilot"), "pdstack-models.md");
-const lines = readSheet(sheet);
-if (lines === null) {
+const bytes = readSheetBytes(sheet);
+if (bytes === null) {
   console.log(`sheet invalid: cannot read ${sheet}`);
+  process.exit(1);
+}
+const lines = decodeSheet(bytes);
+if (lines === null) {
+  console.log(`sheet invalid: cannot decode ${sheet}`);
   process.exit(1);
 }
 const { problems } = parseSheet(lines);
