@@ -363,7 +363,7 @@
       "path": "plugins/pstack/skills/poteto-help/SKILL.md",
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Points /bro to wait-what, names writing-for-agents in place of plugin-dev:skill-development, and adds the merge-risk row to the skill table and its sentence to the review bullets. Links the model and routing questions to setup-pdstack's inline Other runtimes section in place of `references/runtimes.md`, which pdstack does not copy. Drops the Codex and Pi mapping paragraph and the `session hook: off` sentence, because pdstack v1 supports Claude Code only."
+      "why": "Points /bro to wait-what, names writing-for-agents in place of plugin-dev:skill-development, and adds the merge-risk row to the skill table and its sentence to the review bullets. Links the model and routing questions to setup-pdstack's inline Other runtimes section in place of `references/runtimes.md`, which pdstack does not copy. Says that each playbook file, not the router list, says when the playbook applies, because the shorter router lists names only. Drops the Codex and Pi mapping paragraph and the `session hook: off` sentence, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/pdstack/playbooks/authoring-a-skill.md": {
       "source": "michael-denyer/pstack-claude",
@@ -3589,7 +3589,7 @@
       "path": "plugins/pstack/skills/poteto-mode/worker.md",
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Excepts the stack-pack standards review and the Review gate and Open PRs rules of opening-a-pr from the rule that the kickoff bar is the whole bar, so every started agent still meets pdstack's PR bar. Opens a PR as a draft when the operator asks for one, to match opening-a-pr."
+      "why": "Excepts the stack-pack standards review and all of opening-a-pr from the rule that the kickoff bar is the whole bar, with its blocks, stops, and questions to the user, so every started agent still meets pdstack's PR bar. Opens a PR as a draft when the operator asks for one, to match opening-a-pr."
     }
   }
 }

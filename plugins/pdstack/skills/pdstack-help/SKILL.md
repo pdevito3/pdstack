@@ -114,7 +114,7 @@ Playbooks are step lists inside `/pdstack`, not skills, so they have no slash co
 - "full autopilot on this queue" runs [Autopilot-full](../pdstack/playbooks/autopilot-full.md). "stack them, don't ship" runs [Autopilot-stack](../pdstack/playbooks/autopilot-stack.md). Read the selected playbook's merge rules before explaining what runs unattended.
 - "run the eval playbook" runs Eval.
 
-Without `/pdstack`, a phrase such as "babysit this pr" can start pstack's standalone [`/babysit`](../babysit/SKILL.md) skill instead. The [Playbooks section](../pdstack/SKILL.md#playbooks) lists every playbook and when it applies. Read [Babysit](../pdstack/playbooks/babysit.md) or [Shipping](../pdstack/playbooks/shipping.md) for the port's PR workflow.
+Without `/pdstack`, a phrase such as "babysit this pr" can start pstack's standalone [`/babysit`](../babysit/SKILL.md) skill instead. The [Playbooks section](../pdstack/SKILL.md#playbooks) lists every playbook. Each playbook file says when it applies. Read [Babysit](../pdstack/playbooks/babysit.md) or [Shipping](../pdstack/playbooks/shipping.md) for the port's PR workflow.
 
 pstack has no planning skill. Claude Code's plan mode works alongside it. For work that spans phases or stacked PRs, asking `/pdstack` for a plan runs the [Multi-phase plan playbook](../pdstack/playbooks/multi-phase-plan.md), which writes the plan and doesn't implement it. For a design question, the Prototype playbook or `/architect` settles it in code first.
 
