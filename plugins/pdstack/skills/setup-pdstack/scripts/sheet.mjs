@@ -23,8 +23,7 @@ export function sheetRoles(models = JSON.parse(readFileSync(MODELS_JSON, "utf8")
 
 // Decodes the sheet once, before any consumer interprets its lines.
 // PowerShell 5.1 writes UTF-16LE; other writers may add a UTF-8 BOM or CRLF
-// line endings. Returns the lines, or null when a sheet that starts with the
-// UTF-16 LE byte-order mark is not valid UTF-16, so readers treat it as missing.
+// line endings.
 export function decodeSheet(bytes) {
   const utf16 = bytes.length >= 2 && bytes[0] === 0xff && bytes[1] === 0xfe;
   let text;
@@ -39,7 +38,6 @@ export function decodeSheet(bytes) {
   return lines;
 }
 
-// The bytes of a sheet file, or null when it is not a readable file.
 export function readSheetBytes(file) {
   try {
     return statSync(file).isFile() ? readFileSync(file) : null;
@@ -48,8 +46,6 @@ export function readSheetBytes(file) {
   }
 }
 
-// The decoded lines of a sheet file, or null when it is not a readable file
-// or cannot be decoded.
 export function readSheet(file) {
   const bytes = readSheetBytes(file);
   return bytes === null ? null : decodeSheet(bytes);

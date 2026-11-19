@@ -531,6 +531,9 @@ printf '%s\\n' '[{"number":42,"headRefName":"feature","baseRefName":"main","head
 `,
         { mode: 0o755 }
       );
+      // macOS checks a new executable on its first run, which can take seconds.
+      // Pay that here, so the subprocess bound measures only the reader.
+      spawnSync(join(directory, "gh"), ["--version"]);
       const program = `import { GhGitHubReader } from ${JSON.stringify(pathToFileURL(join(import.meta.dirname, "github.mjs")).href)};
         import { WatchDeadline } from ${JSON.stringify(pathToFileURL(join(import.meta.dirname, "deadline.mjs")).href)};
         console.log(JSON.stringify(await new GhGitHubReader(new WatchDeadline(0, Date.now)).openPullRequests({ owner: "owner", repo: "repo" })));`;

@@ -34,8 +34,6 @@ function project(actual, expected) {
   return actual;
 }
 
-// Puts each matcher in `expected` in place of the `actual` value it matches,
-// so toEqual can hold a matcher and still compare everything else.
 function substitute(actual, expected) {
   if (expected instanceof StringContaining)
     return expected.matches(actual) ? expected : actual;

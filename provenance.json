@@ -623,7 +623,7 @@
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts",
       "sha": "42fcb61ee10c92543d76f87fb29c3be09e6c63aa",
       "status": "modified",
-      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies. Runs the fake gh once before the bounded subprocess, because macOS checks a new executable on its first run and that took longer than the 2-second bound."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/integrity.test.mjs": {
       "source": "michael-denyer/pstack-claude",
