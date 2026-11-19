@@ -1,7 +1,7 @@
 {
   "feeds": {
-    "cursor/plugins": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
-    "michael-denyer/pstack-claude": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+    "cursor/plugins": "50b3a3234bf2e0293849a48784d72030948e44ee",
+    "michael-denyer/pstack-claude": "412990b837ddb5e41ee589d770ba1bff24144654",
     "mattpocock/skills": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   "renames": [
@@ -65,7 +65,7 @@
     "plugins/pdstack/models.json": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/models.json",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
       "why": "The strongest tier is `opus` and the panel is `opus`, `sonnet`, `haiku`, with no `fable`, because the user wants no default to run Fable. Keeps the codex, pi, and muse blocks as upstream has them, because no pdstack code reads them."
     },
@@ -150,21 +150,21 @@
     "plugins/pdstack/skills/architect/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/architect/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
-      "status": "modified",
-      "why": "The default runners drop `fable`, because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
+      "status": "renamed",
+      "hide": true
     },
     "plugins/pdstack/skills/arena/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/arena/SKILL.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
       "why": "The default runners and cross-judge pool drop `fable`, because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
     "plugins/pdstack/skills/automate-me/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/automate-me/SKILL.md",
-      "sha": "903e7385382389806c59d6989b6274e24165082b",
+      "sha": "e66f85fa5df4d2b3348f15956e2140cf9db06f4d",
       "status": "modified",
       "why": "Reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only."
     },
@@ -299,7 +299,7 @@
     "plugins/pdstack/skills/interrogate/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/interrogate/SKILL.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "e66f85fa5df4d2b3348f15956e2140cf9db06f4d",
       "status": "modified",
       "why": "The default reviewers drop `fable` (`opus`, `sonnet`, `haiku`), because the user wants no default to run Fable. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
@@ -361,9 +361,9 @@
     "plugins/pdstack/skills/pdstack-help/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-help/SKILL.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Points /bro to wait-what, and names writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, and Copilot mapping text, because pdstack v1 supports Claude Code only."
+      "why": "Points /bro to wait-what, names writing-for-agents in place of plugin-dev:skill-development, and adds the merge-risk row to the skill table and its sentence to the review bullets. Links the model and routing questions to setup-pdstack's inline Other runtimes section in place of `references/runtimes.md`, which pdstack does not copy. Drops the Codex and Pi mapping paragraph and the `session hook: off` sentence, because pdstack v1 supports Claude Code only."
     },
     "plugins/pdstack/skills/pdstack/playbooks/authoring-a-skill.md": {
       "source": "michael-denyer/pstack-claude",
@@ -393,7 +393,7 @@
     "plugins/pdstack/skills/pdstack/playbooks/babysit.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/babysit.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
       "why": "Sorts each review comment by size, sends new behavior through Feature or Bug fix as new commits with no rebase and no new PR, and runs the Open PRs rules of opening-a-pr before each push wave, so fixes get the same bar as feature work (issue #52)."
     },
@@ -430,16 +430,16 @@
     "plugins/pdstack/skills/pdstack/playbooks/multi-phase-plan.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/multi-phase-plan.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Allows a draft PR when the user asks for one, to match Readiness in opening-a-pr."
+      "why": "Writes the plan under `planPath` from `.agents/pdstack.json` unless the operator names a path. Names the execution playbook in the plan's opening, autopilot-stack when a PR builds on another and autopilot-full when each PR stands alone, because the shortened plan no longer names one."
     },
     "plugins/pdstack/skills/pdstack/playbooks/opening-a-pr.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/opening-a-pr.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate step, an independent thermo-nuclear-review pass before the PR opens (issue #14), and adds the gate to the PR subagent line. The gate covers drafts and script-opened PRs, reruns after feature work, splits a diff of more than 2,000 lines by component, and ends in a `review-gate:` PR comment. Readiness allows a draft when the user asks for one. Adds Open PRs, which gives each push to an open PR the same bar: the owning PR in a stack, the base read from the PR, the PRs rules, the standards review, verification, a gate decision from the last own review-gate comment and a range-diff of all work since it, a restack of child PRs, and a question to the user when the owning PR closed without a merge. Early-opened PRs and replay-only pushes keep their own rules (issue #52)."
+      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate, an independent thermo-nuclear-review pass before the PR opens (issue #14), and a line that has a subagent that opens a PR run it. The gate covers drafts and script-opened PRs, reruns after feature work, splits a diff of more than 2,000 lines by component, and ends in a `review-gate:` PR comment. Opens a draft only when the user asks for one. Adds Open PRs, which gives each push to an open PR the same bar: a worktree from the PR's branch, the owning PR in a stack, the base read from the PR, `/deslop`, `/no-comments`, the standards review, verification, a gate decision from the last own review-gate comment and a range-diff of all work since it, a restack of child PRs, and a question to the user when the owning PR closed without a merge. Early-opened PRs and replay-only pushes keep their own rules (issue #52). The Open PRs items are bullets, so the playbook has no numbered steps and a project playbook can anchor a change on any paragraph."
     },
     "plugins/pdstack/skills/pdstack/playbooks/pause-safely.md": {
       "source": "michael-denyer/pstack-claude",
@@ -579,7 +579,7 @@
     "plugins/pdstack/skills/pdstack/scripts/resume.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/resume.mjs",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "531b9fc987f6a2461f1509d4af02cbb41b042ae9",
       "status": "modified",
       "why": "Stores checkpoints under <git-common-dir>/pdstack/resume/ in place of pstack/resume/."
     },
@@ -607,35 +607,35 @@
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/fakes.test-helper.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
       "status": "modified",
       "why": "Node port of the Bun TypeScript original, with no dependencies."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/github.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
       "status": "modified",
       "why": "Node port of the Bun TypeScript original, with no dependencies."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/github.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "42fcb61ee10c92543d76f87fb29c3be09e6c63aa",
       "status": "modified",
       "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/integrity.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/integrity.test.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "aafd6543f4d660046d5beedbb381d34b8a24a0c4",
       "status": "modified",
       "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/landing.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/landing.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "aafd6543f4d660046d5beedbb381d34b8a24a0c4",
       "status": "modified",
       "why": "Node port of the Bun TypeScript original, with no dependencies."
     },
@@ -649,14 +649,14 @@
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/policy.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
       "status": "modified",
       "why": "Node port of the Bun TypeScript original, with no dependencies."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/policy.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "42fcb61ee10c92543d76f87fb29c3be09e6c63aa",
       "status": "modified",
       "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
     },
@@ -705,21 +705,21 @@
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/shipping.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/shipping.test.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "aafd6543f4d660046d5beedbb381d34b8a24a0c4",
       "status": "modified",
       "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/transport.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/transport.test.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
       "status": "modified",
       "why": "Node port of the Bun TypeScript test, on node:test with no dependencies. The fake gh test is skipped on Windows, which cannot spawn a shebang script, and is run once before the timed runs, since macOS checks a new executable on its first run."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/types.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/types.ts",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
       "status": "modified",
       "why": "Node port of the Bun TypeScript original, with no dependencies. The types become JSDoc typedefs, and types.compile.ts is dropped."
     },
@@ -746,9 +746,9 @@
     "plugins/pdstack/skills/pdstack/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "dbc378f2f8c6b1c2a487c497c18ac0b4ec897bd3",
       "status": "modified",
-      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and reads writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line, which runs before a PR opens, drafts and script-opened PRs included, sets the strongest judgment default to `opus`, runs `fable` only when the user names it, and adds the Find state machines playbook. Runs the Open PRs rules of opening-a-pr before each push to an open PR (issue #52)."
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and puts each matching stack pack's `standards.md` path in the agent kickoff. Reads writing-for-agents for agent-facing prose. Drops the Codex, Pi, Copilot, Muse, MiniMax, Antigravity, OMP, Kimi, Grok, and OpenCode mapping text, because pdstack v1 supports Claude Code only, and runs each script with `node`, because Windows does not run a shebang. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line, which runs before a PR opens, drafts and script-opened PRs included, and runs the Open PRs rules of opening-a-pr before each push to an open PR (issue #52). Sets the strongest judgment default to `opus`, runs `fable` only when the sheet sets it or the user names it, and adds Find state machines to the playbook list."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -837,7 +837,7 @@
     "plugins/pdstack/skills/principle-model-the-domain/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/principle-model-the-domain/SKILL.md",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
       "why": "Adds the glossary rule for GLOSSARY.md or CONTEXT.md."
     },
@@ -911,7 +911,7 @@
     "plugins/pdstack/skills/reflect/scripts/claude-project-dir.test.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "tests/claude-project-dir.test.mjs",
-      "sha": "903e7385382389806c59d6989b6274e24165082b",
+      "sha": "aafd6543f4d660046d5beedbb381d34b8a24a0c4",
       "status": "modified",
       "why": "Node port of the Bun test, on node:test with no dependencies, next to the script it tests."
     },
@@ -924,37 +924,37 @@
     "plugins/pdstack/skills/reflect/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/SKILL.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
-      "status": "modified",
-      "why": "Hands skill authoring to the Authoring a skill playbook and writing-for-agents in place of plugin-dev:skill-development. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only."
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
+      "status": "renamed",
+      "hide": true
     },
     "plugins/pdstack/skills/setup-pdstack/scripts/check-sheet.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/setup-pstack/scripts/check-sheet.sh",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "5851c89613e2ddc3a6b7f4af02a42363b30ef8d3",
       "status": "modified",
       "why": "Node port of check-sheet.sh and check-sheet.awk, because pdstack scripts are Node only (spec sections 9 and 13). Same CLI, default sheet, output, and exit codes. Also checks family lines and `<family>:<model>` values through sheet.mjs (spec section 10)."
     },
     "plugins/pdstack/skills/setup-pdstack/scripts/read-sheet.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/setup-pstack/scripts/read-sheet.sh",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "5851c89613e2ddc3a6b7f4af02a42363b30ef8d3",
       "status": "modified",
       "why": "Node port, because pdstack scripts are Node only (spec sections 9 and 13). Same CLI, output, and exit codes. The decoder lives in sheet.mjs."
     },
     "plugins/pdstack/skills/setup-pdstack/scripts/sheet.mjs": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/setup-pstack/scripts/sheet.awk",
-      "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
       "why": "Node port, because pdstack scripts are Node only (spec sections 9 and 13). Also holds the decoder of read-sheet.sh. Reads the roles from models.json at run time in place of the stamped list. Drops the shell reader hooks (`sheet_read`, `sheet_quote`), because v1 has no hook. Accepts `family <name>: <command>` lines and `<family>:<model>` role values (spec section 10): a family entry needs a family line, a family line needs a valid name and `{model}` in its command, and a family counts as one vendor in a panel. Accepts a missing role line, because the sheet says that a deleted line falls back to the skill default, and the upstream rule is for the Copilot hook that v1 does not ship."
     },
     "plugins/pdstack/skills/setup-pdstack/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/setup-pstack/SKILL.md",
-      "sha": "22b5e137e945cb65dd29dac5fc703c13d83a00aa",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs. Drops the Codex, Pi, Copilot, and Muse mapping text, because pdstack v1 supports Claude Code only. The sheet and the default panel have no `fable`."
+      "why": "Spec sections 9 and 10. Removes step 4 (the session hook) and the `session hook` line and its mentions in the sheet header, step 7, step 8, and Other runtimes. Step 4 now adds model families: CLI detection on PATH, `family <name>: <command>` lines, `<family>:<model>` role values, one test call for each model through `scripts/run-external.mjs`, the offer to put a new family in the cross-family roles, and the Claude-only gap statement in step 8. Step 6 runs the Node `check-sheet.mjs` after the write. New step 11 detects stack packs, asks for the worktree home, writes `.agents/pdstack.json` with only the keys that differ from the defaults, and validates it with `check-config.mjs`. New step 12 makes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` when absent, which replaces setup-matt-pocock-skills. The description names the new jobs. Keeps one user sheet with the project `CLAUDE.md` include as the project-scope option, with no project sheet, no sheet-scope question, and no replace line. Keeps a short inline Other runtimes table in place of `references/runtimes.md`, which pdstack does not copy. The different-family roles list has no orchestrate verifier, because pdstack has no Orchestrate playbook. Drops the Codex, Pi, Copilot, Muse, and Antigravity mapping text, because pdstack v1 supports Claude Code only, and the sheet header keeps `session` as the parent session's effort. The sheet and the default panel have no `fable`."
     },
     "plugins/pdstack/skills/setup-pdstack/templates/domain.md": {
       "source": "mattpocock/skills",
@@ -3569,6 +3569,27 @@
       "path": "plugins/pstack/skills/statechart/scripts/test/drawn.ts",
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "verbatim"
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/github.port.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.port.test.ts",
+      "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/scripts/watch-pr/policy.port.test.mjs": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.port.test.ts",
+      "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
+      "status": "modified",
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies."
+    },
+    "plugins/pdstack/skills/pdstack/worker.md": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/skills/poteto-mode/worker.md",
+      "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
+      "status": "modified",
+      "why": "Excepts the stack-pack standards review and the Review gate and Open PRs rules of opening-a-pr from the rule that the kickoff bar is the whole bar, so every started agent still meets pdstack's PR bar. Opens a PR as a draft when the operator asks for one, to match opening-a-pr."
     }
   }
 }

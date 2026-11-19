@@ -94,11 +94,16 @@ export function parsePrNumber(value, label = "PR number") {
 /**
  * @typedef {object} ReportedChecks
  * @property {"reported"} kind
- * @property {"gh-pr-checks" | "graphql-rollup"} source
+ * @property {"gh-pr-checks" | "graphql-rollup" | "check-suites"} source
  * @property {NonEmpty<Check>} checks
  */
 /** `resolveChecks` owns what counts as `no-checks`. */
-/** @typedef {ReportedChecks | { readonly kind: "no-checks" }} CheckRead */
+/**
+ * A `no-checks` read carries an empty checks list, so the filters in
+ * readSnapshot read both kinds unchanged.
+ *
+ * @typedef {ReportedChecks | { readonly kind: "no-checks", readonly checks: readonly [] }} CheckRead
+ */
 
 /** @typedef {{ readonly oid: string, readonly state: RollupState }} CommitRollup */
 
@@ -166,11 +171,11 @@ export function parsePrNumber(value, label = "PR number") {
 
 /**
  * "deadline" and "spawn-failed" and "invalid-context-url" are not retryable;
- * every other kind is. "command-exit" carries `code`, and "missing-key" and
+ * every other kind is. "command-exit" carries `code`, and "missing-field" and
  * "invalid-context-url" can carry `rawValue`.
  *
  * @typedef {object} QueryFailure
- * @property {"deadline" | "spawn-failed" | "snapshot-changed" | "invalid-stack" | "json-parse" | "missing-key" | "command-exit" | "checks-unavailable" | "invalid-context-url"} kind
+ * @property {"deadline" | "spawn-failed" | "snapshot-changed" | "invalid-stack" | "json-parse" | "missing-field" | "command-exit" | "checks-unavailable" | "invalid-context-url"} kind
  * @property {boolean} retryable
  * @property {string} detail
  * @property {number} [code]
@@ -272,6 +277,7 @@ export function parsePrNumber(value, label = "PR number") {
  * @property {(context: PrContext, after: string | null) => Promise<RollupPage>} checkRollupPage
  * @property {(context: PrContext, after: string | null) => Promise<ReviewThreadPage>} reviewThreadPage
  * @property {(context: PrContext) => Promise<readonly CommitRollup[]>} commitRollups
+ * @property {(context: PrContext, head: string, checksRead: CheckRead["kind"]) => Promise<readonly Check[]>} unsettledSuites
  */
 
 /**

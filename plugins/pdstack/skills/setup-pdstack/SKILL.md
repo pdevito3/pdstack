@@ -5,15 +5,15 @@ description: Configure which models pstack uses per role, the model families it 
 
 # Setup pstack
 
-On another runtime, read [Other runtimes](#other-runtimes) below for where the sheet lives and how it loads; the steps are the same.
+Write the current runtime's per-role model override sheet. Each pstack skill names a default model inline; the override sheet adapts those defaults to the models you actually have access to.
 
-Write the current runtime's per-role model override sheet, using the path in [Other runtimes](#other-runtimes). Each pstack skill names a default model inline; the override sheet adapts those defaults to the models you actually have access to.
+On any runtime other than Claude Code, read [Other runtimes](#other-runtimes) first. Its table gives the sheet path, how the sheet loads, and how to list models. The rest of this file describes Claude Code.
 
 In a git repo, this skill also writes the project config and the agent docs (steps 11 and 12). Outside a git repo, skip steps 11 and 12.
 
 A second run updates each file in place and never duplicates a line, a key, or a file.
 
-Claude Code has no auto-applied "rules" mechanism like Cursor's `.mdc`. The Claude Code config directory is `$CLAUDE_CONFIG_DIR` when that variable is set and `~/.claude` otherwise. This skill calls it `<config>`. Inclusion is explicit: the user adds a line to `<config>/CLAUDE.md` (or their project `CLAUDE.md`) such as:
+On Claude Code the config directory is `$CLAUDE_CONFIG_DIR` when that variable is set and `~/.claude` otherwise. This skill calls it `<config>`, and the sheet is `<config>/pdstack-models.md`. Claude Code has no auto-applied "rules" mechanism like Cursor's `.mdc`, so inclusion is explicit: the user adds a line to `<config>/CLAUDE.md` (or their project `CLAUDE.md`) such as:
 
 ```text
 @<config>/pdstack-models.md
@@ -29,13 +29,13 @@ Enumerate the model names the `Agent` tool's `model` parameter accepts in this s
 
 ### 2. Load current state
 
-The default role-to-model mapping is the rule shape shown in the Write the override sheet step below. If the current runtime's sheet already exists, read it and treat its values as the current choices. Its `family` lines are the current families (step 4). Otherwise start from those defaults. A line whose role is not in that shape, such as `how critics`, is from a retired role. Drop it. An older sheet may name full model IDs that start with `claude-`, which the `Agent` tool rejects. Replace each with its family name, the word after `claude-`.
+The default role-to-model mapping is the rule shape shown in the Write the override sheet step below. If the current runtime's sheet already exists, read it and treat its values as the current choices. Its `family` lines are the current families (step 4). Otherwise start from those defaults. A line whose role is not in that shape, such as `how critics`, `architect runners`, `reflect tooling`, or `why investigators`, is from a retired role. Drop it. An older sheet may name full model IDs that start with `claude-`, which the `Agent` tool rejects. Replace each with its family name, the word after `claude-`.
 
 ### 3. Map and confirm
 
-Show every role with its current model, marking any real slug not in the detected set as needing a choice. Also list each line step 2 dropped or rewrote. Ask whether to accept as-is or change specific roles, offering the detected models, the `<family>:<model>` values of the current families, plus `inherit-parent` and `auto` as the options. Prefer `AskUserQuestion` over free text. For panel roles (arena runners, architect runners, interrogate reviewers) the value is a list, and one subagent runs per entry, alias entries included, so the list length sets the count. `arena cross-judge pool` is also a list, but Arena runs one judge. It tries only values from a family other than the parent's, in list order, so order it by preference. An `inherit-parent` or `auto` value never judges. `swarm workers` is the default model for every worker unless a race or comparison assigns another model per arm.
+Show every role with its current model, marking any real slug not in the detected set as needing a choice. Also list each line step 2 dropped or rewrote. Ask whether to accept as-is or change specific roles, offering the detected models, the `<family>:<model>` values of the current families, plus `inherit-parent` and `auto` as the options. Prefer `AskUserQuestion` over free text. For panel roles (arena runners, interrogate reviewers) the value is a list, and one subagent runs per entry, alias entries included, so the list length sets the count. `arena cross-judge pool` is also a list, but Arena runs one judge. It tries only values from a family other than the parent's, in list order, so order it by preference. An `inherit-parent` or `auto` value never judges. `swarm workers` is the default model for every worker unless a race or comparison assigns another model per arm.
 
-Then ask for the default reasoning effort, the `default effort` line. It is `session`, which keeps the parent session's effort, or one of the levels in [Models](#models). Start from the default listed there. Every role value without a suffix runs at it. Then ask whether any role should run at another level. On Claude Code a role value may carry one after its slug, as in `<slug> @xhigh`; panel entries take their own, as in `<slug> @xhigh, <slug> @max`. Each level is passed as the dispatch's effort, so the choice holds without changing the session. Leave the suffix off for the default effort.
+Then ask for the default reasoning effort, the `default effort` line. It is `session`, which keeps the parent session's effort, or one of the levels in [Models](#models). Start from the default listed there. Every role value without a suffix runs at it. Then ask whether any role should run at another level. A role value may carry one after its slug, as in `<slug> @xhigh`; panel entries take their own, as in `<slug> @xhigh, <slug> @max`. Each level is passed as the dispatch's effort, so the choice holds without changing the session. Leave the suffix off for the default effort.
 
 ### 4. Add model families
 
@@ -47,15 +47,15 @@ A model family is the models of one provider that pdstack runs through the provi
    - `gemini`: `gemini --model {model}`
 3. Get the model list from the CLI when it has a list command, for example `pi --list-models`. Otherwise ask the user for the model names. Never write a model that the user did not choose.
 4. Make one short test call for each new model before you write it. Write the new family lines to a draft sheet in a temp folder, and write a prompt file there that asks for the word `ok`. Run `node <plugin root>/scripts/run-external.mjs --family <family> --model <model> --prompt-file <prompt> --sheet <draft sheet>`, where `<plugin root>` is two folders above this skill's directory. A model passes when the call exits 0 and its out file is not empty. For a model that fails, show the error and ask whether to fix the template or drop the model. Keep only the models that pass.
-5. Offer to put each new family in the roles that ask for a different family: `arena cross-judge pool`, and the panels `arena runners`, `architect runners`, and `interrogate reviewers`. Add the family's model as one more entry. Change no role without a yes.
+5. Offer to put each new family in the roles that ask for a different family: `arena cross-judge pool`, and the panels `arena runners` and `interrogate reviewers`. Add the family's model as one more entry. Change no role without a yes.
 
 To add a family later, run this skill again.
 
-With no family besides Claude, the roles that ask for a different family (the eval judge, the `show-me-your-work` audit, the arena cross-judge, and the orchestrate verifier) use a different Claude model from the one that did the work. Step 8 states this gap.
+With no family besides Claude, the roles that ask for a different family (the eval judge, the `show-me-your-work` audit, and the arena cross-judge) use a different Claude model from the one that did the work. Step 8 states this gap.
 
 ### 5. Validate
 
-Every real slug written must be in the detected set. `inherit-parent` and `auto` always pass. A `<family>:<model>` value must name a family from step 4 and a model that passed its test call. Validate the slug without any `@<level>` suffix, and the level against the effort levels in [Models](#models). The `default effort` value is one of those levels or `session`. On Codex, the levels are the `reasoning_effort` values your Codex models accept instead. If a chosen real slug or level is not available, stop and ask again.
+Every real slug written must be in the detected set. `inherit-parent` and `auto` always pass. A `<family>:<model>` value must name a family from step 4 and a model that passed its test call. Validate the slug without any `@<level>` suffix, and the level against the effort levels in [Models](#models). The `default effort` value is one of those levels or `session`. If a chosen real slug or level is not available, stop and ask again.
 
 ### 6. Write the override sheet
 
@@ -72,17 +72,12 @@ perf-issue: opus
 hillclimb: opus
 judgment and prose: opus
 strongest judgment: opus
-how explorer: opus
-how explainer: opus
-why investigators: opus
-why synthesizer: opus
-reflect tooling: opus
-reflect judgment, divergent, synthesizer: opus
 arena runners: opus, sonnet, haiku
 arena cross-judge pool: opus, sonnet, haiku
 swarm workers: opus
-architect runners: opus, sonnet, haiku
 interrogate reviewers: opus, sonnet, haiku
+thermos reviewers: opus
+no-comments reviewer: opus
 
 default effort: session
 ```

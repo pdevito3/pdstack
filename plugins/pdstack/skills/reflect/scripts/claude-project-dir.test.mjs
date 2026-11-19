@@ -14,6 +14,9 @@ const LONG = `/private/tmp/ccd-long-café/${Array.from({ length: 14 }, (_, i) =>
 const LONG_NAME =
   "-private-tmp-ccd-long-caf--segment-01-dir-segment-02-dir-segment-03-dir-segment-04-dir-segment-05-dir-segment-06-dir-segment-07-dir-segment-08-dir-segment-09-dir-segment-10-dir-segment-11-dir-segment--ukf6rm";
 
+// Every input unset, whatever this shell has set, so each test passes only what it varies.
+const noEnv = { config: "", home: "", sessionId: "", chosenName: "" };
+
 const fixtures = [];
 afterEach(() => {
   for (const root of fixtures.splice(0)) rmSync(root, { recursive: true, force: true });
@@ -41,20 +44,20 @@ describe("projectDirName", () => {
 describe("projectDir", () => {
   test("finds the derived directory under CLAUDE_CONFIG_DIR", () => {
     const config = configDir("-private-tmp-coat-opus48-440");
-    assert.equal(projectDir("/private/tmp/coat_opus48_440", { CLAUDE_CONFIG_DIR: config }),
+    assert.equal(projectDir("/private/tmp/coat_opus48_440", { ...noEnv, config }),
       join(config, "projects", "-private-tmp-coat-opus48-440"),
     );
   });
 
   test("uses CLAUDE_CODE_PROJECT_DIR_NAME only when CLAUDE_CONFIG_DIR is set", () => {
     const config = configDir("work", "-srv-app");
-    assert.equal(projectDir("/srv/app", { CLAUDE_CONFIG_DIR: config, CLAUDE_CODE_PROJECT_DIR_NAME: "work" }),
+    assert.equal(projectDir("/srv/app", { ...noEnv, config, chosenName: "work" }),
       join(config, "projects", "work"),
     );
     const home = mkdtempSync(join(tmpdir(), "claude-home-"));
     fixtures.push(home);
     mkdirSync(join(home, ".claude", "projects", "-srv-app"), { recursive: true });
-    assert.equal(projectDir("/srv/app", { HOME: home, CLAUDE_CODE_PROJECT_DIR_NAME: "work" }),
+    assert.equal(projectDir("/srv/app", { ...noEnv, home, chosenName: "work" }),
       join(home, ".claude", "projects", "-srv-app"),
     );
   });
@@ -62,7 +65,7 @@ describe("projectDir", () => {
   test("ignores a CLAUDE_CODE_PROJECT_DIR_NAME Claude Code would reject", () => {
     const config = configDir("-srv-app", "my.proj", "nul", "x".repeat(65));
     for (const chosen of ["my.proj", "NUL", "x".repeat(65), ""]) {
-      assert.equal(projectDir("/srv/app", { CLAUDE_CONFIG_DIR: config, CLAUDE_CODE_PROJECT_DIR_NAME: chosen }),
+      assert.equal(projectDir("/srv/app", { ...noEnv, config, chosenName: chosen }),
         join(config, "projects", "-srv-app"),
       );
     }
@@ -72,12 +75,12 @@ describe("projectDir", () => {
     const id = "9a212143-d801-496d-b0ce-50ad2a68b9a2";
     const config = configDir("-srv-app", "-Users-you-start", "-Users-you-nested");
     writeFileSync(join(config, "projects", "-Users-you-start", `${id}.jsonl`), "");
-    const env = { CLAUDE_CONFIG_DIR: config, CLAUDE_CODE_SESSION_ID: id };
-    assert.equal(projectDir("/srv/app", env), join(config, "projects", "-Users-you-start"));
+    const options = { ...noEnv, config, sessionId: id };
+    assert.equal(projectDir("/srv/app", options), join(config, "projects", "-Users-you-start"));
     rmSync(join(config, "projects", "-Users-you-start", `${id}.jsonl`));
     mkdirSync(join(config, "projects", "-Users-you-nested", id));
     writeFileSync(join(config, "projects", "-Users-you-nested", id, `${id}.jsonl`), "");
-    assert.equal(projectDir("/srv/app", env), join(config, "projects", "-Users-you-nested"));
+    assert.equal(projectDir("/srv/app", options), join(config, "projects", "-Users-you-nested"));
   });
 
   // Claude Code's Workflow tool keeps <id>/workflows/ under the shell's current project.
@@ -87,7 +90,7 @@ describe("projectDir", () => {
     for (const [decoy, home] of [["-Users-you-aaa", "-Users-you-zzz"], ["-Users-you-zzz", "-Users-you-aaa"]]) {
       const config = configDir(`${decoy}/${id}/workflows/scripts`, home);
       writeFileSync(join(config, "projects", home, `${id}.jsonl`), "");
-      assert.equal(projectDir("/srv/app", { CLAUDE_CONFIG_DIR: config, CLAUDE_CODE_SESSION_ID: id }),
+      assert.equal(projectDir("/srv/app", { ...noEnv, config, sessionId: id }),
         join(config, "projects", home),
       );
     }
@@ -96,7 +99,7 @@ describe("projectDir", () => {
   test("derives the name when the session id is unknown or not a file name", () => {
     const config = configDir("-srv-app", "..");
     for (const id of ["0f0f0f0f-0000-0000-0000-000000000000", "../projects", ""]) {
-      assert.equal(projectDir("/srv/app", { CLAUDE_CONFIG_DIR: config, CLAUDE_CODE_SESSION_ID: id }),
+      assert.equal(projectDir("/srv/app", { ...noEnv, config, sessionId: id }),
         join(config, "projects", "-srv-app"),
       );
     }
@@ -105,14 +108,14 @@ describe("projectDir", () => {
   test("falls back to the one long directory that shares the first 200 characters", () => {
     const changedHash = `${LONG_NAME.slice(0, 201)}zzzzz`;
     const config = configDir(changedHash);
-    assert.equal(projectDir(LONG, { CLAUDE_CONFIG_DIR: config }), join(config, "projects", changedHash));
+    assert.equal(projectDir(LONG, { ...noEnv, config }), join(config, "projects", changedHash));
     mkdirSync(join(config, "projects", `${LONG_NAME.slice(0, 201)}yyyyy`));
-    assert.equal(projectDir(LONG, { CLAUDE_CONFIG_DIR: config }), null);
+    assert.equal(projectDir(LONG, { ...noEnv, config }), null);
   });
 
   test("returns null when no directory exists", () => {
-    assert.equal(projectDir("/private/tmp/coat_opus48_440", { CLAUDE_CONFIG_DIR: configDir() }), null);
-    assert.equal(projectDir(LONG, { CLAUDE_CONFIG_DIR: join(configDir(), "missing") }), null);
+    assert.equal(projectDir("/private/tmp/coat_opus48_440", { ...noEnv, config: configDir() }), null);
+    assert.equal(projectDir(LONG, { ...noEnv, config: join(configDir(), "missing") }), null);
   });
 });
 
