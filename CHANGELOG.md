@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/pdevito3/pdstack/compare/v0.7.0...v0.8.0) (2026-11-19)
+
+
+### Features
+
+* **pdstack:** take upstream changes through pstack-claude 412990b ([#55](https://github.com/pdevito3/pdstack/issues/55)) ([ffc0b6b](https://github.com/pdevito3/pdstack/commit/ffc0b6b0a21fde1bd3fc840c6b439e6146cef6d1))
+
 ## [0.7.0](https://github.com/pdevito3/pdstack/compare/v0.6.0...v0.7.0) (2026-11-18)
 
 
