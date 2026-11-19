@@ -12,10 +12,17 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v5
+      # CI on a PR that github-actions[bot] opens waits for an approval and expires.
+      # A personal access token opens the release PR, so CI runs on it.
+      - name: Warn when RELEASE_PLEASE_TOKEN is not set
+        env:
+          RELEASE_PLEASE_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+        run: |
+          if [ -z "$RELEASE_PLEASE_TOKEN" ]; then
+            echo "::warning::RELEASE_PLEASE_TOKEN is not set. github-actions[bot] opens the release PR, and its CI waits for an approval."
+          fi
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
-          # A PR that github-actions[bot] opens waits for workflow approval, so CI never ran on
-          # release PRs. A token of a user or an app opens the PR, and CI runs without approval.
           token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
