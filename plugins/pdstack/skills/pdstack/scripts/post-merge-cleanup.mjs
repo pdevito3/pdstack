@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { execFileSync } from "node:child_process";
 import { realpathSync, rmSync } from "node:fs";
+import { join } from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
@@ -108,9 +109,26 @@ function status(path) {
         : [entry])
     .filter(({ kind, name }) => kind !== "!!" || !rebuildable(name));
   return {
-    dirty: entries.map(({ name }) => name),
+    dirty: [...entries.map(({ name }) => name), ...submoduleWork(path)],
     modified: entries.filter(({ kind }) => kind !== "??" && kind !== "!!").map(({ name }) => name),
   };
+}
+
+// Superproject status lists neither ignored files nor unpushed commits inside an initialized
+// submodule, and its git dir goes with the worktree.
+function submoduleWork(path) {
+  return git(path, "submodule", "foreach", "--quiet", "--recursive", "printf '%s\\0' \"$displaypath\"")
+    .split("\0")
+    .filter(Boolean)
+    .flatMap((sub) => {
+      const dir = join(path, sub);
+      const ignored = git(dir, "ls-files", "-z", "--others", "--ignored", "--exclude-standard", "--directory", "--no-empty-directory")
+        .split("\0")
+        .filter((name) => name && !rebuildable(name))
+        .map((name) => `${sub}/${name}`);
+      const unpushed = Number(git(dir, "rev-list", "--count", "HEAD", "--branches", "--not", "--remotes"));
+      return unpushed ? [...ignored, `${sub} (${unpushed} unpushed commit(s))`] : ignored;
+    });
 }
 
 function readFacts(cwd, number) {
@@ -131,13 +149,15 @@ function readFacts(cwd, number) {
   }
   const localInPr = localTip !== null && succeeds(() => git(repo, "merge-base", "--is-ancestor", localTip, pr.headRefOid));
   const remoteTip = /^([0-9a-f]+)\t/.exec(git(repo, "ls-remote", "--heads", "origin", `refs/heads/${pr.headRefName}`))?.[1] ?? null;
-  const reflogOnly = countReflogOnly(repo, pr, worktrees.filter((tree) => tree.branch === pr.headRefName));
-  return { repo, facts: { pr, worktrees, localTip, localInPr, remoteTip, reflogOnly } };
+  const { reflogOnly, rewritten } = unreachableCommits(repo, pr, worktrees.filter((tree) => tree.branch === pr.headRefName));
+  return { repo, rewritten, facts: { pr, worktrees, localTip, localInPr, remoteTip, reflogOnly } };
 }
 
-// Commits that removing the worktrees and deleting the branch would leave unreachable: those in
-// their HEAD and branch reflogs that no other ref reaches. Commits pushed to the PR branch stay on the forge.
-function countReflogOnly(repo, pr, trees) {
+// reflogOnly counts commits that only a worktree's HEAD reflog reaches, which `git worktree remove`
+// deletes. As in worktree-audit.mjs, a commit that the branch reflog lists, such as the tip before a
+// rebase or an amend, is history the user rewrote. Deleting the branch leaves those unreachable, so
+// they are listed as rewritten for recovery until git gc prunes them.
+function unreachableCommits(repo, pr, trees) {
   const walk = (cwd, ref) => {
     try {
       return git(cwd, "rev-list", "--walk-reflogs", ref).split("\n").filter(Boolean);
@@ -147,15 +167,22 @@ function countReflogOnly(repo, pr, trees) {
   };
   const branch = `refs/heads/${pr.headRefName}`;
   const tracking = `refs/remotes/origin/${pr.headRefName}`;
-  const candidates = new Set([...trees.flatMap((tree) => walk(tree.path, "HEAD")), ...walk(repo, branch)]);
-  if (!candidates.size) return 0;
-  const kept = git(repo, "for-each-ref", "--format=%(refname)", "refs/heads", "refs/tags", "refs/remotes")
+  const branchLog = walk(repo, branch);
+  const pushed = [...walk(repo, tracking), pr.headRefOid].map((sha) => `^${sha}`);
+  const revList = (args, revisions) =>
+    execFileSync("git", ["rev-list", ...args, "--stdin"], {
+      cwd: repo, encoding: "utf8", input: `${revisions.join("\n")}\n`, stdio: ["pipe", "pipe", "pipe"], maxBuffer: Infinity,
+    }).split("\n").filter(Boolean);
+  const heads = trees.flatMap((tree) => walk(tree.path, "HEAD"));
+  const reflogOnly = heads.length
+    ? revList(["--not", "--branches", "--tags", "--remotes"], [...heads, ...branchLog.map((sha) => `^${sha}`), ...pushed]).length
+    : 0;
+  const others = git(repo, "for-each-ref", "--format=%(refname)", "refs/heads", "refs/tags", "refs/remotes")
     .split("\n")
-    .filter((ref) => ref && ref !== branch && ref !== tracking);
-  const input = [...candidates, `^${pr.headRefOid}`, ...walk(repo, tracking).map((sha) => `^${sha}`), ...kept.map((ref) => `^${ref}`)];
-  return Number(execFileSync("git", ["rev-list", "--count", "--stdin"], {
-    cwd: repo, encoding: "utf8", input: `${input.join("\n")}\n`, stdio: ["pipe", "pipe", "pipe"], maxBuffer: Infinity,
-  }).trim());
+    .filter((ref) => ref && ref !== branch && ref !== tracking)
+    .map((ref) => `^${ref}`);
+  const rewritten = branchLog.length ? revList([], [...branchLog, ...pushed, ...others]) : [];
+  return { reflogOnly, rewritten };
 }
 
 const ACTIONS = {
@@ -177,8 +204,9 @@ function main(argv) {
   }
   let repo;
   let facts;
+  let rewritten;
   try {
-    ({ repo, facts } = readFacts(process.cwd(), argv[0]));
+    ({ repo, facts, rewritten } = readFacts(process.cwd(), argv[0]));
   } catch (error) {
     console.error(`post-merge-cleanup: ${error.stderr?.toString().trim() || error.message}`);
     return 2;
@@ -193,6 +221,7 @@ function main(argv) {
       held.push({ target: step.path ?? step.branch, reason: `${step.action} failed: ${error.stderr?.toString().trim() || error.message}` });
     }
   }
+  if (report.done.some((step) => step.action === "delete-local-branch") && rewritten.length) report.rewritten = rewritten;
   console.log(JSON.stringify(report, null, 2));
   return held.length ? 1 : 0;
 }

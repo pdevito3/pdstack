@@ -18,6 +18,7 @@ describe("after-merge", () => {
     assert.match(text, /post-merge-cleanup\.mjs" 58`/);
     assert.match(reminder(bash("cd x && gh pr merge 3")), /post-merge-cleanup\.mjs" 3`/);
     assert.match(reminder(bash("gh pr merge --squash")), /post-merge-cleanup\.mjs" <pr>`/);
+    assert.match(reminder(bash("gh pr merge --squash 123 && git pull")), /post-merge-cleanup\.mjs" 123`/);
   });
 
   test("stays quiet for other commands", () => {

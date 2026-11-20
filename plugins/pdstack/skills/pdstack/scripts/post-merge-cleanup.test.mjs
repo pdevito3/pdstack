@@ -132,7 +132,7 @@ describe("post-merge-cleanup.mjs against real repositories", { skip: process.pla
   };
   const git = (cwd, ...args) => execFileSync("git", args, { cwd, env, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim();
 
-  function scenario(name) {
+  function scenario(name, { amend = false } = {}) {
     const dir = join(root, name);
     mkdirSync(dir);
     const origin = join(dir, "origin.git");
@@ -148,6 +148,7 @@ describe("post-merge-cleanup.mjs against real repositories", { skip: process.pla
     writeFileSync(join(worktree, "b.txt"), "b\n");
     git(worktree, "add", "b.txt");
     git(worktree, "commit", "--quiet", "-m", "feat");
+    if (amend) git(worktree, "commit", "--quiet", "--amend", "-m", "feat, amended");
     git(worktree, "push", "--quiet", "origin", "feat");
     const head = git(worktree, "rev-parse", "HEAD");
     const merger = join(dir, "merger");
@@ -241,17 +242,55 @@ describe("post-merge-cleanup.mjs against real repositories", { skip: process.pla
     assert.ok(existsSync(join(worktree, "notes-café", "plan.md")), "file kept");
   });
 
-  test("holds a commit that only the worktree's reflog reaches", () => {
+  test("holds a commit that only the worktree's HEAD reflog reaches", () => {
     const { repo, worktree, run } = scenario("reflog");
+    git(worktree, "switch", "--quiet", "--detach");
     writeFileSync(join(worktree, "c.txt"), "c\n");
     git(worktree, "add", "c.txt");
-    git(worktree, "commit", "--quiet", "-m", "dropped");
-    git(worktree, "reset", "--quiet", "--hard", "HEAD~1");
+    git(worktree, "commit", "--quiet", "-m", "detached");
+    git(worktree, "switch", "--quiet", "feat");
     const result = run();
     assert.equal(result.status, 1);
     assert.match(result.report.held[0].reason, /^1 commit\(s\) that only a reflog reaches/);
     assert.ok(existsSync(worktree), "worktree kept");
     assert.notEqual(git(repo, "branch", "--list", "feat"), "", "local branch kept");
+  });
+
+  test("treats a tip that an amend replaced before the push as rewritten history, also on a rerun", () => {
+    const { worktree, run } = scenario("amended", { amend: true });
+    writeFileSync(join(worktree, "todo.md"), "x");
+    const first = run();
+    assert.deepEqual(first.report.held.map((item) => item.reason), [
+      "worktree has uncommitted work: todo.md",
+      "a held worktree still holds the local branch",
+    ]);
+    rmSync(join(worktree, "todo.md"));
+    const second = run();
+    assert.equal(second.status, 0, JSON.stringify(second.report));
+    assert.ok(!existsSync(worktree), "worktree removed");
+    assert.equal(second.report.rewritten.length, 1, "the tip before the amend is listed for recovery");
+  });
+
+  test("holds an ignored file and an unpushed commit inside a submodule", () => {
+    const { dir, worktree, run } = scenario("submodule");
+    const lib = join(dir, "lib");
+    git(dir, "init", "--quiet", "--initial-branch=main", lib);
+    writeFileSync(join(lib, "l.txt"), "l\n");
+    git(lib, "add", "l.txt");
+    git(lib, "commit", "--quiet", "-m", "lib");
+    const sub = join(dir, "sub-origin.git");
+    git(dir, "clone", "--quiet", "--bare", lib, sub);
+    git(worktree, "-c", "protocol.file.allow=always", "submodule", "add", "--quiet", sub, "sub");
+    git(worktree, "commit", "--quiet", "-m", "add sub");
+    writeFileSync(join(worktree, "sub", ".env"), "x");
+    writeFileSync(join(worktree, "sub", ".gitignore"), ".env\n");
+    git(join(worktree, "sub"), "add", ".gitignore");
+    git(join(worktree, "sub"), "commit", "--quiet", "-m", "local only");
+    const result = run();
+    assert.equal(result.status, 1);
+    assert.match(result.report.held[0].reason, /sub\/\.env/);
+    assert.match(result.report.held[0].reason, /sub \(1 unpushed commit\(s\)\)/);
+    assert.ok(existsSync(join(worktree, "sub", ".env")), "submodule file kept");
   });
 
   test("keeps a local branch with a commit that never reached the PR", () => {

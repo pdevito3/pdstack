@@ -4,7 +4,7 @@ import { join, resolve } from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
-const MERGE = /(?:^|[\s;&|(])gh\s+pr\s+merge\b(?:\s+(\d+))?/;
+const MERGE = /(?:^|[\s;&|(])gh\s+pr\s+merge\b([^;&|]*)/;
 const CLEANUP = join(resolve(import.meta.dirname, ".."), "skills", "pdstack", "scripts", "post-merge-cleanup.mjs");
 
 export function reminder(event) {
@@ -14,7 +14,7 @@ export function reminder(event) {
   if (!match) return null;
   return [
     "pdstack plugin hook (PostToolUse): a PR merge command ran.",
-    `pdstack's post-merge rule: once the PR reads merged, the agent that merged it runs \`node "${CLEANUP}" ${match[1] ?? "<pr>"}\` in the repository itself.`,
+    `pdstack's post-merge rule: once the PR reads merged, the agent that merged it runs \`node "${CLEANUP}" ${match[1].split(/\s+/).find((word) => /^\d+$/.test(word)) ?? "<pr>"}\` in the repository itself.`,
     "It clears a held item only when no work is lost, such as switching a clean primary checkout to trunk, and reruns the script.",
     "It reports each other held item to the user with its reason, and never deletes or discards work to clear one.",
   ].join(" ");
