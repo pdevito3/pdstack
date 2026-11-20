@@ -716,7 +716,7 @@
       "path": "plugins/pstack/skills/poteto-mode/scripts/watch-pr/transport.test.ts",
       "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
       "status": "modified",
-      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies. The fake gh test is skipped on Windows, which cannot spawn a shebang script, and is run once before the timed runs, since macOS checks a new executable on its first run."
+      "why": "Node port of the Bun TypeScript test, on node:test with no dependencies. The fake gh test is skipped on Windows, which cannot spawn a shebang script, and is run once before the timed runs, since macOS checks a new executable on its first run. The slow fake gh sleeps 10 s and the deadline bound is 5 s, so a loaded machine still passes and a run that waits for gh still fails."
     },
     "plugins/pdstack/skills/pdstack/scripts/watch-pr/types.mjs": {
       "source": "michael-denyer/pstack-claude",
