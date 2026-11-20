@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.0](https://github.com/pdevito3/pdstack/compare/v0.8.0...v0.9.0) (2026-11-20)
+
+
+### Features
+
+* **pdstack:** enforce post-merge cleanup and per-request playbooks ([#60](https://github.com/pdevito3/pdstack/issues/60)) ([68fe85d](https://github.com/pdevito3/pdstack/commit/68fe85d0e701ee4c676d96e620f1a1d43a38cc59))
+* **reflect:** mine past sessions through user-turns.mjs ([#59](https://github.com/pdevito3/pdstack/issues/59)) ([2d5509a](https://github.com/pdevito3/pdstack/commit/2d5509a505e1b02e22908da238de329735ae38f5))
+
+
+### Bug Fixes
+
+* share upstream clones across worktrees and close the deadline test race ([#62](https://github.com/pdevito3/pdstack/issues/62)) ([b163656](https://github.com/pdevito3/pdstack/commit/b163656962af54e89100b597c536d73abd33f7b0))
+
 ## [0.8.0](https://github.com/pdevito3/pdstack/compare/v0.7.0...v0.8.0) (2026-11-19)
 
 
