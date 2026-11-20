@@ -113,13 +113,13 @@ test("sharedUpstreamsDir puts every worktree's clones in the primary checkout", 
   const root = realpathSync.native(mkdtempSync(join(tmpdir(), "pdstack-upstreams-")));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   const primary = join(root, "repo");
-  const env = { ...GIT_ENV, GIT_CONFIG_GLOBAL: join(root, "gitconfig"), GIT_CONFIG_NOSYSTEM: "1", GIT_CEILING_DIRECTORIES: root };
+  const env = { ...GIT_ENV, GIT_CONFIG_GLOBAL: join(root, "gitconfig"), GIT_CONFIG_NOSYSTEM: "1", GIT_CEILING_DIRECTORIES: dirname(root) };
   const git = (cwd, ...args) => execFileSync("git", args, { cwd, stdio: "ignore", env });
   mkdirSync(primary);
   git(primary, "init", "--quiet");
   git(primary, "-c", "user.name=t", "-c", "user.email=t@t", "-c", "commit.gpgsign=false", "commit", "--quiet", "--allow-empty", "-m", "init");
   git(primary, "worktree", "add", "--quiet", "--detach", join(root, "wt"));
-  assert.equal(sharedUpstreamsDir(primary), join(primary, ".upstreams"));
-  assert.equal(sharedUpstreamsDir(join(root, "wt")), join(primary, ".upstreams"));
-  assert.equal(sharedUpstreamsDir(join(root)), join(root, ".upstreams"));
+  assert.equal(sharedUpstreamsDir(primary, env), join(primary, ".upstreams"));
+  assert.equal(sharedUpstreamsDir(join(root, "wt"), env), join(primary, ".upstreams"));
+  assert.equal(sharedUpstreamsDir(root, env), join(root, ".upstreams"));
 });

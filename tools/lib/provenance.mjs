@@ -1,16 +1,18 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from "node:fs";
-import { basename, dirname, join, relative, sep } from "node:path";
+import { basename, dirname, join, relative, resolve, sep } from "node:path";
 
 export const SOURCES = ["cursor/plugins", "michael-denyer/pstack-claude", "mattpocock/skills"];
 export const STATUSES = ["verbatim", "renamed", "modified"];
 export const PLUGIN_ROOT = "plugins/pdstack";
 export const PSTACK_CLAUDE_ROOT = "plugins/pstack";
 
-// A git hook or `rebase -x` in a worktree exports these, and they would point every call at that repo.
-export const GIT_ENV = Object.fromEntries(
-  Object.entries(process.env).filter(([name]) => !["GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"].includes(name)),
-);
+// A git hook or `rebase -x` in a worktree exports some of these, and they would point every call at that repo.
+const REPO_LOCATION = [
+  "GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE", "GIT_PREFIX", "GIT_IMPLICIT_WORK_TREE",
+  "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_GRAFT_FILE", "GIT_SHALLOW_FILE",
+];
+export const GIT_ENV = Object.fromEntries(Object.entries(process.env).filter(([name]) => !REPO_LOCATION.includes(name)));
 
 export function loadProvenance(repoRoot) {
   return JSON.parse(readFileSync(join(repoRoot, "provenance.json"), "utf8"));
@@ -80,16 +82,34 @@ export function listFiles(dir, root = dir) {
   return out.sort();
 }
 
-export function sharedUpstreamsDir(repoRoot) {
+export function sharedUpstreamsDir(repoRoot, env = GIT_ENV) {
   let common;
   try {
-    common = execFileSync("git", ["rev-parse", "--path-format=absolute", "--git-common-dir"], {
-      cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], env: GIT_ENV,
-    }).trim();
+    common = resolve(repoRoot, execFileSync("git", ["rev-parse", "--git-common-dir"], {
+      cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], env,
+    }).trim());
   } catch {
     return join(repoRoot, ".upstreams");
   }
   return basename(common) === ".git" ? join(dirname(common), ".upstreams") : join(repoRoot, ".upstreams");
+}
+
+// Windows refuses the rename while a scanner still holds a handle on the new clone.
+function moveClone(partial, dir) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      renameSync(partial, dir);
+      return;
+    } catch (error) {
+      if (attempt < 10 && ["EPERM", "EACCES", "EBUSY"].includes(error.code) && !existsSync(dir)) {
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 200);
+        continue;
+      }
+      rmSync(partial, { recursive: true, force: true });
+      if (!existsSync(dir)) throw error;
+      return;
+    }
+  }
 }
 
 export class Upstreams {
@@ -103,12 +123,7 @@ export class Upstreams {
       mkdirSync(this.dir, { recursive: true });
       const partial = `${dir}.${process.pid}.partial`;
       execFileSync("git", ["clone", "--quiet", "--no-checkout", `https://github.com/${source}.git`, partial], { stdio: "inherit", env: GIT_ENV });
-      try {
-        renameSync(partial, dir);
-      } catch (error) {
-        rmSync(partial, { recursive: true, force: true });
-        if (!existsSync(dir)) throw error;
-      }
+      moveClone(partial, dir);
     }
     return dir;
   }
