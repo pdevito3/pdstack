@@ -15,7 +15,7 @@ Run from the repo root:
 node tools/upstream-diff.mjs
 ```
 
-The script fetches each feed into `.upstreams/<owner>__<repo>` and prints one entry for each upstream commit since the feed position. Add `--json` for the same data as JSON, or `--feed <source>` for one feed.
+The script fetches each feed into `.upstreams/<owner>__<repo>` and prints one entry for each upstream commit since the feed position. `.upstreams` is in the main checkout, and every worktree shares it. In a worktree, read `.upstreams` below as `$(git rev-parse --path-format=absolute --git-common-dir)/../.upstreams`. Add `--json` for the same data as JSON, or `--feed <source>` for one feed.
 
 - A cursor entry shows its translation state: the pstack-claude "Sync to upstream" commit that translated it, or "not translated yet".
 - A pstack-claude entry is a sync of a cursor commit or a change of its own. A change of its own shows the reason from pstack-claude `tools/forks.json` for each forked file.

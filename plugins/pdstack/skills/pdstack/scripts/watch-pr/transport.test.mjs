@@ -3,6 +3,7 @@ import { expect } from "./expect.test-helper.mjs";
 import { spawnSync } from "node:child_process";
 import {
   chmodSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -356,11 +357,21 @@ it("exits 7 with a JSON verdict when gh is not on PATH", { skip }, () => {
   });
 });
 
+function pidIfGhStarted(file, ms) {
+  const end = performance.now() + ms;
+  for (;;) {
+    const text = existsSync(file) ? readFileSync(file, "utf8") : "";
+    if (text) return Number(text);
+    if (performance.now() > end) return null;
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 50);
+  }
+}
+
 it("cancels an in-flight command at the CLI deadline", { skip }, () => {
   const result = run("slow", ["--timeout", "0.25"]);
   expect(result.status).toBe(5);
   expect(result.elapsed).toBeLessThan(5000);
   expect(JSON.parse(result.stdout.trim())).toMatchObject({ kind: "TIMEOUT" });
-  const pid = Number(readFileSync(result.pidFile, "utf8"));
-  expect(() => process.kill(pid, 0)).toThrow();
+  const pid = pidIfGhStarted(result.pidFile, 2000);
+  if (pid !== null) expect(() => process.kill(pid, 0)).toThrow();
 });

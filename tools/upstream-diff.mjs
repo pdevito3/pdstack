@@ -5,15 +5,15 @@
 //   node tools/upstream-diff.mjs --apply <local-path> --to <sha> [--upstreams <dir>]
 // --to needs --feed in a diff. --from-feed overrides a feed position for this run only.
 // --apply copies one verbatim or renamed file again from its source at <sha> and moves its pin.
-import { join, resolve } from "node:path";
+import { resolve } from "node:path";
 import { parseArgs } from "node:util";
-import { SOURCES, Upstreams } from "./lib/provenance.mjs";
+import { sharedUpstreamsDir, SOURCES, Upstreams } from "./lib/provenance.mjs";
 import { applyPin, collectUpstreamDiff, renderMarkdown } from "./lib/upstream-diff.mjs";
 
 const repoRoot = resolve(import.meta.dirname, "..");
 const { values } = parseArgs({
   options: {
-    upstreams: { type: "string", default: join(repoRoot, ".upstreams") },
+    upstreams: { type: "string", default: sharedUpstreamsDir(repoRoot) },
     feed: { type: "string" },
     to: { type: "string" },
     "from-feed": { type: "string", multiple: true, default: [] },

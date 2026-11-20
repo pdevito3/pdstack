@@ -4,7 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
-import { Upstreams } from "./lib/provenance.mjs";
+import { GIT_ENV, Upstreams } from "./lib/provenance.mjs";
 import { applyPin, collectUpstreamDiff, copiedFolders, createMapper, parseLog, parseSyncSha, renderMarkdown } from "./lib/upstream-diff.mjs";
 
 const CURSOR = "cursor/plugins";
@@ -13,7 +13,7 @@ const MATT = "mattpocock/skills";
 const RENAMES = [["poteto-mode", "pdstack"], ["pstack:", "pdstack:"]];
 
 function git(cwd, ...args) {
-  return execFileSync("git", ["-c", "user.name=t", "-c", "user.email=t@example.com", "-c", "commit.gpgsign=false", ...args], { cwd, encoding: "utf8" }).trim();
+  return execFileSync("git", ["-c", "user.name=t", "-c", "user.email=t@example.com", "-c", "commit.gpgsign=false", ...args], { cwd, encoding: "utf8", env: GIT_ENV }).trim();
 }
 
 function write(root, files) {
