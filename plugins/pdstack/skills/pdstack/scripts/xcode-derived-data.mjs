@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, realpathSync, rmSync } from "node:fs";
 import { homedir } from "node:os";
-import { basename, join, resolve, sep } from "node:path";
+import { basename, join, posix, resolve, sep } from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
@@ -30,9 +30,9 @@ export function workspacePaths(worktree, trackedFiles) {
   const paths = new Set();
   for (const file of trackedFiles) {
     const bundle = /^(.*?\.(?:xcodeproj|xcworkspace))\//.exec(file);
-    if (bundle) paths.add(join(worktree, bundle[1]));
+    if (bundle) paths.add(posix.join(worktree, bundle[1]));
     const manifest = /^(?:(.*)\/)?Package\.swift$/.exec(file);
-    if (manifest) paths.add(manifest[1] ? join(worktree, manifest[1]) : worktree);
+    if (manifest) paths.add(manifest[1] ? posix.join(worktree, manifest[1]) : worktree);
   }
   return [...paths];
 }
