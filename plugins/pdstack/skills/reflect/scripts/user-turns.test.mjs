@@ -65,6 +65,8 @@ test("falls back to the record tags when a transcript has no origin fields", () 
     user("<local-command-stdout></local-command-stdout>"),
     user("<task-notification>done</task-notification>"),
     user("Summary of the earlier turns.", { isCompactSummary: true }),
+    user([say("[Request interrupted by user]")]),
+    user([say("[Request interrupted by user for tool use]")]),
     user("rename it", {}),
     { type: "attachment", attachment: { type: "queued_command", prompt: "and the test", commandMode: "prompt" } },
   ]);

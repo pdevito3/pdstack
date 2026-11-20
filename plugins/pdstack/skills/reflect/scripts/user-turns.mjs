@@ -5,9 +5,10 @@ import { fileURLToPath } from "node:url";
 
 // Claude Code marks a typed prompt with origin.kind "human". A transcript
 // without origin fields also writes local commands, their output, background-task
-// notifications, and compaction summaries as non-meta `user` records.
+// notifications, and compaction summaries as non-meta `user` records. An interrupt
+// marker has no origin field even in a transcript that has them.
 const NOT_TYPED =
-  /^\s*<(?:command-name|local-command-stdout|local-command-caveat|bash-input|bash-stdout|task-notification|system-reminder)>/u;
+  /^\s*(?:<(?:command-name|local-command-stdout|local-command-caveat|bash-input|bash-stdout|task-notification|system-reminder)>|\[Request interrupted by user(?: for tool use)?\]\s*$)/u;
 const CONTEXT_CHARS = 400;
 
 function text(content) {
