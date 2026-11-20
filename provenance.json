@@ -363,14 +363,14 @@
       "path": "plugins/pstack/skills/poteto-help/SKILL.md",
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Points /bro to wait-what, names writing-for-agents in place of plugin-dev:skill-development, and adds the merge-risk row to the skill table and its sentence to the review bullets. Links the model and routing questions to setup-pdstack's inline Other runtimes section in place of `references/runtimes.md`, which pdstack does not copy. Says that the router Playbooks section lists the playbooks by name, because the shorter router no longer says when each applies. Drops the Codex and Pi mapping paragraph and the `session hook: off` sentence, because pdstack v1 supports Claude Code only."
+      "why": "Points /bro to wait-what, names writing-for-agents in place of plugin-dev:skill-development, and adds the merge-risk row to the skill table and its sentence to the review bullets. Links the model and routing questions to setup-pdstack's inline Other runtimes section in place of `references/runtimes.md`, which pdstack does not copy. Says that the router Playbooks section lists the playbooks by name, because the shorter router no longer says when each applies. Drops the Codex and Pi mapping paragraph and the `session hook: off` sentence, because pdstack v1 supports Claude Code only. Adds Keep pdstack current and how to run a named skill."
     },
     "plugins/pdstack/skills/pdstack/playbooks/authoring-a-skill.md": {
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/authoring-a-skill.md",
       "sha": "88f6d39f228c4f9210d93bbf7e5e40a5c671fd5e",
       "status": "modified",
-      "why": "Reads writing-for-agents by path in place of plugin-dev:skill-development."
+      "why": "Reads writing-for-agents by path in place of plugin-dev:skill-development. Adds the step that attaches a new rule to the action it guards and lists every path to that action."
     },
     "plugins/pdstack/skills/pdstack/playbooks/autonomous-run.md": {
       "source": "michael-denyer/pstack-claude",
@@ -439,7 +439,7 @@
       "path": "plugins/pstack/skills/poteto-mode/playbooks/opening-a-pr.md",
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate, an independent thermo-nuclear-review pass before the PR opens (issue #14), and a line that has a subagent that opens a PR run it. The gate covers drafts and script-opened PRs, reruns after feature work, splits a diff of more than 2,000 lines by component, and ends in a `review-gate:` PR comment. Opens a draft only when the user asks for one. Adds Open PRs, which gives each push to an open PR the same bar: a worktree from the PR's branch, the owning PR in a stack, the base read from the PR, `/deslop`, `/no-comments`, the standards review, verification, a gate decision from the last own review-gate comment and a range-diff of all work since it, a restack of child PRs, and a question to the user when the owning PR closed without a merge. Early-opened PRs and replay-only pushes keep their own rules (issue #52). The Open PRs items are bullets, so the playbook has no numbered steps and a project playbook can anchor a change on any paragraph."
+      "why": "Links the tracker ticket in ## Why with the closing syntax from docs/agents/issue-tracker.md. Adds the Review gate, an independent thermo-nuclear-review pass before the PR opens (issue #14), and a line that has a subagent that opens a PR run it. The gate covers drafts and script-opened PRs, reruns after feature work, splits a diff of more than 2,000 lines by component, and ends in a `review-gate:` PR comment. Opens a draft only when the user asks for one. Adds Open PRs, which gives each push to an open PR the same bar: a worktree from the PR's branch, the owning PR in a stack, the base read from the PR, `/deslop`, `/no-comments`, the standards review, verification, a gate decision from the last own review-gate comment and a range-diff of all work since it, a restack of child PRs, and a question to the user when the owning PR closed without a merge. Early-opened PRs and replay-only pushes keep their own rules (issue #52). The Open PRs items are bullets, so the playbook has no numbered steps and a project playbook can anchor a change on any paragraph. Runs /no-comments before the review gate on the main path, not only for a subagent opener."
     },
     "plugins/pdstack/skills/pdstack/playbooks/pause-safely.md": {
       "source": "michael-denyer/pstack-claude",
@@ -482,7 +482,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/shipping.md",
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Adds the cleanup step that runs post-merge-cleanup.mjs after each landed PR."
     },
     "plugins/pdstack/skills/pdstack/playbooks/trace-forensics.md": {
       "source": "michael-denyer/pstack-claude",
@@ -501,7 +502,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/poteto-mode/playbooks/worktree-cleanup.md",
       "sha": "f1209c06a3fdebd7856dda467f8871dfb2ddc1ed",
-      "status": "renamed"
+      "status": "modified",
+      "why": "Deletes each worktree's Xcode DerivedData before removal, and lists orphaned DerivedData, through xcode-derived-data.mjs."
     },
     "plugins/pdstack/skills/pdstack/references/agents/comment-sicko.md": {
       "source": "michael-denyer/pstack-claude",
@@ -748,7 +750,7 @@
       "path": "plugins/pstack/skills/poteto-mode/SKILL.md",
       "sha": "dbc378f2f8c6b1c2a487c497c18ac0b4ec897bd3",
       "status": "modified",
-      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and puts each matching stack pack's `standards.md` path in the agent kickoff. Reads writing-for-agents for agent-facing prose. Drops the Codex, Pi, Copilot, Muse, MiniMax, Antigravity, OMP, Kimi, Grok, and OpenCode mapping text, because pdstack v1 supports Claude Code only, and runs each script with `node`, because Windows does not run a shebang. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line, which runs before a PR opens, drafts and script-opened PRs included, and runs the Open PRs rules of opening-a-pr before each push to an open PR (issue #52). Sets the strongest judgment default to `opus`, runs `fable` only when the sheet sets it or the user names it, and adds Find state machines to the playbook list."
+      "why": "Adds Functional Core and Rich Domain Model, the stack pack lines and precedence, the worktree home and model family rules for subagents, names standards in the naming rule, and puts each matching stack pack's `standards.md` path in the agent kickoff. Reads writing-for-agents for agent-facing prose. Drops the Codex, Pi, Copilot, Muse, MiniMax, Antigravity, OMP, Kimi, Grok, and OpenCode mapping text, because pdstack v1 supports Claude Code only, and runs each script with `node`, because Windows does not run a shebang. Keeps the one-sentence effort notes for Codex and Muse in Reasoning effort, as the renamed skills do. Adds the review gate line, which runs before a PR opens, drafts and script-opened PRs included, and runs the Open PRs rules of opening-a-pr before each push to an open PR (issue #52). Sets the strongest judgment default to `opus`, runs `fable` only when the sheet sets it or the user names it, and adds Find state machines to the playbook list. Adds the trigger that matches each later request in a chat to a playbook, routes any merge to Shipping, and runs post-merge-cleanup.mjs after each merge."
     },
     "plugins/pdstack/skills/principle-attack-the-premise/SKILL.md": {
       "source": "michael-denyer/pstack-claude",
@@ -3590,6 +3592,13 @@
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
       "why": "Excepts the stack-pack standards review and all of opening-a-pr from the rule that the kickoff bar is the whole bar, with its blocks and stops, so every started agent still meets pdstack's PR bar. A question that opening-a-pr puts to the user goes into the report to the parent, and the hold rule names the rules that the bar exception keeps. Opens a PR as a draft when the operator asks for one, to match opening-a-pr."
+    },
+    "plugins/pdstack/hooks/hooks.json": {
+      "source": "michael-denyer/pstack-claude",
+      "path": "plugins/pstack/hooks/hooks.json",
+      "sha": "412990b837ddb5e41ee589d770ba1bff24144654",
+      "status": "modified",
+      "why": "pdstack's own hook manifest at the upstream path. It registers the after-merge PostToolUse hook and the route-follow-up UserPromptSubmit hook in place of the upstream SessionStart hook, which pdstack does not ship."
     }
   }
 }
