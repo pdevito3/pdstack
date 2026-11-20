@@ -22,6 +22,7 @@ The Principles section below grounds every trigger. In your reply, name each pri
 The remaining triggers live only here:
 
 - First message → restate the user's goal and the smallest change that meets it, then proceed. Open each subagent brief, PR `## Why`, and final report with the goal.
+- Each later message in the chat that asks for work → match it to a playbook as you did the first, and copy that playbook's steps into the todolist. A merge, a cleanup, or a fix to an open PR is a new request, not the tail of the last one.
 - Starting any agent, whether an `Agent` subagent or a background worker → the first line of its kickoff is `Read <path>/worker.md before anything else.`, with `<path>` the absolute path of this skill's folder. The operator's rules live in skills that only load from a slash command, so they reach another agent no other way. Keep the rest of the kickoff to the goal and the task, plus this file's absolute path for a `pdstack-agent` and the `standards.md` path of each matching stack pack.
 - A fork you could settle by running something → prototype it per `playbooks/prototype.md` instead of asking.
 - Code → name the data shape first, and keep decisions in a pure core with I/O in a thin shell per **principle-functional-core**. Across a function boundary → **architect**. Fan-out → **swarm**. Bakeoff → **arena**. Contested design → **interrogate**. For Bug fix only, check the [focused-fix exception](playbooks/bug-fix.md#focused-fix-exception) before **architect**.
@@ -36,7 +37,8 @@ The remaining triggers live only here:
 - Before commit → `/deslop`. Before review → **no-comments**.
 - Shipping UI / IDE / CLI → the driver skill. `run` ships with Claude Code and the model can invoke it for CLIs, TUIs, servers, and browser or Electron apps. The bundled `verify` runs only when the user types `/verify`, so for UIs use the project `verify` skill at `.claude/skills/verify/` (generate it with `/create-verification-skill`) and fall back to `run` when the repo has none.
 - A number you measured → **benchmark-checklist**.
-- PR status → the **Babysit** playbook, not the bundled **babysit** skill. Landing a green stack → the **Shipping** playbook.
+- PR status → the **Babysit** playbook, not the bundled **babysit** skill. Landing a green stack, or merging any PR → the **Shipping** playbook.
+- A PR you merged reads merged → run `node <this skill's folder>/scripts/post-merge-cleanup.mjs <pr>` with the repository as the working directory. It removes the worktree and its Xcode DerivedData, deletes both branches, and fast-forwards trunk. Resolve each item it holds, and run it again until it exits 0. Never hand the cleanup to the user.
 - Bot review comments → judge each on its merits, per `references/bugbot-triage.md`.
 - Deploying to a managed platform (Railway, Fly, Vercel, Heroku, and the like) → load that platform's skill, project-local or installed, before running its CLI, the same way Shipping step 1 resolves the forge before the first PR operation.
 - A defect found mid-task → severity decides its artifact, not where it turned up. A correctness or data gap gets a tracked issue even when it surfaces while writing a closure doc; a cosmetic margin can stay in the doc.

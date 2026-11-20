@@ -1,6 +1,6 @@
 ---
 name: pdstack-help
-description: Guides users through pstack setup, /pdstack, and picking the skill, playbook, or principle for a task. Type /pdstack-help with a question.
+description: Guides users through pstack setup, updating and reloading pdstack, /pdstack, running a named skill, and picking the skill, playbook, or principle for a task. Type /pdstack-help with a question.
 ---
 
 # Poteto help
@@ -16,6 +16,7 @@ This file maps questions to the installed skills, playbooks, and platform mappin
 Infer the need from the message and the conversation. A named situation, such as "which skill reviews a PR?", goes straight to its section. If the need is still unclear, ask one multiple-choice question with these options, then answer only the section they pick:
 
 - Get set up
+- Keep pdstack current
 - Start a task with `/pdstack`
 - Pick a skill for a situation
 - Fix a run that went wrong
@@ -40,6 +41,12 @@ When the model sheet is missing and it matters, ask whether the user wants to pi
 
 If cost is the worry, say where the tokens go and how to spend fewer. pstack spends extra tokens on subagents and review panels. Rerun `/setup-pdstack` and pick a lower effort or cheaper models. A role set to `auto` or `inherit-parent` runs on the chat's model, which costs less when the chat runs on a cheaper model. A shorter panel list runs fewer subagents, one for each entry. Save `/pdstack` for work that needs rigor.
 
+## Keep pdstack current
+
+1. Find the copy that this session loaded. A loaded skill prints its `Base directory for this skill:` line. Run `git -C <that directory> rev-parse --show-toplevel` to get its repository.
+2. If that path is a clone outside `plugins/cache`, give `git -C <clone> pull --ff-only`. If it is under `plugins/cache`, give `claude plugin update pdstack@<marketplace>`, with the marketplace from `claude plugin list`, then a restart of Claude Code.
+3. Say what reloads when. A file that a skill reads by path, such as a playbook or a script, is live after the pull. Skill descriptions, hooks, and agents reload at session start or after `/reload-plugins`.
+
 ## Start a task with `/pdstack`
 
 `/pdstack` matches the task to a playbook, copies the playbook's steps into the todo list, and runs the other skills as the steps need them. A good prompt states the goal and how to tell it's done. It doesn't list skills, because a hand-written sequence tends to drop or reorder steps the playbook would keep. Read [`references/prompting.md`](references/prompting.md) before you help word one.
@@ -49,6 +56,8 @@ For whether later tasks route automatically, use the setup and runtime sources u
 ## Pick a skill
 
 The default answer is `/pdstack`, which runs most of the others when its steps need them. Name a skill directly when the user wants more or less of something than the playbook gives. Read the skill before you recommend it, and give one example prompt.
+
+To run a named skill, check its frontmatter first. The user can type a skill without `user-invocable: false`, as in `/pdstack:merge-risk 123`. The bare `/<name>` works when no user or project skill has that name. Claude Code refuses a typed skill that has `user-invocable: false`, which covers most rows below. For one of those, give a prompt that names the skill, as in `use the pdstack:blast-radius skill: make parseConfig public`.
 
 | The user wants to | Skill |
 |---|---|

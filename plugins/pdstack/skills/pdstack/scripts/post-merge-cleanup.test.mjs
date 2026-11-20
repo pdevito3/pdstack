@@ -1,0 +1,214 @@
+import assert from "node:assert/strict";
+import { execFileSync, spawnSync } from "node:child_process";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { delimiter, join } from "node:path";
+import { after, describe, test } from "node:test";
+
+import { parseWorktrees, plan, rebuildable } from "./post-merge-cleanup.mjs";
+
+const pr = { number: 7, state: "MERGED", headRefName: "feat", headRefOid: "f1", baseRefName: "main", isCrossRepository: false };
+const tree = (path, branch, extra = {}) => ({ path, branch, locked: null, prunable: false, primary: false, dirty: [], modified: [], derivedData: [], ...extra });
+const facts = (extra = {}) => ({
+  pr,
+  worktrees: [tree("/repo", "main", { primary: true }), tree("/wt/feat", "feat")],
+  localTip: "f1",
+  localInPr: true,
+  remoteTip: "f1",
+  ...extra,
+});
+
+describe("plan", () => {
+  test("removes the worktree, deletes both branches, and updates trunk after a merge", () => {
+    assert.deepEqual(plan(facts()), {
+      done: [
+        { action: "remove-worktree", path: "/wt/feat" },
+        { action: "delete-local-branch", branch: "feat" },
+        { action: "delete-remote-branch", branch: "feat" },
+        { action: "update-trunk", branch: "main", path: "/repo" },
+      ],
+      held: [],
+    });
+  });
+
+  test("deletes the Xcode DerivedData of a removed worktree, and keeps it for a held one", () => {
+    const xcode = (extra) => [tree("/repo", "main", { primary: true }), tree("/wt/feat", "feat", { derivedData: ["/dd/App-abc"], ...extra })];
+    assert.deepEqual(plan(facts({ worktrees: xcode() })).done.slice(0, 2), [
+      { action: "remove-worktree", path: "/wt/feat" },
+      { action: "remove-derived-data", path: "/dd/App-abc" },
+    ]);
+    assert.ok(!plan(facts({ worktrees: xcode({ dirty: ["todo.md"] }) })).done.some((step) => step.action === "remove-derived-data"));
+  });
+
+  test("holds everything until the PR reads merged", () => {
+    assert.deepEqual(plan(facts({ pr: { ...pr, state: "OPEN" } })), {
+      done: [],
+      held: [{ target: "PR #7", reason: "PR is OPEN, not merged" }],
+    });
+  });
+
+  test("holds a dirty or locked worktree and the branch it holds", () => {
+    const dirty = plan(facts({ worktrees: [tree("/repo", "main", { primary: true }), tree("/wt/feat", "feat", { dirty: ["todo.md"] })] }));
+    assert.deepEqual(dirty.held, [
+      { target: "/wt/feat", reason: "worktree has uncommitted work: todo.md" },
+      { target: "feat", reason: "a held worktree still holds the local branch" },
+    ]);
+    const locked = plan(facts({ worktrees: [tree("/repo", "main", { primary: true }), tree("/wt/feat", "feat", { locked: "agent" })] }));
+    assert.equal(locked.held[0].reason, "worktree is locked: agent");
+  });
+
+  test("keeps a local branch with commits the PR does not have", () => {
+    assert.deepEqual(plan(facts({ localTip: "f2", localInPr: false })).held, [
+      { target: "feat", reason: "local branch has commits that are not in the merged PR" },
+    ]);
+  });
+
+  test("keeps a remote branch that moved after the merge, and leaves a fork's branch alone", () => {
+    assert.deepEqual(plan(facts({ remoteTip: "f3" })).held, [{ target: "origin/feat", reason: "remote branch moved after the merge" }]);
+    const fork = plan(facts({ pr: { ...pr, isCrossRepository: true } }));
+    assert.ok(!fork.done.some((step) => step.action === "delete-remote-branch"));
+  });
+
+  test("holds trunk for a changed tracked file but not for an untracked one, and updates the ref when no checkout has it", () => {
+    const changed = plan(facts({ worktrees: [tree("/repo", "main", { primary: true, dirty: ["a.txt"], modified: ["a.txt"] })] }));
+    assert.deepEqual(changed.held, [{ target: "/repo", reason: "trunk checkout has uncommitted changes: a.txt" }]);
+    const untracked = plan(facts({ worktrees: [tree("/repo", "main", { primary: true, dirty: [".DS_Store"] })] }));
+    assert.deepEqual(untracked.held, []);
+    const noCheckout = plan(facts({ worktrees: [tree("/repo", "other", { primary: true })] }));
+    assert.deepEqual(noCheckout.done.at(-1), { action: "update-trunk", branch: "main", path: null });
+  });
+
+  test("does nothing but update trunk on a rerun", () => {
+    const rerun = plan(facts({ worktrees: [tree("/repo", "main", { primary: true })], localTip: null, localInPr: false, remoteTip: null }));
+    assert.deepEqual(rerun, { done: [{ action: "update-trunk", branch: "main", path: "/repo" }], held: [] });
+  });
+});
+
+test("rebuildable accepts build output and Xcode's .swiftpm/xcode, and not user configuration", () => {
+  assert.ok(rebuildable("build/App.o"));
+  assert.ok(rebuildable("Modules/Core/.build/debug"));
+  assert.ok(rebuildable(".swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata"));
+  assert.ok(!rebuildable(".swiftpm/configuration/registries.json"));
+  assert.ok(!rebuildable(".env"));
+});
+
+test("parseWorktrees reads path, branch, lock, and prune state", () => {
+  const output = ["worktree /repo", "HEAD a", "branch refs/heads/main", "", "worktree /wt/x", "HEAD b", "detached", "locked", "",
+    "worktree /wt/y", "HEAD c", "branch refs/heads/y", "prunable gitdir file points to non-existent location", ""].join("\0");
+  assert.deepEqual(parseWorktrees(output), [
+    { path: "/repo", branch: "main", prunable: false, locked: null },
+    { path: "/wt/x", branch: null, prunable: false, locked: "" },
+    { path: "/wt/y", branch: "y", prunable: true, locked: null },
+  ]);
+});
+
+describe("post-merge-cleanup.mjs against real repositories", { skip: process.platform === "win32" }, () => {
+  const root = realpathSync(mkdtempSync(join(tmpdir(), "post-merge-")));
+  after(() => rmSync(root, { recursive: true, force: true }));
+  writeFileSync(join(root, "gitconfig"), "");
+  const env = {
+    ...process.env,
+    GIT_CONFIG_GLOBAL: join(root, "gitconfig"),
+    GIT_CONFIG_NOSYSTEM: "1",
+    GIT_AUTHOR_NAME: "t",
+    GIT_AUTHOR_EMAIL: "t@example.com",
+    GIT_COMMITTER_NAME: "t",
+    GIT_COMMITTER_EMAIL: "t@example.com",
+  };
+  const git = (cwd, ...args) => execFileSync("git", args, { cwd, env, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim();
+
+  function scenario(name) {
+    const dir = join(root, name);
+    mkdirSync(dir);
+    const origin = join(dir, "origin.git");
+    git(dir, "init", "--quiet", "--bare", "--initial-branch=main", origin);
+    const repo = join(dir, "repo");
+    git(dir, "clone", "--quiet", origin, repo);
+    writeFileSync(join(repo, "a.txt"), "a\n");
+    git(repo, "add", "a.txt");
+    git(repo, "commit", "--quiet", "-m", "base");
+    git(repo, "push", "--quiet", "origin", "main");
+    const worktree = join(dir, "worktrees", "feat");
+    git(repo, "worktree", "add", "--quiet", "-b", "feat", worktree);
+    writeFileSync(join(worktree, "b.txt"), "b\n");
+    git(worktree, "add", "b.txt");
+    git(worktree, "commit", "--quiet", "-m", "feat");
+    git(worktree, "push", "--quiet", "origin", "feat");
+    const head = git(worktree, "rev-parse", "HEAD");
+    const merger = join(dir, "merger");
+    git(dir, "clone", "--quiet", origin, merger);
+    git(merger, "merge", "--quiet", "--squash", "origin/feat");
+    git(merger, "commit", "--quiet", "-m", "feat (#7)");
+    git(merger, "push", "--quiet", "origin", "main");
+    const bin = join(dir, "bin");
+    mkdirSync(bin);
+    const view = { number: 7, state: "MERGED", headRefName: "feat", headRefOid: head, baseRefName: "main", isCrossRepository: false };
+    writeFileSync(join(bin, "gh"), `#!${process.execPath}\nprocess.stdout.write(${JSON.stringify(JSON.stringify(view))});\n`);
+    chmodSync(join(bin, "gh"), 0o755);
+    const run = () => {
+      const result = spawnSync(process.execPath, [join(import.meta.dirname, "post-merge-cleanup.mjs"), "7"], {
+        cwd: repo, env: { ...env, PATH: `${bin}${delimiter}${env.PATH}` }, encoding: "utf8",
+      });
+      return { status: result.status, report: result.stdout ? JSON.parse(result.stdout) : null, stderr: result.stderr };
+    };
+    return { origin, repo, worktree, run };
+  }
+
+  test("cleans up a squash-merged PR, and a rerun has nothing left to do", () => {
+    const { origin, repo, worktree, run } = scenario("clean");
+    writeFileSync(join(repo, ".git", "info", "exclude"), "build/\n");
+    mkdirSync(join(worktree, "build"));
+    writeFileSync(join(worktree, "build", "App.o"), "o");
+    const first = run();
+    assert.equal(first.status, 0, first.stderr);
+    assert.deepEqual(first.report.held, []);
+    assert.ok(!existsSync(worktree), "worktree and its ignored build/ output removed");
+    assert.equal(git(repo, "branch", "--list", "feat"), "", "local branch deleted");
+    assert.equal(git(repo, "ls-remote", "--heads", "origin", "feat"), "", "remote branch deleted");
+    assert.equal(git(repo, "rev-parse", "main"), git(origin, "rev-parse", "main"), "trunk fast-forwarded");
+    const second = run();
+    assert.equal(second.status, 0, second.stderr);
+    assert.deepEqual(second.report.done.map((step) => step.action), ["update-trunk"]);
+  });
+
+  test("holds a worktree with an untracked file and still deletes the remote branch", () => {
+    const { repo, worktree, run } = scenario("untracked");
+    writeFileSync(join(worktree, "todo.md"), "- [ ] x\n");
+    const result = run();
+    assert.equal(result.status, 1);
+    assert.deepEqual(result.report.held.map((item) => item.reason), [
+      "worktree has uncommitted work: todo.md",
+      "a held worktree still holds the local branch",
+    ]);
+    assert.ok(existsSync(join(worktree, "todo.md")), "untracked file kept");
+    assert.equal(git(repo, "ls-remote", "--heads", "origin", "feat"), "", "remote branch deleted");
+  });
+
+  test("treats an ignored .swiftpm/xcode as rebuildable and holds the user configuration beside it", () => {
+    const { repo, worktree, run } = scenario("swiftpm");
+    writeFileSync(join(repo, ".git", "info", "exclude"), ".swiftpm/\n");
+    mkdirSync(join(worktree, ".swiftpm", "xcode"), { recursive: true });
+    writeFileSync(join(worktree, ".swiftpm", "xcode", "state"), "x");
+    mkdirSync(join(worktree, ".swiftpm", "configuration"));
+    writeFileSync(join(worktree, ".swiftpm", "configuration", "registries.json"), "{}");
+    const held = run();
+    assert.equal(held.status, 1);
+    assert.equal(held.report.held[0].reason, "worktree has uncommitted work: .swiftpm/configuration/registries.json");
+    rmSync(join(worktree, ".swiftpm", "configuration"), { recursive: true });
+    const clean = run();
+    assert.equal(clean.status, 0, clean.stderr);
+    assert.ok(!existsSync(worktree), "worktree removed");
+  });
+
+  test("keeps a local branch with a commit that never reached the PR", () => {
+    const { repo, worktree, run } = scenario("unpushed");
+    writeFileSync(join(worktree, "c.txt"), "c\n");
+    git(worktree, "add", "c.txt");
+    git(worktree, "commit", "--quiet", "-m", "late");
+    git(worktree, "switch", "--quiet", "--detach");
+    const result = run();
+    assert.equal(result.status, 1);
+    assert.deepEqual(result.report.held, [{ target: "feat", reason: "local branch has commits that are not in the merged PR" }]);
+    assert.notEqual(git(repo, "branch", "--list", "feat"), "", "local branch kept");
+  });
+});
