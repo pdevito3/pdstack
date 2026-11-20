@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { join, relative, sep } from "node:path";
+import { basename, dirname, join, relative, sep } from "node:path";
 
 export const SOURCES = ["cursor/plugins", "michael-denyer/pstack-claude", "mattpocock/skills"];
 export const STATUSES = ["verbatim", "renamed", "modified"];
@@ -73,6 +73,18 @@ export function listFiles(dir, root = dir) {
     else out.push(relative(root, full).split(sep).join("/"));
   }
   return out.sort();
+}
+
+export function sharedUpstreamsDir(repoRoot) {
+  let common;
+  try {
+    common = execFileSync("git", ["rev-parse", "--path-format=absolute", "--git-common-dir"], {
+      cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    return join(repoRoot, ".upstreams");
+  }
+  return basename(common) === ".git" ? join(dirname(common), ".upstreams") : join(repoRoot, ".upstreams");
 }
 
 export class Upstreams {
