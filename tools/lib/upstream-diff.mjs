@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { applyRenames, expectedText, loadProvenance, PLUGIN_ROOT, PSTACK_CLAUDE_ROOT, SOURCES, upstreamPathFor } from "./provenance.mjs";
+import { applyRenames, expectedText, GIT_ENV, loadProvenance, PLUGIN_ROOT, PSTACK_CLAUDE_ROOT, SOURCES, upstreamPathFor } from "./provenance.mjs";
 
 export const CURSOR = "cursor/plugins";
 export const PSTACK_CLAUDE = "michael-denyer/pstack-claude";
@@ -163,12 +163,12 @@ export function renderMarkdown(report) {
 }
 
 function git(dir, args) {
-  return execFileSync("git", ["-c", "core.quotePath=false", ...args], { cwd: dir, encoding: "utf8", maxBuffer: 256 * 1024 * 1024 }).trimEnd();
+  return execFileSync("git", ["-c", "core.quotePath=false", ...args], { cwd: dir, encoding: "utf8", maxBuffer: 256 * 1024 * 1024, env: GIT_ENV }).trimEnd();
 }
 
 function isAncestorIn(dir, a, b) {
   try {
-    execFileSync("git", ["merge-base", "--is-ancestor", a, b], { cwd: dir, stdio: "ignore" });
+    execFileSync("git", ["merge-base", "--is-ancestor", a, b], { cwd: dir, stdio: "ignore", env: GIT_ENV });
     return true;
   } catch {
     return false;

@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, realpathSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
-import { applyDrops, applyRenames, checkProvenance, hideSkill, sharedUpstreamsDir, upstreamPathFor, validatePins } from "./lib/provenance.mjs";
+import { applyDrops, applyRenames, checkProvenance, GIT_ENV, hideSkill, sharedUpstreamsDir, upstreamPathFor, validatePins } from "./lib/provenance.mjs";
 
 const SHA = "a".repeat(40);
 const RENAMES = [["poteto-mode", "pdstack"], ["poteto-agent", "pdstack-agent"], ["pstack:", "pdstack:"]];
@@ -109,13 +109,15 @@ test("checkProvenance flags an unpinned copy", () => {
   ]);
 });
 
-test("sharedUpstreamsDir puts every worktree's clones in the primary checkout", () => {
-  const root = realpathSync(mkdtempSync(join(tmpdir(), "pdstack-upstreams-")));
+test("sharedUpstreamsDir puts every worktree's clones in the primary checkout", (t) => {
+  const root = realpathSync.native(mkdtempSync(join(tmpdir(), "pdstack-upstreams-")));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
   const primary = join(root, "repo");
-  const git = (cwd, ...args) => execFileSync("git", args, { cwd, stdio: "ignore" });
+  const env = { ...GIT_ENV, GIT_CONFIG_GLOBAL: join(root, "gitconfig"), GIT_CONFIG_NOSYSTEM: "1", GIT_CEILING_DIRECTORIES: root };
+  const git = (cwd, ...args) => execFileSync("git", args, { cwd, stdio: "ignore", env });
   mkdirSync(primary);
   git(primary, "init", "--quiet");
-  git(primary, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "--quiet", "--allow-empty", "-m", "init");
+  git(primary, "-c", "user.name=t", "-c", "user.email=t@t", "-c", "commit.gpgsign=false", "commit", "--quiet", "--allow-empty", "-m", "init");
   git(primary, "worktree", "add", "--quiet", "--detach", join(root, "wt"));
   assert.equal(sharedUpstreamsDir(primary), join(primary, ".upstreams"));
   assert.equal(sharedUpstreamsDir(join(root, "wt")), join(primary, ".upstreams"));

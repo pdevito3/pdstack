@@ -53,16 +53,17 @@ EOF
 }
 
 # tools/check-provenance.mjs and tools/upstream-diff.mjs read the upstream repos
-# from .upstreams/, named as Upstreams.repoDir in tools/lib/provenance.mjs names them.
+# from the main checkout's .upstreams/, named as Upstreams.repoDir in tools/lib/provenance.mjs names them.
 sync_upstreams() {
-  local sources source dir
+  local sources source dir upstreams
+  upstreams="$(node --input-type=module -e 'import { sharedUpstreamsDir } from "./tools/lib/provenance.mjs"; console.log(sharedUpstreamsDir(process.cwd()));')"
   sources="$(node -e 'const p = require("./provenance.json"); console.log([...new Set([...Object.keys(p.feeds), ...Object.values(p.pins).map((pin) => pin.source)])].join("\n"));')"
   for source in $sources; do
-    dir=".upstreams/${source/\//__}"
+    dir="$upstreams/${source/\//__}"
     if [ -d "$dir" ]; then
       git -C "$dir" fetch --quiet origin
     else
-      mkdir -p .upstreams
+      mkdir -p "$upstreams"
       git clone --quiet --no-checkout "https://github.com/$source.git" "$dir"
     fi
   done

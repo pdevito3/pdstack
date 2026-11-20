@@ -35,7 +35,7 @@ node tools/lint-skills.mjs
 node tools/check-provenance.mjs
 ```
 
-The provenance check clones the upstream repos into `.upstreams/` of the main checkout on its first run, and every worktree shares these clones. The checks need Node 24 and Git, and no packages.
+The provenance check clones the upstream repos into `.upstreams/` of the main checkout on its first run, and each worktree of a normal clone shares these clones. The checks need Node 24 and Git, and no packages.
 
 ## Layout
 

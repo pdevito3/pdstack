@@ -1,11 +1,16 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from "node:fs";
 import { basename, dirname, join, relative, sep } from "node:path";
 
 export const SOURCES = ["cursor/plugins", "michael-denyer/pstack-claude", "mattpocock/skills"];
 export const STATUSES = ["verbatim", "renamed", "modified"];
 export const PLUGIN_ROOT = "plugins/pdstack";
 export const PSTACK_CLAUDE_ROOT = "plugins/pstack";
+
+// A git hook or `rebase -x` in a worktree exports these, and they would point every call at that repo.
+export const GIT_ENV = Object.fromEntries(
+  Object.entries(process.env).filter(([name]) => !["GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"].includes(name)),
+);
 
 export function loadProvenance(repoRoot) {
   return JSON.parse(readFileSync(join(repoRoot, "provenance.json"), "utf8"));
@@ -79,7 +84,7 @@ export function sharedUpstreamsDir(repoRoot) {
   let common;
   try {
     common = execFileSync("git", ["rev-parse", "--path-format=absolute", "--git-common-dir"], {
-      cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"],
+      cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], env: GIT_ENV,
     }).trim();
   } catch {
     return join(repoRoot, ".upstreams");
@@ -96,7 +101,14 @@ export class Upstreams {
     const dir = join(this.dir, source.replace("/", "__"));
     if (!existsSync(dir)) {
       mkdirSync(this.dir, { recursive: true });
-      execFileSync("git", ["clone", "--quiet", "--no-checkout", `https://github.com/${source}.git`, dir], { stdio: "inherit" });
+      const partial = `${dir}.${process.pid}.partial`;
+      execFileSync("git", ["clone", "--quiet", "--no-checkout", `https://github.com/${source}.git`, partial], { stdio: "inherit", env: GIT_ENV });
+      try {
+        renameSync(partial, dir);
+      } catch (error) {
+        rmSync(partial, { recursive: true, force: true });
+        if (!existsSync(dir)) throw error;
+      }
     }
     return dir;
   }
@@ -104,9 +116,9 @@ export class Upstreams {
   ensureSha(source, sha) {
     const dir = this.repoDir(source);
     try {
-      execFileSync("git", ["cat-file", "-e", `${sha}^{commit}`], { cwd: dir, stdio: "ignore" });
+      execFileSync("git", ["cat-file", "-e", `${sha}^{commit}`], { cwd: dir, stdio: "ignore", env: GIT_ENV });
     } catch {
-      execFileSync("git", ["fetch", "--quiet", "origin", sha], { cwd: dir, stdio: "inherit" });
+      execFileSync("git", ["fetch", "--quiet", "origin", sha], { cwd: dir, stdio: "inherit", env: GIT_ENV });
     }
     return dir;
   }
@@ -114,7 +126,7 @@ export class Upstreams {
   show(source, sha, path) {
     const dir = this.ensureSha(source, sha);
     try {
-      return execFileSync("git", ["show", `${sha}:${path}`], { cwd: dir, maxBuffer: 64 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] });
+      return execFileSync("git", ["show", `${sha}:${path}`], { cwd: dir, maxBuffer: 64 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"], env: GIT_ENV });
     } catch {
       return null;
     }
