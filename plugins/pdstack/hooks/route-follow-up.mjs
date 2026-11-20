@@ -10,7 +10,7 @@ export const REMINDER = [
   "pdstack is active in this session.",
   "Match this request to a playbook in pdstack's Playbooks section before you act, as for the first request.",
   "When it fits a different playbook from the current one, open that playbook and copy its steps into the todolist.",
-  "A merge, a cleanup, a fix to an open PR, or a question is a request too.",
+  "A merge, a cleanup, or a fix to an open PR is a request too.",
 ].join(" ");
 
 export function shouldRemind(prompt, transcript) {

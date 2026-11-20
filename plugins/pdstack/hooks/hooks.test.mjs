@@ -15,15 +15,16 @@ const bash = (command) => ({ tool_name: "Bash", tool_input: { command } });
 describe("after-merge", () => {
   test("names the cleanup script and the PR after a merge command", () => {
     const text = reminder(bash("gh pr merge 58 --repo o/r --squash --match-head-commit abc"));
-    assert.match(text, /post-merge-cleanup\.mjs 58`/);
-    assert.match(reminder(bash("cd x && origin pr merge 3")), /post-merge-cleanup\.mjs 3`/);
-    assert.match(reminder(bash("gh pr merge --squash")), /post-merge-cleanup\.mjs <pr>`/);
+    assert.match(text, /post-merge-cleanup\.mjs" 58`/);
+    assert.match(reminder(bash("cd x && gh pr merge 3")), /post-merge-cleanup\.mjs" 3`/);
+    assert.match(reminder(bash("gh pr merge --squash")), /post-merge-cleanup\.mjs" <pr>`/);
   });
 
   test("stays quiet for other commands", () => {
     assert.equal(reminder(bash("gh pr view 58")), null);
     assert.equal(reminder(bash("git merge --ff-only origin/main")), null);
     assert.equal(reminder(bash("echo ghpr merge")), null);
+    assert.equal(reminder(bash("origin pr merge 3")), null);
     assert.equal(reminder({ tool_name: "Read", tool_input: { file_path: "gh pr merge" } }), null);
   });
 
@@ -32,7 +33,7 @@ describe("after-merge", () => {
     assert.equal(result.status, 0, result.stderr);
     const output = JSON.parse(result.stdout).hookSpecificOutput;
     assert.equal(output.hookEventName, "PostToolUse");
-    const script = /`node (\S+) 58`/.exec(output.additionalContext)[1];
+    const script = /`node "([^"]+)" 58`/.exec(output.additionalContext)[1];
     assert.ok(readFileSync(script, "utf8").includes("post-merge"), script);
     assert.equal(hook("after-merge.mjs", bash("ls")).stdout, "");
   });

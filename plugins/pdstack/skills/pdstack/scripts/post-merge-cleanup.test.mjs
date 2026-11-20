@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { delimiter, join } from "node:path";
 import { after, describe, test } from "node:test";
 
-import { parseWorktrees, plan, rebuildable } from "./post-merge-cleanup.mjs";
+import { parseStatus, parseWorktrees, plan, rebuildable } from "./post-merge-cleanup.mjs";
 
 const pr = { number: 7, state: "MERGED", headRefName: "feat", headRefOid: "f1", baseRefName: "main", isCrossRepository: false };
 const tree = (path, branch, extra = {}) => ({ path, branch, locked: null, prunable: false, primary: false, dirty: [], modified: [], derivedData: [], ...extra });
@@ -15,6 +15,7 @@ const facts = (extra = {}) => ({
   localTip: "f1",
   localInPr: true,
   remoteTip: "f1",
+  reflogOnly: 0,
   ...extra,
 });
 
@@ -24,11 +25,18 @@ describe("plan", () => {
       done: [
         { action: "remove-worktree", path: "/wt/feat" },
         { action: "delete-local-branch", branch: "feat" },
-        { action: "delete-remote-branch", branch: "feat" },
+        { action: "delete-remote-branch", branch: "feat", expect: "f1" },
         { action: "update-trunk", branch: "main", path: "/repo" },
       ],
       held: [],
     });
+  });
+
+  test("holds the worktree and the branch while a reflog holds the only copy of a commit", () => {
+    const { held, done } = plan(facts({ reflogOnly: 1 }));
+    assert.deepEqual(held.map((item) => item.target), ["/wt/feat", "feat"]);
+    assert.match(held[0].reason, /^1 commit\(s\) that only a reflog reaches/);
+    assert.ok(!done.some((step) => step.action === "remove-worktree" || step.action === "delete-local-branch"));
   });
 
   test("deletes the Xcode DerivedData of a removed worktree, and keeps it for a held one", () => {
@@ -84,21 +92,28 @@ describe("plan", () => {
   });
 });
 
-test("rebuildable accepts build output and Xcode's .swiftpm/xcode, and not user configuration", () => {
+test("rebuildable accepts build output and not user files", () => {
   assert.ok(rebuildable("build/App.o"));
   assert.ok(rebuildable("Modules/Core/.build/debug"));
-  assert.ok(rebuildable(".swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata"));
   assert.ok(!rebuildable(".swiftpm/configuration/registries.json"));
   assert.ok(!rebuildable(".env"));
+});
+
+test("parseStatus keeps names exact and skips the source path of a rename", () => {
+  assert.deepEqual(parseStatus(["!! notes-café/", "R  new.txt", "old.txt", "?? a b.txt", ""].join("\0")), [
+    { kind: "!!", name: "notes-café/" },
+    { kind: "R ", name: "new.txt" },
+    { kind: "??", name: "a b.txt" },
+  ]);
 });
 
 test("parseWorktrees reads path, branch, lock, and prune state", () => {
   const output = ["worktree /repo", "HEAD a", "branch refs/heads/main", "", "worktree /wt/x", "HEAD b", "detached", "locked", "",
     "worktree /wt/y", "HEAD c", "branch refs/heads/y", "prunable gitdir file points to non-existent location", ""].join("\0");
   assert.deepEqual(parseWorktrees(output), [
-    { path: "/repo", branch: "main", prunable: false, locked: null },
-    { path: "/wt/x", branch: null, prunable: false, locked: "" },
-    { path: "/wt/y", branch: "y", prunable: true, locked: null },
+    { path: "/repo", branch: "main", bare: false, prunable: false, locked: null },
+    { path: "/wt/x", branch: null, bare: false, prunable: false, locked: "" },
+    { path: "/wt/y", branch: "y", bare: false, prunable: true, locked: null },
   ]);
 });
 
@@ -145,13 +160,13 @@ describe("post-merge-cleanup.mjs against real repositories", { skip: process.pla
     const view = { number: 7, state: "MERGED", headRefName: "feat", headRefOid: head, baseRefName: "main", isCrossRepository: false };
     writeFileSync(join(bin, "gh"), `#!${process.execPath}\nprocess.stdout.write(${JSON.stringify(JSON.stringify(view))});\n`);
     chmodSync(join(bin, "gh"), 0o755);
-    const run = () => {
+    const run = (cwd = repo) => {
       const result = spawnSync(process.execPath, [join(import.meta.dirname, "post-merge-cleanup.mjs"), "7"], {
-        cwd: repo, env: { ...env, PATH: `${bin}${delimiter}${env.PATH}` }, encoding: "utf8",
+        cwd, env: { ...env, PATH: `${bin}${delimiter}${env.PATH}` }, encoding: "utf8",
       });
       return { status: result.status, report: result.stdout ? JSON.parse(result.stdout) : null, stderr: result.stderr };
     };
-    return { origin, repo, worktree, run };
+    return { dir, origin, repo, worktree, run };
   }
 
   test("cleans up a squash-merged PR, and a rerun has nothing left to do", () => {
@@ -184,11 +199,10 @@ describe("post-merge-cleanup.mjs against real repositories", { skip: process.pla
     assert.equal(git(repo, "ls-remote", "--heads", "origin", "feat"), "", "remote branch deleted");
   });
 
-  test("treats an ignored .swiftpm/xcode as rebuildable and holds the user configuration beside it", () => {
+  test("passes an empty ignored folder and holds a user file inside one", () => {
     const { repo, worktree, run } = scenario("swiftpm");
     writeFileSync(join(repo, ".git", "info", "exclude"), ".swiftpm/\n");
     mkdirSync(join(worktree, ".swiftpm", "xcode"), { recursive: true });
-    writeFileSync(join(worktree, ".swiftpm", "xcode", "state"), "x");
     mkdirSync(join(worktree, ".swiftpm", "configuration"));
     writeFileSync(join(worktree, ".swiftpm", "configuration", "registries.json"), "{}");
     const held = run();
@@ -198,6 +212,46 @@ describe("post-merge-cleanup.mjs against real repositories", { skip: process.pla
     const clean = run();
     assert.equal(clean.status, 0, clean.stderr);
     assert.ok(!existsSync(worktree), "worktree removed");
+  });
+
+  test("cleans up in a bare clone with worktrees", () => {
+    const { dir, origin, run } = scenario("bare");
+    const bare = join(dir, "bare.git");
+    git(dir, "clone", "--quiet", "--bare", origin, bare);
+    const trunk = join(dir, "bare-worktrees", "main");
+    const feat = join(dir, "bare-worktrees", "feat");
+    git(bare, "worktree", "add", "--quiet", trunk, "main");
+    git(bare, "worktree", "add", "--quiet", feat, "feat");
+    git(trunk, "reset", "--quiet", "--hard", "HEAD~1");
+    const result = run(bare);
+    assert.equal(result.status, 0, result.stderr);
+    assert.ok(!existsSync(feat), "worktree removed");
+    assert.equal(git(bare, "branch", "--list", "feat"), "", "local branch deleted");
+    assert.equal(git(trunk, "rev-parse", "HEAD"), git(origin, "rev-parse", "main"), "trunk fast-forwarded");
+  });
+
+  test("holds an ignored folder with a non-ASCII name", () => {
+    const { repo, worktree, run } = scenario("unicode");
+    writeFileSync(join(repo, ".git", "info", "exclude"), "notes-*/\n");
+    mkdirSync(join(worktree, "notes-café"));
+    writeFileSync(join(worktree, "notes-café", "plan.md"), "x");
+    const result = run();
+    assert.equal(result.status, 1);
+    assert.equal(result.report.held[0].reason, "worktree has uncommitted work: notes-café/plan.md");
+    assert.ok(existsSync(join(worktree, "notes-café", "plan.md")), "file kept");
+  });
+
+  test("holds a commit that only the worktree's reflog reaches", () => {
+    const { repo, worktree, run } = scenario("reflog");
+    writeFileSync(join(worktree, "c.txt"), "c\n");
+    git(worktree, "add", "c.txt");
+    git(worktree, "commit", "--quiet", "-m", "dropped");
+    git(worktree, "reset", "--quiet", "--hard", "HEAD~1");
+    const result = run();
+    assert.equal(result.status, 1);
+    assert.match(result.report.held[0].reason, /^1 commit\(s\) that only a reflog reaches/);
+    assert.ok(existsSync(worktree), "worktree kept");
+    assert.notEqual(git(repo, "branch", "--list", "feat"), "", "local branch kept");
   });
 
   test("keeps a local branch with a commit that never reached the PR", () => {

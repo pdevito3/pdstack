@@ -43,8 +43,8 @@ If cost is the worry, say where the tokens go and how to spend fewer. pstack spe
 
 ## Keep pdstack current
 
-1. Find the copy that this session loaded. A loaded skill prints its `Base directory for this skill:` line. Run `git -C <that directory> rev-parse --show-toplevel` to get its repository.
-2. If that path is a clone outside `plugins/cache`, give `git -C <clone> pull --ff-only`. If it is under `plugins/cache`, give `claude plugin update pdstack@<marketplace>`, with the marketplace from `claude plugin list`, then a restart of Claude Code.
+1. Find the copy that this session loaded. A loaded skill prints its `Base directory for this skill:` line.
+2. If that path is outside `plugins/cache`, run `git -C <that directory> rev-parse --show-toplevel` to get the clone, then give `git -C <clone> pull --ff-only`. If it is under `plugins/cache`, give `claude plugin update pdstack@<marketplace>`, with the marketplace from `claude plugin list`, then a restart of Claude Code.
 3. Say what reloads when. A file that a skill reads by path, such as a playbook or a script, is live after the pull. Skill descriptions, hooks, and agents reload at session start or after `/reload-plugins`.
 
 ## Start a task with `/pdstack`
