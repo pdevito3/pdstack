@@ -925,8 +925,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/reflect/SKILL.md",
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "Adds a Past sessions branch that mines named workspaces in slices, and sends approved edits to a PR when the plugin runs from a git clone."
     },
     "plugins/pdstack/skills/setup-pdstack/scripts/check-sheet.mjs": {
       "source": "michael-denyer/pstack-claude",
