@@ -5,7 +5,7 @@ description: Review the upstream changes since the reviewed feed positions in pr
 
 # Upstream review
 
-pdstack copies files from three upstream feeds: cursor/plugins (the feed of intent), michael-denyer/pstack-claude (the feed of translation), and mattpocock/skills. This review lists each upstream change since the `feeds` positions in `provenance.json`, gets a verdict for each from the user, and applies the approved changes in one PR. The rules are in `docs/spec/v1.md` sections 3 and 12.
+pdstack copies files from four upstream feeds: cursor/plugins (the feed of intent), michael-denyer/pstack-claude (the feed of translation), mattpocock/skills, and humanlayer/skills. This review lists each upstream change since the `feeds` positions in `provenance.json`, gets a verdict for each from the user, and applies the approved changes in one PR. The rules are in `docs/spec/v1.md` sections 3 and 12.
 
 ## 1. Collect
 

@@ -73,7 +73,7 @@ The standards, verification surface, and forensics tools for one technology stac
 _Avoid_: Preset, profile, plugin
 
 **Upstream**:
-A source repo that pdstack copies files from: cursor/plugins `pstack/`, pstack-claude, or mattpocock/skills.
+A source repo that pdstack copies files from: cursor/plugins `pstack/`, pstack-claude, mattpocock/skills, or humanlayer/skills.
 _Avoid_: Origin, parent
 
 **Provenance pin**:
