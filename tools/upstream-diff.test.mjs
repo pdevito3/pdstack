@@ -10,6 +10,7 @@ import { applyPin, collectUpstreamDiff, copiedFolders, createMapper, parseLog, p
 const CURSOR = "cursor/plugins";
 const PC = "michael-denyer/pstack-claude";
 const MATT = "mattpocock/skills";
+const HUMANLAYER = "humanlayer/skills";
 const RENAMES = [["poteto-mode", "pdstack"], ["pstack:", "pdstack:"]];
 
 function git(cwd, ...args) {
@@ -41,15 +42,17 @@ function newRepo(dir) {
   return dir;
 }
 
-// Three fake upstreams, their clones in an upstreams folder, and a pdstack repo.
+// Four fake upstreams, their clones in an upstreams folder, and a pdstack repo.
 function fixture() {
   const root = mkdtempSync(join(tmpdir(), "pdstack-upstream-"));
   const cursor = newRepo(join(root, "src", "cursor"));
   const pc = newRepo(join(root, "src", "pstack-claude"));
   const matt = newRepo(join(root, "src", "matt"));
+  const humanlayer = newRepo(join(root, "src", "humanlayer"));
   const c = {};
   const p = {};
   const m = {};
+  const h = {};
 
   c.base = commit(cursor, "init", {
     "pstack/skills/poteto-mode/SKILL.md": "mode v1\n",
@@ -76,25 +79,30 @@ function fixture() {
   m.base = commit(matt, "init", { "skills/productivity/wait-what/SKILL.md": "wait v1\n", "skills/other/z.md": "z\n" });
   m.change = commit(matt, "wait-what: add extra", { "skills/productivity/wait-what/SKILL.md": "wait v2\n", "skills/productivity/wait-what/EXTRA.md": "extra\n" });
 
+  h.base = commit(humanlayer, "init", { "plugins/show-me/skills/show-me/SKILL.md": "show v1\n" });
+
   const upstreamsDir = join(root, "upstreams");
   mkdirSync(upstreamsDir);
   git(upstreamsDir, "clone", "--quiet", "--no-checkout", cursor, "cursor__plugins");
   git(upstreamsDir, "clone", "--quiet", "--no-checkout", pc, "michael-denyer__pstack-claude");
   git(upstreamsDir, "clone", "--quiet", "--no-checkout", matt, "mattpocock__skills");
+  git(upstreamsDir, "clone", "--quiet", "--no-checkout", humanlayer, "humanlayer__skills");
 
   const repo = join(root, "pdstack");
   write(repo, {
     "plugins/pdstack/skills/pdstack/SKILL.md": "mode v1\n",
     "plugins/pdstack/skills/deslop/SKILL.md": "deslop local\n",
     "plugins/pdstack/skills/wait-what/SKILL.md": "wait v1\n",
+    "plugins/pdstack/skills/show-me/SKILL.md": "show v1\n",
     "provenance.json": `${JSON.stringify(
       {
-        feeds: { [CURSOR]: c.base, [PC]: p.base, [MATT]: m.base },
+        feeds: { [CURSOR]: c.base, [PC]: p.base, [MATT]: m.base, [HUMANLAYER]: h.base },
         renames: RENAMES,
         pins: {
           "plugins/pdstack/skills/pdstack/SKILL.md": { source: PC, path: "plugins/pstack/skills/poteto-mode/SKILL.md", sha: p.base, status: "renamed" },
           "plugins/pdstack/skills/deslop/SKILL.md": { source: PC, path: "plugins/pstack/skills/deslop/SKILL.md", sha: p.base, status: "modified", why: "Local rule." },
           "plugins/pdstack/skills/wait-what/SKILL.md": { source: MATT, path: "skills/productivity/wait-what/SKILL.md", sha: m.base, status: "verbatim" },
+          "plugins/pdstack/skills/show-me/SKILL.md": { source: HUMANLAYER, path: "plugins/show-me/skills/show-me/SKILL.md", sha: h.base, status: "verbatim" },
         },
       },
       null,
@@ -153,7 +161,7 @@ test("createMapper maps through pins, the pstack-claude rule, and pin folders", 
 test("collectUpstreamDiff groups each feed by commit with translation state and mapped files", () => {
   const { repo, upstreams, c, p, m } = fixture();
   const report = collectUpstreamDiff({ repoRoot: repo, upstreams });
-  const [cursor, pc, matt] = report.feeds;
+  const [cursor, pc, matt, humanlayer] = report.feeds;
 
   assert.equal(cursor.from, c.base);
   assert.equal(cursor.to, c.outside);
@@ -179,6 +187,9 @@ test("collectUpstreamDiff groups each feed by commit with translation state and 
     ["added", "skills/productivity/wait-what/EXTRA.md", [["plugins/pdstack/skills/wait-what/EXTRA.md", null, false]]],
     ["modified", "skills/productivity/wait-what/SKILL.md", [["plugins/pdstack/skills/wait-what/SKILL.md", "verbatim", true]]],
   ]);
+
+  assert.deepEqual(humanlayer.folders, ["plugins/show-me/skills"]);
+  assert.deepEqual(humanlayer.changes, []);
 
   const markdown = renderMarkdown(report);
   assert.match(markdown, new RegExp(`### ${c.mode.slice(0, 7)} pstack: change mode`));

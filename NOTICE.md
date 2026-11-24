@@ -13,3 +13,4 @@ pdstack copies files from upstream MIT-licensed work. The pdstack changes and ad
 | [cursor/plugins `cursor-team-kit/`](https://github.com/cursor/plugins/tree/main/cursor-team-kit) | (c) 2026 Cursor | [LICENSE-cursor-team-kit](LICENSE-cursor-team-kit) | `deslop`, `make-pr-easy-to-review`, `fix-ci`, `fix-merge-conflicts`, `get-pr-comments`, and `what-did-i-get-done`, through pstack-claude. |
 | [cursor/plugins `thermos/`](https://github.com/cursor/plugins/tree/main/thermos) | (c) 2026 Cursor | [LICENSE-thermos](LICENSE-thermos) | The thermo skills and agents, through pstack-claude. |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | (c) 2026 Matt Pocock | [LICENSE-mattpocock-skills](LICENSE-mattpocock-skills) | `domain-modeling`, `wait-what`, and `writing-for-agents`. |
+| [humanlayer/skills](https://github.com/humanlayer/skills) | (c) 2026 HumanLayer | [LICENSE-humanlayer-skills](LICENSE-humanlayer-skills) | `show-me`. |
