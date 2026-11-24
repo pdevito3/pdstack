@@ -2,7 +2,8 @@
   "feeds": {
     "cursor/plugins": "50b3a3234bf2e0293849a48784d72030948e44ee",
     "michael-denyer/pstack-claude": "412990b837ddb5e41ee589d770ba1bff24144654",
-    "mattpocock/skills": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
+    "mattpocock/skills": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+    "humanlayer/skills": "4d69d20f6e9b57b4fcf0d501ccfb1be961f0f329"
   },
   "renames": [
     [
@@ -988,6 +989,12 @@
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "renamed",
       "hide": true
+    },
+    "plugins/pdstack/skills/show-me/SKILL.md": {
+      "source": "humanlayer/skills",
+      "path": "plugins/show-me/skills/show-me/SKILL.md",
+      "sha": "4d69d20f6e9b57b4fcf0d501ccfb1be961f0f329",
+      "status": "verbatim"
     },
     "plugins/pdstack/skills/show-me-your-work/references/decision-log-template.tsv": {
       "source": "michael-denyer/pstack-claude",

@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from "node:fs";
 import { basename, dirname, join, relative, resolve, sep } from "node:path";
 
-export const SOURCES = ["cursor/plugins", "michael-denyer/pstack-claude", "mattpocock/skills"];
+export const SOURCES = ["cursor/plugins", "michael-denyer/pstack-claude", "mattpocock/skills", "humanlayer/skills"];
 export const STATUSES = ["verbatim", "renamed", "modified"];
 export const PLUGIN_ROOT = "plugins/pdstack";
 export const PSTACK_CLAUDE_ROOT = "plugins/pstack";
