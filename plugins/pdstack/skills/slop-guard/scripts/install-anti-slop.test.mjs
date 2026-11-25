@@ -87,6 +87,13 @@ describe("installAntiSlop against a local upstream", () => {
     assert.equal(readFileSync(join(dest, "UPSTREAM.md"), "utf8"), record);
   });
 
+  test("ignores .DS_Store and Thumbs.db that the OS wrote in the plugin dir", () => {
+    writeFileSync(join(dest, ".DS_Store"), "junk");
+    writeFileSync(join(dest, "rules", ".DS_Store"), "junk");
+    writeFileSync(join(dest, "Thumbs.db"), "junk");
+    assert.equal(installAntiSlop(repo, antiSlop, "2026-01-02").kind, "noop");
+  });
+
   test("refuses over a local edit and leaves it in place", () => {
     writeFileSync(join(dest, "index.ts"), "export {}; // local\n");
     assert.deepEqual(installAntiSlop(repo, antiSlop, "2026-01-02"), { kind: "refuse", paths: ["index.ts"], recordedSha: antiSlop.sha });

@@ -18,6 +18,7 @@ import { readGuard } from "./guard.mjs";
 export const ASSETS_PATH = "skills/install-anti-slop/assets/anti-slop";
 export const DEST = "tools/oxlint/anti-slop";
 const RECORD = "UPSTREAM.md";
+const OS_JUNK = new Set([".DS_Store", "Thumbs.db"]);
 
 const normalized = (buffer) => buffer.toString("utf8").replaceAll("\r\n", "\n");
 
@@ -109,6 +110,7 @@ function readVendoredFiles(dir) {
   const files = new Map();
   const walk = (current) => {
     for (const name of readdirSync(current)) {
+      if (OS_JUNK.has(name)) continue;
       const full = join(current, name);
       if (statSync(full).isDirectory()) walk(full);
       else files.set(relative(dir, full).split(sep).join("/"), readFileSync(full));
