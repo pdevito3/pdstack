@@ -87,3 +87,11 @@ This pack holds only the rules that apply to any React project. The principles g
 **Why:** A second package manager writes a second lock file with different versions.
 
 **Violation:** A second lock file in the diff, for example `package-lock.json` in a pnpm repo. `npm install` in a doc or a script of a repo that uses another package manager.
+
+## 11. The slop guard holds
+
+**Rule:** This standard applies when the repo has the slop guard of `pdstack:slop-guard`, that is, when `tools/oxlint/anti-slop/UPSTREAM.md` exists. Then run `node ../../skills/slop-guard/scripts/check-slop-guard.mjs <repo-root>`, with the script path relative to this file. Each line it prints, other than `slop guard ok`, is a gap. The diff caused a gap when it edits the lint config or `tools/oxlint/anti-slop/`. Fix each gap that the diff caused. Report each other gap in one line and propose `/slop-guard`, for example when a newer pdstack adds a rule to `guard.json` or changes a pinned version. Each disable comment names one rule and gives its reason after `--`, as in `// eslint-disable-next-line <rule> -- <reason>`. When the repo lacks the guard, report it in one line and propose `/slop-guard` as its own PR. Keep the install out of this task.
+
+**Why:** A lint error names the fix the first time an agent writes the pattern. A rule that a reviewer applies by hand gets missed. A disable comment with no reason hides whether the waiver is still true. Only the user can run `/slop-guard`, so a review cannot install the guard or update it to a newer `guard.json`.
+
+**Violation:** In a repo with the guard, an edit in the diff to the lint config that sets a guard rule to `"warn"` or `"off"`, or removes a guard rule or its options. An edit in the diff to `tools/oxlint/anti-slop/` that `install-anti-slop.mjs` did not write. A disable comment that names more than one rule, has no reason, or uses the `oxlint-disable` spelling. A gap that the diff did not cause is not a violation, and a repo without the guard is not a violation.

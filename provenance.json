@@ -233,8 +233,8 @@
       "source": "michael-denyer/pstack-claude",
       "path": "plugins/pstack/skills/deslop/SKILL.md",
       "sha": "d0731ab9cdeff2d54ad43bc3d7eafd486a4768cb",
-      "status": "renamed",
-      "hide": true
+      "status": "modified",
+      "why": "Adds a first step that runs the repo's lint and type check before the judgment pass and proposes `/slop-guard` when a stack pack names a guard the repo lacks, and a guardrail that proposes a guard per `pdstack:correct` for a pattern removed twice. Keeps `user-invocable: false` in the frontmatter, which the `hide` flag added before."
     },
     "plugins/pdstack/skills/domain-modeling/ADR-FORMAT.md": {
       "source": "mattpocock/skills",
@@ -364,7 +364,7 @@
       "path": "plugins/pstack/skills/poteto-help/SKILL.md",
       "sha": "e36d113bb8686ccc7be8d6226057a807ee9ec465",
       "status": "modified",
-      "why": "Points /bro to wait-what, names writing-for-agents in place of plugin-dev:skill-development, and adds the merge-risk and show-me rows to the skill table and its sentence to the review bullets. Links the model and routing questions to setup-pdstack's inline Other runtimes section in place of `references/runtimes.md`, which pdstack does not copy. Says that the router Playbooks section lists the playbooks by name, because the shorter router no longer says when each applies. Drops the Codex and Pi mapping paragraph and the `session hook: off` sentence, because pdstack v1 supports Claude Code only. Adds Keep pdstack current and how to run a named skill."
+      "why": "Points /bro to wait-what, names writing-for-agents in place of plugin-dev:skill-development, and adds the merge-risk, show-me, and slop-guard rows to the skill table and its sentence to the review bullets. Links the model and routing questions to setup-pdstack's inline Other runtimes section in place of `references/runtimes.md`, which pdstack does not copy. Says that the router Playbooks section lists the playbooks by name, because the shorter router no longer says when each applies. Drops the Codex and Pi mapping paragraph and the `session hook: off` sentence, because pdstack v1 supports Claude Code only. Adds Keep pdstack current and how to run a named skill."
     },
     "plugins/pdstack/skills/pdstack/playbooks/authoring-a-skill.md": {
       "source": "michael-denyer/pstack-claude",

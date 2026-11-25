@@ -46,4 +46,4 @@ The provenance check clones the upstream repos into `.upstreams/` of the main ch
 
 ## Credits
 
-pdstack copies work from Lauren Tan (pstack), Michael Denyer (pstack-claude), Cursor, and Matt Pocock. See [NOTICE.md](NOTICE.md).
+pdstack copies work from Lauren Tan (pstack), Michael Denyer (pstack-claude), Cursor, Matt Pocock, HumanLayer, and Dillon Mulroy (anti-slop). The slop guard builds on the oxlint preset of Cloudflare. See [NOTICE.md](NOTICE.md).

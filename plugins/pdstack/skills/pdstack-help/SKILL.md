@@ -95,6 +95,7 @@ To run a named skill, check its frontmatter first. The user can type a skill wit
 | Turn their own working habits into a personal mode skill | [`/automate-me`](../automate-me/SKILL.md) |
 | Turn what a finished task taught into skill edits | [`/reflect`](../reflect/SKILL.md) |
 | Stop agents from repeating the same mistakes in this repo | [`/correct`](../correct/SKILL.md) |
+| Make the lint of a JavaScript or TypeScript repo fail on the anti-slop rules | [`/slop-guard`](../slop-guard/SKILL.md) |
 | Find their way around pstack | `/pdstack-help` |
 
 If a skill directory next to this one is missing from the table, read its frontmatter and route by its description. The `principle-*` directories are covered under principles below.
