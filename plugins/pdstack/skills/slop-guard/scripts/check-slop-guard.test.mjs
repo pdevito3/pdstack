@@ -148,7 +148,7 @@ describe("canary dirs", () => {
   const CHECK = join(import.meta.dirname, "check-slop-guard.mjs");
   const canaryDirsIn = (dir) => readdirSync(dir).filter((name) => name.startsWith("slop-guard-canary-"));
 
-  test("SIGINT during the lint removes the canary dir before exit", { skip: process.platform === "win32" && "no POSIX signals" }, async (t) => {
+  test("SIGINT during the lint removes the canary dir before exit", { skip: process.platform === "win32" && "no POSIX signals", timeout: 20_000 }, async (t) => {
     const repo = mkdtempSync(join(tmpdir(), "slop-guard-signal-"));
     const temp = mkdtempSync(join(tmpdir(), "slop-guard-signal-tmp-"));
     t.after(() => {
@@ -161,10 +161,17 @@ describe("canary dirs", () => {
     writeFileSync(join(pkg, "lint.mjs"), "setTimeout(() => {}, 60_000);\n");
     writeFileSync(join(repo, "oxlint.config.ts"), "export default {};\n");
     const check = spawn(process.execPath, [CHECK, repo], { env: { ...process.env, TMPDIR: temp } });
-    while (!canaryDirsIn(temp).some((dir) => existsSync(join(temp, dir, "bad")))) await new Promise((wake) => setTimeout(wake, 20));
+    t.after(() => check.kill("SIGKILL"));
+    const exited = once(check, "exit");
+    let running = true;
+    exited.then(() => { running = false; });
+    const deadline = Date.now() + 10_000;
+    while (running && Date.now() < deadline && !canaryDirsIn(temp).some((dir) => existsSync(join(temp, dir, "bad")))) await new Promise((wake) => setTimeout(wake, 20));
+    assert.ok(running, "the check exited before it made its canary dir");
+    assert.ok(Date.now() < deadline, "the check made no canary dir within 10 s");
     assert.deepEqual(readdirSync(repo).sort(), ["node_modules", "oxlint.config.ts"]);
     check.kill("SIGINT");
-    const [code] = await once(check, "exit");
+    const [code] = await exited;
     assert.equal(code, 130);
     assert.deepEqual(canaryDirsIn(temp), []);
   });
