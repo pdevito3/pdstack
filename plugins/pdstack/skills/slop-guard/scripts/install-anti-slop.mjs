@@ -1,9 +1,4 @@
 #!/usr/bin/env node
-// Vendors the anti-slop oxlint plugin at the commit that guard.json pins into
-// <repo-root>/tools/oxlint/anti-slop/, with its LICENSE and an UPSTREAM.md record.
-// Fetches with git and runs no upstream code. A second run is a no-op, and a run
-// over changed local files refuses and names them.
-// Usage: node install-anti-slop.mjs <repo-root>
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -11,10 +6,7 @@ import { dirname, join, relative, resolve, sep } from "node:path";
 import { pathToFileURL } from "node:url";
 import { readGuard } from "./guard.mjs";
 
-/**
- * File contents keyed by path relative to the plugin dir, with `/` separators.
- * @typedef {Map<string, Buffer>} FileSet
- */
+/** @typedef {Map<string, Buffer>} FileSet */
 
 /**
  * @typedef {{ kind: "install", files: FileSet }
@@ -30,10 +22,10 @@ const RECORD = "UPSTREAM.md";
 const normalized = (buffer) => buffer.toString("utf8").replaceAll("\r\n", "\n");
 
 /**
- * @param {FileSet} incoming The plugin files at the pinned commit.
- * @param {FileSet | null} local The files in the repo's plugin dir without UPSTREAM.md, or null when the dir is absent.
- * @param {string | null} recordedSha The commit that the repo's UPSTREAM.md names.
- * @param {string} sha The pinned commit.
+ * @param {FileSet} incoming
+ * @param {FileSet | null} local
+ * @param {string | null} recordedSha
+ * @param {string} sha
  * @returns {InstallPlan}
  */
 export function planInstall(incoming, local, recordedSha, sha) {

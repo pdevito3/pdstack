@@ -1,8 +1,6 @@
 import cloudflare from "@cloudflare/oxlint-config";
 import { defineConfig } from "oxlint";
 
-// The rules block is the required rule list of pdstack slop-guard, guard.json.
-// check-slop-guard.mjs fails when one of them is off, a warning, or loses its options.
 export default defineConfig({
   extends: [cloudflare],
   env: cloudflare.env,

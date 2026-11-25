@@ -1,9 +1,4 @@
 #!/usr/bin/env node
-// Proves that a repo's own lint enforces the slop guard. Copies the canary
-// fixtures into a temp dir inside the repo, lints them with the repo's lint and
-// config, and compares the result with guard.json.
-// Prints `slop guard ok`, or one line per gap, and exits 1 on any gap.
-// Usage: node check-slop-guard.mjs <repo-root>
 import { spawnSync } from "node:child_process";
 import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { basename, join, relative, resolve } from "node:path";
@@ -13,11 +8,7 @@ import { readGuard, SKILL_DIR } from "./guard.mjs";
 /** @typedef {import("./guard.mjs").Guard} Guard */
 /** @typedef {import("./guard.mjs").RequiredRule} RequiredRule */
 
-/**
- * One oxlint finding. `file` is relative to the canary dir, with `/` separators, such as `bad/x.ts`.
- * `code` is absent when a JS plugin crashed on the file.
- * @typedef {{ code?: string, severity: string, file: string, message: string }} Finding
- */
+/** @typedef {{ code?: string, severity: string, file: string, message: string }} Finding */
 
 /**
  * @typedef {{ kind: "ran", findings: Finding[], filesLinted: number }
@@ -37,13 +28,11 @@ function splitId(id) {
   return slash === -1 ? ["eslint", id] : [id.slice(0, slash), id.slice(slash + 1)];
 }
 
-/** The code oxlint prints for a rule id: `anti-slop/x` is `anti-slop(x)`, a core rule `x` is `eslint(x)`. */
 export function diagnosticCode(id) {
   const [plugin, rule] = splitId(id);
   return `${plugin}(${rule})`;
 }
 
-/** The canary of a rule is the bad fixture whose name starts with this stem and a dot. */
 export function fixtureStem(id) {
   return splitId(id).join("__");
 }
@@ -76,11 +65,10 @@ function describeLoadFailure(output, guard) {
 }
 
 /**
- * Decides each gap between the guard and what the repo's lint reported on the canaries.
  * @param {Guard} guard
  * @param {Canaries} canaries
  * @param {LintRun} run
- * @returns {string[]} One line per gap, empty when the guard holds.
+ * @returns {string[]}
  */
 export function findGaps(guard, canaries, run) {
   if (run.kind === "missing") {
