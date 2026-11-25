@@ -87,3 +87,11 @@ This pack holds only the rules that apply to any React project. The principles g
 **Why:** A second package manager writes a second lock file with different versions.
 
 **Violation:** A second lock file in the diff, for example `package-lock.json` in a pnpm repo. `npm install` in a doc or a script of a repo that uses another package manager.
+
+## 11. The slop guard holds
+
+**Rule:** The repo has the slop guard of `pdstack:slop-guard`, and `check-slop-guard.mjs` passes. Each disable comment names one rule and gives its reason after `--`, as in `// eslint-disable-next-line <rule> -- <reason>`. A repo without the guard gets `/slop-guard` as its own PR.
+
+**Why:** A lint error names the fix the first time an agent writes the pattern. A rule that a reviewer applies by hand gets missed. A disable comment with no reason hides whether the waiver is still true.
+
+**Violation:** A guard rule set to `"warn"` or `"off"`, a guard rule or its options removed, or an edit to `tools/oxlint/anti-slop/` that `install-anti-slop.mjs` did not write. A disable comment with no reason, or one in the `oxlint-disable` spelling.
