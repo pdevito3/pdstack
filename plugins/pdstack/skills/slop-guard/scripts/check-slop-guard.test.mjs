@@ -4,12 +4,12 @@ import { cpSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync }
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, test } from "node:test";
-import { diagnosticCode, findGaps, FIXTURES_DIR, fixtureStem } from "./check-slop-guard.mjs";
+import { canariesOf, diagnosticCode, findGaps, FIXTURES_DIR } from "./check-slop-guard.mjs";
 import { readGuard, SKILL_DIR } from "./guard.mjs";
 
 const guard = readGuard();
 const canaries = { bad: readdirSync(join(FIXTURES_DIR, "bad")), clean: readdirSync(join(FIXTURES_DIR, "clean")) };
-const canaryOf = (id) => canaries.bad.find((file) => file.startsWith(`${fixtureStem(id)}.`));
+const canaryOf = (id) => canariesOf(canaries.bad, id)[0];
 const fileCount = canaries.bad.length + canaries.clean.length;
 
 function holdingRun(changes = {}) {
@@ -20,11 +20,11 @@ function holdingRun(changes = {}) {
 describe("guard.json and the canaries", () => {
   test("each required rule has exactly one bad canary, and each bad canary belongs to a rule", () => {
     for (const rule of guard.rules) {
-      const matches = canaries.bad.filter((file) => file.startsWith(`${fixtureStem(rule.id)}.`));
+      const matches = canariesOf(canaries.bad, rule.id);
       assert.equal(matches.length, 1, `${rule.id} has ${matches.length} canaries`);
     }
-    const stems = new Set(guard.rules.map((rule) => fixtureStem(rule.id)));
-    for (const file of canaries.bad) assert.ok(stems.has(file.split(".")[0]), `bad/${file} names no required rule`);
+    const owned = new Set(guard.rules.flatMap((rule) => canariesOf(canaries.bad, rule.id)));
+    for (const file of canaries.bad) assert.ok(owned.has(file), `bad/${file} names no required rule`);
   });
 
   test("each rule has a tier and a why", () => {

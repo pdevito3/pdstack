@@ -105,7 +105,7 @@ export function fetchPlugin(antiSlop) {
 }
 
 /** @param {string} dir @returns {FileSet} */
-function readTree(dir) {
+function readVendoredFiles(dir) {
   const files = new Map();
   const walk = (current) => {
     for (const name of readdirSync(current)) {
@@ -137,7 +137,7 @@ function writeTree(files, dir) {
 export function installAntiSlop(repoRoot, antiSlop, today) {
   const dest = join(repoRoot, ...DEST.split("/"));
   const recordPath = join(dest, RECORD);
-  const local = existsSync(dest) ? readTree(dest) : null;
+  const local = existsSync(dest) ? readVendoredFiles(dest) : null;
   const recordedSha = existsSync(recordPath) ? recordedShaOf(readFileSync(recordPath, "utf8")) : null;
   const plan = planInstall(fetchPlugin(antiSlop), local, recordedSha, antiSlop.sha);
   if (plan.kind === "install") {

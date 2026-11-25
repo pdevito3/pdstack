@@ -33,8 +33,10 @@ export function diagnosticCode(id) {
   return `${plugin}(${rule})`;
 }
 
-export function fixtureStem(id) {
-  return splitId(id).join("__");
+/** @param {string[]} badFiles @param {string} id */
+export function canariesOf(badFiles, id) {
+  const stem = `${splitId(id).join("__")}.`;
+  return badFiles.filter((file) => file.startsWith(stem));
 }
 
 /** @param {RequiredRule} rule */
@@ -86,8 +88,7 @@ export function findGaps(guard, canaries, run) {
     gaps.push(`a JS plugin crashed on ${crash.file}: ${error.trim()} Its rules did not run on that file.`);
   }
   for (const rule of guard.rules) {
-    const stem = `${fixtureStem(rule.id)}.`;
-    const canary = canaries.bad.find((file) => file.startsWith(stem));
+    const [canary] = canariesOf(canaries.bad, rule.id);
     const code = diagnosticCode(rule.id);
     const severities = run.findings.filter((finding) => finding.file === `bad/${canary}` && finding.code === code).map((finding) => finding.severity);
     if (severities.includes("error")) continue;
