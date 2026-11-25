@@ -90,8 +90,8 @@ This pack holds only the rules that apply to any React project. The principles g
 
 ## 11. The slop guard holds
 
-**Rule:** The repo has the slop guard of `pdstack:slop-guard`, and `check-slop-guard.mjs` passes. Each disable comment names one rule and gives its reason after `--`, as in `// eslint-disable-next-line <rule> -- <reason>`. A repo without the guard gets `/slop-guard` as its own PR.
+**Rule:** This standard applies when the repo has the slop guard of `pdstack:slop-guard`, that is, when `tools/oxlint/anti-slop/UPSTREAM.md` exists. Then `check-slop-guard.mjs` passes, and each disable comment names one rule and gives its reason after `--`, as in `// eslint-disable-next-line <rule> -- <reason>`. When the repo lacks the guard, report it in one line and propose `/slop-guard` as its own PR. Keep the install out of this task.
 
-**Why:** A lint error names the fix the first time an agent writes the pattern. A rule that a reviewer applies by hand gets missed. A disable comment with no reason hides whether the waiver is still true.
+**Why:** A lint error names the fix the first time an agent writes the pattern. A rule that a reviewer applies by hand gets missed. A disable comment with no reason hides whether the waiver is still true. Only the user can run `/slop-guard`, so a review cannot install the guard.
 
-**Violation:** A guard rule set to `"warn"` or `"off"`, a guard rule or its options removed, or an edit to `tools/oxlint/anti-slop/` that `install-anti-slop.mjs` did not write. A disable comment with no reason, or one in the `oxlint-disable` spelling.
+**Violation:** In a repo with the guard: a guard rule set to `"warn"` or `"off"`, a guard rule or its options removed, or an edit to `tools/oxlint/anti-slop/` that `install-anti-slop.mjs` did not write. A disable comment that names more than one rule, has no reason, or uses the `oxlint-disable` spelling. A repo without the guard is not a violation.
