@@ -1,0 +1,38 @@
+{
+  "antiSlop": {
+    "repo": "https://github.com/dmmulroy/anti-slop",
+    "sha": "63dbb09f73438e550a6991dc6d778f979ffbf183"
+  },
+  "devDependencies": {
+    "oxlint": "1.95.0",
+    "@oxlint/plugins": "1.95.0",
+    "@cloudflare/oxlint-config": "0.2.0",
+    "tsrs": "7.1.0-beta.tsrs5",
+    "@eslint-community/eslint-plugin-eslint-comments": "4.8.1"
+  },
+  "rules": [
+    { "id": "quality/no-array-filter-map", "tier": "builtin", "why": "A filter then a map walks the array twice. Use one flatMap or a lazy iterator pipeline." },
+    { "id": "quality/no-chained-type-assertions", "tier": "builtin", "why": "`as unknown as T` throws away the type evidence. Parse the value instead." },
+    { "id": "quality/no-conditional-empty-object-spread", "tier": "builtin", "why": "`...(c ? { x } : {})` hides an optional field. Build the object with its real type." },
+    { "id": "quality/no-known-value-widening", "tier": "builtin", "why": "A wide annotation on a known value throws away what the checker knows." },
+    { "id": "quality/no-object-parameters", "tier": "builtin", "why": "A parameter of type `object` accepts anything. Name the type the function needs." },
+    { "id": "quality/no-reduce-accumulator-copy", "tier": "builtin", "why": "A reduce that copies its accumulator on each step is quadratic." },
+    { "id": "quality/no-reflect-apply", "tier": "builtin", "why": "Reflect.apply hides the call from the type checker. Call the function." },
+    { "id": "quality/no-reflect-get", "tier": "builtin", "why": "Reflect.get hides the read from the type checker. Read the property." },
+    { "id": "quality/no-unknown-returns", "tier": "builtin", "why": "A function that returns `unknown` makes each caller parse its result." },
+    { "id": "quality/no-unknown-type-aliases", "tier": "builtin", "why": "An alias of `unknown` gives a name to a type with no evidence." },
+    { "id": "quality/no-unsafe-dictionary-type", "tier": "builtin", "why": "`Record<string, unknown>` is a bag with no checked keys. Model the keys." },
+    { "id": "quality/no-widen-then-assert", "tier": "builtin", "why": "A value widened to `unknown` and asserted back is an unchecked cast." },
+    { "id": "oxc/no-accumulating-spread", "tier": "builtin", "why": "A reduce that spreads its accumulator is quadratic. anti-slop pairs it with no-reduce-accumulator-copy." },
+    { "id": "typescript/no-floating-promises", "tier": "builtin", "why": "A promise that nobody awaits drops its error. The rule is type-aware, so it also proves that tsrs runs." },
+    { "id": "unicorn/catch-error-name", "tier": "builtin", "options": { "ignore": ["^cause$"] }, "why": "Caught errors have one name. `cause` is also allowed, because anti-slop/no-unknown-parameters accepts no other name on a catch callback." },
+    { "id": "anti-slop/no-module-mocking", "tier": "anti-slop", "why": "A module mock tests the wiring, not the behavior. Inject the dependency." },
+    { "id": "anti-slop/no-runtime-typeof", "tier": "anti-slop", "options": { "allowInTypeGuards": true }, "why": "A typeof check on a typed value repeats what the types say. Keep typeof inside type guards." },
+    { "id": "anti-slop/no-shape-in-symbol-names", "tier": "anti-slop", "why": "A `Shape` name describes the structure, not the domain concept." },
+    { "id": "anti-slop/no-unknown-parameters", "tier": "anti-slop", "why": "An `unknown` parameter leaves input unparsed. Parse at the boundary and accept the domain type." },
+    { "id": "anti-slop/require-readable-spacing", "tier": "anti-slop", "why": "Blank lines between statement groups keep code readable. `oxlint --fix` adds them." },
+    { "id": "anti-slop/require-safety-comment-for-type-assertion", "tier": "anti-slop", "why": "Each `as` cast states the invariant that makes it safe, in a `SAFETY:` comment." },
+    { "id": "eslint-comments/require-description", "tier": "builtin", "why": "Each disable comment gives its reason after `--`." },
+    { "id": "no-warning-comments", "tier": "builtin", "options": { "terms": ["@nocommit", "oxlint-disable", "oxlint-enable"], "location": "start" }, "why": "Keeps the preset's `@nocommit` ban and bans the `oxlint-disable` spelling, which require-description does not read." }
+  ]
+}
