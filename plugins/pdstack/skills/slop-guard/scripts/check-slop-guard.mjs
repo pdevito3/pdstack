@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { spawn } from "node:child_process";
 import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
-import { constants } from "node:os";
-import { basename, join, relative, resolve } from "node:path";
+import { constants, tmpdir } from "node:os";
+import { basename, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { readGuard, SKILL_DIR } from "./guard.mjs";
 
@@ -80,7 +80,7 @@ export function findGaps(guard, canaries, run) {
   if (run.kind === "failed") return [describeLoadFailure(run.output, guard)];
   const expected = canaries.bad.length + canaries.clean.length;
   if (run.filesLinted < expected) {
-    return [`oxlint linted ${run.filesLinted} of ${expected} canary files. Keep ${CANARY_PREFIX}* out of ignorePatterns and .gitignore.`];
+    return [`oxlint linted ${run.filesLinted} of ${expected} canary files, so the check cannot judge the rules.`];
   }
 
   const gaps = [];
@@ -119,30 +119,20 @@ function lintCommand(repoRoot) {
     const { bin: entry } = JSON.parse(readFileSync(manifest, "utf8"));
     return join(repoRoot, "node_modules", pkg, typeof entry === "string" ? entry : entry[name]);
   };
-  const has = (names) => names.some((name) => existsSync(join(repoRoot, name)));
+  const find = (names) => names.find((name) => existsSync(join(repoRoot, name)));
   const oxlint = bin("oxlint", "oxlint");
-  if (oxlint && has(OXLINT_CONFIGS)) return { command: oxlint, args: [] };
+  const config = find(OXLINT_CONFIGS);
+  if (oxlint && config) return { command: oxlint, args: ["-c", join(repoRoot, config)] };
   const vp = bin("vite-plus", "vp");
-  if (vp && has(VITE_CONFIGS)) return { command: vp, args: ["lint"] };
+  if (vp && find(VITE_CONFIGS)) return { command: vp, args: ["lint"] };
   return oxlint ? { command: oxlint, args: [] } : null;
-}
-
-/** @param {string[]} dirNames */
-export function staleCanaryDirs(dirNames) {
-  return dirNames.filter((name) => name.startsWith(CANARY_PREFIX));
-}
-
-/** @param {string} repoRoot */
-function removeStaleCanaries(repoRoot) {
-  const dirNames = readdirSync(repoRoot, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name);
-  for (const name of staleCanaryDirs(dirNames)) rmSync(join(repoRoot, name), { recursive: true, force: true });
 }
 
 /** @param {string} repoRoot @returns {Promise<LintRun>} */
 async function lintCanaries(repoRoot) {
   const lint = lintCommand(repoRoot);
   if (!lint) return { kind: "missing" };
-  const dir = mkdtempSync(join(repoRoot, CANARY_PREFIX));
+  const dir = mkdtempSync(join(tmpdir(), CANARY_PREFIX));
   let child;
   const stop = (signal) => {
     child?.kill(signal);
@@ -154,7 +144,7 @@ async function lintCanaries(repoRoot) {
   let stderr = "";
   try {
     cpSync(FIXTURES_DIR, dir, { recursive: true });
-    child = spawn(process.execPath, [lint.command, ...lint.args, "--format", "json", relative(repoRoot, dir)], { cwd: repoRoot });
+    child = spawn(process.execPath, [lint.command, ...lint.args, "--format", "json", dir], { cwd: repoRoot });
     child.stdout.setEncoding("utf8").on("data", (chunk) => { stdout += chunk; });
     child.stderr.setEncoding("utf8").on("data", (chunk) => { stderr += chunk; });
     await new Promise((done, fail) => child.on("error", fail).on("close", done));
@@ -182,7 +172,6 @@ if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.m
     process.exit(2);
   }
   const repoRoot = resolve(process.argv[2]);
-  removeStaleCanaries(repoRoot);
   const canaries = { bad: readdirSync(join(FIXTURES_DIR, "bad")), clean: readdirSync(join(FIXTURES_DIR, "clean")) };
   const gaps = findGaps(readGuard(), canaries, await lintCanaries(repoRoot));
   console.log(gaps.length ? gaps.join("\n") : "slop guard ok");

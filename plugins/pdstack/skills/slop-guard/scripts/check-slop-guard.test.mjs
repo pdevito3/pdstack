@@ -5,7 +5,7 @@ import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, 
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, test } from "node:test";
-import { canariesOf, diagnosticCode, findGaps, FIXTURES_DIR, staleCanaryDirs } from "./check-slop-guard.mjs";
+import { canariesOf, diagnosticCode, findGaps, FIXTURES_DIR } from "./check-slop-guard.mjs";
 import { readGuard, SKILL_DIR } from "./guard.mjs";
 
 const guard = readGuard();
@@ -97,10 +97,10 @@ describe("findGaps", () => {
     ]);
   });
 
-  test("reports canaries that an ignore pattern hid from the lint", () => {
+  test("reports canaries that the lint skipped", () => {
     const run = { ...holdingRun(), filesLinted: 0 };
     assert.deepEqual(findGaps(guard, canaries, run), [
-      `oxlint linted 0 of ${fileCount} canary files. Keep slop-guard-canary-* out of ignorePatterns and .gitignore.`,
+      `oxlint linted 0 of ${fileCount} canary files, so the check cannot judge the rules.`,
     ]);
   });
 
@@ -135,34 +135,26 @@ describe("findGaps", () => {
 
 describe("canary dirs", () => {
   const CHECK = join(import.meta.dirname, "check-slop-guard.mjs");
-  const canaryDirsIn = (repo) => readdirSync(repo).filter((name) => name.startsWith("slop-guard-canary-"));
-
-  test("staleCanaryDirs picks only the canary dirs", () => {
-    assert.deepEqual(staleCanaryDirs(["src", "slop-guard-canary-a1B2c3", "slop-guard-canary-", "tools"]), ["slop-guard-canary-a1B2c3", "slop-guard-canary-"]);
-  });
-
-  test("a run removes a canary dir that an earlier run left", (t) => {
-    const repo = mkdtempSync(join(tmpdir(), "slop-guard-stale-"));
-    t.after(() => rmSync(repo, { recursive: true, force: true }));
-    mkdirSync(join(repo, "slop-guard-canary-k6MFWf", "bad"), { recursive: true });
-    writeFileSync(join(repo, "slop-guard-canary-k6MFWf", "bad", "x.ts"), "export {};\n");
-    spawnSync(process.execPath, [CHECK, repo], { encoding: "utf8" });
-    assert.deepEqual(canaryDirsIn(repo), []);
-  });
+  const canaryDirsIn = (dir) => readdirSync(dir).filter((name) => name.startsWith("slop-guard-canary-"));
 
   test("SIGINT during the lint removes the canary dir before exit", { skip: process.platform === "win32" && "no POSIX signals" }, async (t) => {
     const repo = mkdtempSync(join(tmpdir(), "slop-guard-signal-"));
-    t.after(() => rmSync(repo, { recursive: true, force: true }));
+    const temp = mkdtempSync(join(tmpdir(), "slop-guard-signal-tmp-"));
+    t.after(() => {
+      rmSync(repo, { recursive: true, force: true });
+      rmSync(temp, { recursive: true, force: true });
+    });
     const pkg = join(repo, "node_modules", "oxlint");
     mkdirSync(pkg, { recursive: true });
     writeFileSync(join(pkg, "package.json"), JSON.stringify({ name: "oxlint", bin: "lint.mjs" }));
     writeFileSync(join(pkg, "lint.mjs"), "setTimeout(() => {}, 60_000);\n");
-    const check = spawn(process.execPath, [CHECK, repo]);
-    while (!canaryDirsIn(repo).some((dir) => existsSync(join(repo, dir, "bad")))) await new Promise((wake) => setTimeout(wake, 20));
+    const check = spawn(process.execPath, [CHECK, repo], { env: { ...process.env, TMPDIR: temp } });
+    while (!canaryDirsIn(temp).some((dir) => existsSync(join(temp, dir, "bad")))) await new Promise((wake) => setTimeout(wake, 20));
+    assert.deepEqual(readdirSync(repo), ["node_modules"]);
     check.kill("SIGINT");
     const [code] = await once(check, "exit");
     assert.equal(code, 130);
-    assert.deepEqual(canaryDirsIn(repo), []);
+    assert.deepEqual(canaryDirsIn(temp), []);
   });
 });
 
@@ -171,6 +163,7 @@ const e2e = process.env.SLOP_GUARD_E2E === "1" && spawnSync("npm", ["ping"], { s
 describe("check-slop-guard.mjs on a repo that follows SKILL.md", { skip: !e2e && "set SLOP_GUARD_E2E=1 with npm online to run" }, () => {
   test("prints slop guard ok, then names a rule set to warn", () => {
     const repo = mkdtempSync(join(tmpdir(), "slop-guard-e2e-"));
+    const temp = mkdtempSync(join(tmpdir(), "slop-guard-e2e-tmp-"));
     try {
       writeFileSync(join(repo, "package.json"), JSON.stringify({ name: "e2e", private: true, type: "module" }));
       const deps = Object.entries(guard.devDependencies).map(([name, version]) => `${name}@${version}`);
@@ -179,16 +172,17 @@ describe("check-slop-guard.mjs on a repo that follows SKILL.md", { skip: !e2e &&
       const install = spawnSync(process.execPath, [join(import.meta.dirname, "install-anti-slop.mjs"), repo], { encoding: "utf8" });
       assert.equal(install.status, 0, install.stdout + install.stderr);
       cpSync(join(SKILL_DIR, "templates", "oxlint.config.ts"), join(repo, "oxlint.config.ts"));
-      const check = () => spawnSync(process.execPath, [join(import.meta.dirname, "check-slop-guard.mjs"), repo], { encoding: "utf8" });
+      const check = () => spawnSync(process.execPath, [join(import.meta.dirname, "check-slop-guard.mjs"), repo], { encoding: "utf8", env: { ...process.env, TMPDIR: temp } });
       assert.equal(check().stdout, "slop guard ok\n");
       const config = join(repo, "oxlint.config.ts");
       writeFileSync(config, readFileSync(config, "utf8").replace('"anti-slop/no-shape-in-symbol-names": "error"', '"anti-slop/no-shape-in-symbol-names": "warn"'));
       const failed = check();
       assert.equal(failed.status, 1);
       assert.equal(failed.stdout, 'anti-slop/no-shape-in-symbol-names: reports a warning, not an error. Set it to "error".\n');
-      assert.deepEqual(readdirSync(repo).filter((name) => name.startsWith("slop-guard-canary-")), []);
+      assert.deepEqual(readdirSync(temp), []);
     } finally {
       rmSync(repo, { recursive: true, force: true });
+      rmSync(temp, { recursive: true, force: true });
     }
   });
 });
