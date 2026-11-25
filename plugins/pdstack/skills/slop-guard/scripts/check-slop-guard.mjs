@@ -14,7 +14,8 @@ import { readGuard, SKILL_DIR } from "./guard.mjs";
 /**
  * @typedef {{ kind: "ran", findings: Finding[], filesLinted: number }
  *   | { kind: "failed", output: string }
- *   | { kind: "missing" }} LintRun
+ *   | { kind: "missing" }
+ *   | { kind: "unconfigured" }} LintRun
  */
 
 /** @typedef {{ bad: string[], clean: string[] }} Canaries */
@@ -77,6 +78,9 @@ export function findGaps(guard, canaries, run) {
   if (run.kind === "missing") {
     return ["oxlint is not installed in the repo. Install the devDependencies that guard.json names, or Vite+."];
   }
+  if (run.kind === "unconfigured") {
+    return [`oxlint is installed, but the repo root has no oxlint config (${OXLINT_CONFIGS.join(", ")}) or Vite+ config (${VITE_CONFIGS.join(", ")}). Copy templates/oxlint.config.ts to oxlint.config.ts at the repo root.`];
+  }
   if (run.kind === "failed") return [describeLoadFailure(run.output, guard)];
   const expected = canaries.bad.length + canaries.clean.length;
   if (run.filesLinted < expected) {
@@ -111,7 +115,7 @@ export function findGaps(guard, canaries, run) {
   return gaps;
 }
 
-/** @param {string} repoRoot @returns {{ command: string, args: string[] } | null} */
+/** @param {string} repoRoot @returns {{ kind: "command", command: string, args: string[] } | { kind: "missing" } | { kind: "unconfigured" }} */
 function lintCommand(repoRoot) {
   const bin = (pkg, name) => {
     const manifest = join(repoRoot, "node_modules", pkg, "package.json");
@@ -122,16 +126,16 @@ function lintCommand(repoRoot) {
   const find = (names) => names.find((name) => existsSync(join(repoRoot, name)));
   const oxlint = bin("oxlint", "oxlint");
   const config = find(OXLINT_CONFIGS);
-  if (oxlint && config) return { command: oxlint, args: ["-c", join(repoRoot, config)] };
+  if (oxlint && config) return { kind: "command", command: oxlint, args: ["-c", join(repoRoot, config)] };
   const vp = bin("vite-plus", "vp");
-  if (vp && find(VITE_CONFIGS)) return { command: vp, args: ["lint"] };
-  return oxlint ? { command: oxlint, args: [] } : null;
+  if (vp && find(VITE_CONFIGS)) return { kind: "command", command: vp, args: ["lint"] };
+  return { kind: oxlint || vp ? "unconfigured" : "missing" };
 }
 
 /** @param {string} repoRoot @returns {Promise<LintRun>} */
 async function lintCanaries(repoRoot) {
   const lint = lintCommand(repoRoot);
-  if (!lint) return { kind: "missing" };
+  if (lint.kind !== "command") return lint;
   const dir = mkdtempSync(join(tmpdir(), CANARY_PREFIX));
   let child;
   const stop = (signal) => {

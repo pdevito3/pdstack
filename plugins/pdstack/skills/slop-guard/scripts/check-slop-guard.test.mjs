@@ -108,6 +108,17 @@ describe("findGaps", () => {
     assert.match(findGaps(guard, canaries, { kind: "missing" })[0], /^oxlint is not installed in the repo\./);
   });
 
+  test("names a repo with oxlint but no lint config at its root", (t) => {
+    const repo = mkdtempSync(join(tmpdir(), "slop-guard-unconfigured-"));
+    t.after(() => rmSync(repo, { recursive: true, force: true }));
+    const pkg = join(repo, "node_modules", "oxlint");
+    mkdirSync(pkg, { recursive: true });
+    writeFileSync(join(pkg, "package.json"), JSON.stringify({ name: "oxlint", bin: "lint.mjs" }));
+    const check = spawnSync(process.execPath, [join(import.meta.dirname, "check-slop-guard.mjs"), repo], { encoding: "utf8" });
+    assert.equal(check.status, 1);
+    assert.match(check.stdout, /^oxlint is installed, but the repo root has no oxlint config \(oxlint\.config\.ts, .*\. Copy templates\/oxlint\.config\.ts to oxlint\.config\.ts at the repo root\.\n$/);
+  });
+
   test("names tsrs when the type-aware backend is missing", () => {
     const output = "Failed to find type-aware linter executable. You may need to add the `tsrs` or `oxlint-tsgolint` package to your project?\n";
     assert.deepEqual(findGaps(guard, canaries, { kind: "failed", output }), [
@@ -148,9 +159,10 @@ describe("canary dirs", () => {
     mkdirSync(pkg, { recursive: true });
     writeFileSync(join(pkg, "package.json"), JSON.stringify({ name: "oxlint", bin: "lint.mjs" }));
     writeFileSync(join(pkg, "lint.mjs"), "setTimeout(() => {}, 60_000);\n");
+    writeFileSync(join(repo, "oxlint.config.ts"), "export default {};\n");
     const check = spawn(process.execPath, [CHECK, repo], { env: { ...process.env, TMPDIR: temp } });
     while (!canaryDirsIn(temp).some((dir) => existsSync(join(temp, dir, "bad")))) await new Promise((wake) => setTimeout(wake, 20));
-    assert.deepEqual(readdirSync(repo), ["node_modules"]);
+    assert.deepEqual(readdirSync(repo).sort(), ["node_modules", "oxlint.config.ts"]);
     check.kill("SIGINT");
     const [code] = await once(check, "exit");
     assert.equal(code, 130);
