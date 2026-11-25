@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import { spawnSync } from "node:child_process";
+import { spawn } from "node:child_process";
 import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
+import { constants } from "node:os";
 import { basename, join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { readGuard, SKILL_DIR } from "./guard.mjs";
@@ -126,26 +127,46 @@ function lintCommand(repoRoot) {
   return oxlint ? { command: oxlint, args: [] } : null;
 }
 
-/** @param {string} repoRoot @returns {LintRun} */
-function lintCanaries(repoRoot) {
+/** @param {string[]} dirNames */
+export function staleCanaryDirs(dirNames) {
+  return dirNames.filter((name) => name.startsWith(CANARY_PREFIX));
+}
+
+/** @param {string} repoRoot */
+function removeStaleCanaries(repoRoot) {
+  const dirNames = readdirSync(repoRoot, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name);
+  for (const name of staleCanaryDirs(dirNames)) rmSync(join(repoRoot, name), { recursive: true, force: true });
+}
+
+/** @param {string} repoRoot @returns {Promise<LintRun>} */
+async function lintCanaries(repoRoot) {
   const lint = lintCommand(repoRoot);
   if (!lint) return { kind: "missing" };
   const dir = mkdtempSync(join(repoRoot, CANARY_PREFIX));
-  let result;
+  let child;
+  const stop = (signal) => {
+    child?.kill(signal);
+    rmSync(dir, { recursive: true, force: true });
+    process.exit(128 + constants.signals[signal]);
+  };
+  process.once("SIGINT", stop).once("SIGTERM", stop);
+  let stdout = "";
+  let stderr = "";
   try {
     cpSync(FIXTURES_DIR, dir, { recursive: true });
-    result = spawnSync(process.execPath, [lint.command, ...lint.args, "--format", "json", relative(repoRoot, dir)], {
-      cwd: repoRoot, encoding: "utf8", maxBuffer: 64 * 1024 * 1024,
-    });
+    child = spawn(process.execPath, [lint.command, ...lint.args, "--format", "json", relative(repoRoot, dir)], { cwd: repoRoot });
+    child.stdout.setEncoding("utf8").on("data", (chunk) => { stdout += chunk; });
+    child.stderr.setEncoding("utf8").on("data", (chunk) => { stderr += chunk; });
+    await new Promise((done, fail) => child.on("error", fail).on("close", done));
   } finally {
+    process.off("SIGINT", stop).off("SIGTERM", stop);
     rmSync(dir, { recursive: true, force: true });
   }
-  const stdout = result.stdout ?? "";
   let report;
   try {
     report = JSON.parse(stdout.slice(stdout.indexOf("{")));
   } catch {
-    return { kind: "failed", output: `${stdout}\n${result.stderr ?? ""}` };
+    return { kind: "failed", output: `${stdout}\n${stderr}` };
   }
   const marker = `${basename(dir)}/`;
   const findings = report.diagnostics.map(({ code, severity, filename, message }) => {
@@ -160,8 +181,10 @@ if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.m
     console.error("usage: node check-slop-guard.mjs <repo-root>");
     process.exit(2);
   }
+  const repoRoot = resolve(process.argv[2]);
+  removeStaleCanaries(repoRoot);
   const canaries = { bad: readdirSync(join(FIXTURES_DIR, "bad")), clean: readdirSync(join(FIXTURES_DIR, "clean")) };
-  const gaps = findGaps(readGuard(), canaries, lintCanaries(resolve(process.argv[2])));
+  const gaps = findGaps(readGuard(), canaries, await lintCanaries(repoRoot));
   console.log(gaps.length ? gaps.join("\n") : "slop guard ok");
   process.exitCode = gaps.length ? 1 : 0;
 }
