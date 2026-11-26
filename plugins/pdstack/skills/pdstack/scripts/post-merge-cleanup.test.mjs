@@ -5,8 +5,7 @@ import { tmpdir } from "node:os";
 import { delimiter, join } from "node:path";
 import { after, describe, test } from "node:test";
 
-import { parseStatus, parseWorktrees, plan } from "./post-merge-cleanup.mjs";
-import { rebuildable } from "./worktree-audit.mjs";
+import { parseStatus, parseWorktrees, plan, rebuildable } from "./post-merge-cleanup.mjs";
 
 const pr = { number: 7, state: "MERGED", headRefName: "feat", headRefOid: "f1", baseRefName: "main", isCrossRepository: false };
 const tree = (path, branch, extra = {}) => ({ path, branch, locked: null, prunable: false, primary: false, dirty: [], modified: [], derivedData: [], ...extra });

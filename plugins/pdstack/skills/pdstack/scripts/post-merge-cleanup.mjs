@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import { execFileSync } from "node:child_process";
-import { realpathSync, rmSync } from "node:fs";
+import { readdirSync, realpathSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
-import { rebuildable } from "./worktree-audit.mjs";
+import { DISPOSABLE } from "./worktree-audit.mjs";
 import { foldersForWorktree } from "./xcode-derived-data.mjs";
 
 // `--porcelain -z` output: NUL-separated fields, one record per worktree, the primary worktree first.
@@ -75,6 +75,25 @@ function succeeds(run) {
   try {
     run();
     return true;
+  } catch {
+    return false;
+  }
+}
+
+// `bin/` and `obj/` are .NET output only beside a project file. A hand-written `bin/` of scripts has none.
+const DOTNET_OUTPUT = new Set(["bin", "obj"]);
+const DOTNET_PROJECT = /\.(cs|fs|vb)proj$/;
+
+// `name` is relative to `root`. Without a root, `bin/` and `obj/` count as work.
+export function rebuildable(name, root) {
+  const parts = name.split("/");
+  return parts.some((part, i) =>
+    DISPOSABLE.has(part) || (root && DOTNET_OUTPUT.has(part) && hasDotnetProject(join(root, ...parts.slice(0, i)))));
+}
+
+function hasDotnetProject(dir) {
+  try {
+    return readdirSync(dir).some((file) => DOTNET_PROJECT.test(file));
   } catch {
     return false;
   }
