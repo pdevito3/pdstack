@@ -99,6 +99,21 @@ test("rebuildable accepts build output and not user files", () => {
   assert.ok(!rebuildable(".env"));
 });
 
+test("rebuildable accepts bin/ and obj/ only beside a .NET project file", () => {
+  const root = mkdtempSync(join(tmpdir(), "rebuildable-"));
+  try {
+    mkdirSync(join(root, "src", "App"), { recursive: true });
+    writeFileSync(join(root, "src", "App", "App.csproj"), "<Project />");
+    assert.ok(rebuildable("src/App/bin/Debug/net10.0/App.dll", root));
+    assert.ok(rebuildable("src/App/obj/", root));
+    assert.ok(!rebuildable("tools/bin/deploy.sh", root));
+    assert.ok(!rebuildable("src/bin/deploy.sh", root));
+    assert.ok(!rebuildable("src/App/bin/App.dll"), "no root, so bin/ counts as work");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("parseStatus keeps names exact and skips the source path of a rename", () => {
   assert.deepEqual(parseStatus(["!! notes-café/", "R  new.txt", "old.txt", "?? a b.txt", ""].join("\0")), [
     { kind: "!!", name: "notes-café/" },

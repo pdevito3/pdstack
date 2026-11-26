@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { execFileSync } from "node:child_process";
-import { realpathSync, rmSync } from "node:fs";
+import { readdirSync, realpathSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -80,8 +80,23 @@ function succeeds(run) {
   }
 }
 
-export function rebuildable(name) {
-  return name.split("/").some((part) => DISPOSABLE.has(part));
+// `bin/` and `obj/` are .NET output only beside a project file. A hand-written `bin/` of scripts has none.
+const DOTNET_OUTPUT = new Set(["bin", "obj"]);
+const DOTNET_PROJECT = /\.(cs|fs|vb)proj$/;
+
+// `name` is relative to `root`. Without a root, `bin/` and `obj/` count as work.
+export function rebuildable(name, root) {
+  const parts = name.split("/");
+  return parts.some((part, i) =>
+    DISPOSABLE.has(part) || (root && DOTNET_OUTPUT.has(part) && hasDotnetProject(join(root, ...parts.slice(0, i)))));
+}
+
+function hasDotnetProject(dir) {
+  try {
+    return readdirSync(dir).some((file) => DOTNET_PROJECT.test(file));
+  } catch {
+    return false;
+  }
 }
 
 // `--porcelain -z` records: "XY path", and a rename or copy adds its source path as the next field.
@@ -101,13 +116,13 @@ export function parseStatus(output) {
 function status(path) {
   const entries = parseStatus(git(path, "status", "--porcelain", "-z", "--untracked-files=all", "--ignored=matching", "--ignore-submodules=none"))
     .flatMap((entry) =>
-      entry.kind === "!!" && entry.name.endsWith("/") && !rebuildable(entry.name)
+      entry.kind === "!!" && entry.name.endsWith("/") && !rebuildable(entry.name, path)
         ? git(path, "ls-files", "-z", "--others", "--ignored", "--exclude-standard", "--", entry.name)
           .split("\0")
           .filter(Boolean)
           .map((name) => ({ kind: "!!", name }))
         : [entry])
-    .filter(({ kind, name }) => kind !== "!!" || !rebuildable(name));
+    .filter(({ kind, name }) => kind !== "!!" || !rebuildable(name, path));
   return {
     dirty: [...entries.map(({ name }) => name), ...submoduleWork(path)],
     modified: entries.filter(({ kind }) => kind !== "??" && kind !== "!!").map(({ name }) => name),
@@ -124,7 +139,7 @@ function submoduleWork(path) {
       const dir = join(path, sub);
       const ignored = git(dir, "ls-files", "-z", "--others", "--ignored", "--exclude-standard", "--directory", "--no-empty-directory")
         .split("\0")
-        .filter((name) => name && !rebuildable(name))
+        .filter((name) => name && !rebuildable(name, dir))
         .map((name) => `${sub}/${name}`);
       const unpushed = Number(git(dir, "rev-list", "--count", "HEAD", "--branches", "--not", "--remotes"));
       return unpushed ? [...ignored, `${sub} (${unpushed} unpushed commit(s))`] : ignored;
