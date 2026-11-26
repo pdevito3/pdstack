@@ -49,8 +49,8 @@ const GH_PR_LIST = ["pr", "list", "--author", "@me", "--state", "all", "--limit"
 // artifact. Any other ignored path, such as `.env`, may exist nowhere else.
 export const DISPOSABLE = new Set([
   ".build", ".cache", ".dart_tool", ".DS_Store", ".gradle", ".lake", ".lycheecache", ".mypy_cache", ".next", ".nuxt",
-  ".parcel-cache", ".pytest_cache", ".ruff_cache", ".svelte-kit", ".tox", ".turbo", ".venv", "__pycache__", "build",
-  "coverage", "DerivedData", "dist", "node_modules", "target", "venv",
+  ".parcel-cache", ".pytest_cache", ".ruff_cache", ".svelte-kit", ".tox", ".turbo", ".venv", "__pycache__", "bin", "build",
+  "coverage", "DerivedData", "dist", "node_modules", "obj", "target", "venv",
 ]);
 
 export function classify(facts) {

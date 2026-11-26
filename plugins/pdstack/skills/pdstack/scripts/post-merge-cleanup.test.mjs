@@ -95,6 +95,8 @@ describe("plan", () => {
 test("rebuildable accepts build output and not user files", () => {
   assert.ok(rebuildable("build/App.o"));
   assert.ok(rebuildable("Modules/Core/.build/debug"));
+  assert.ok(rebuildable("src/App/bin/Debug/net10.0/App.dll"));
+  assert.ok(rebuildable("src/App/obj/project.assets.json"));
   assert.ok(!rebuildable(".swiftpm/configuration/registries.json"));
   assert.ok(!rebuildable(".env"));
 });
