@@ -5,7 +5,7 @@ import { join } from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
-import { DISPOSABLE } from "./worktree-audit.mjs";
+import { rebuildable } from "./worktree-audit.mjs";
 import { foldersForWorktree } from "./xcode-derived-data.mjs";
 
 // `--porcelain -z` output: NUL-separated fields, one record per worktree, the primary worktree first.
@@ -80,10 +80,6 @@ function succeeds(run) {
   }
 }
 
-export function rebuildable(name) {
-  return name.split("/").some((part) => DISPOSABLE.has(part));
-}
-
 // `--porcelain -z` records: "XY path", and a rename or copy adds its source path as the next field.
 export function parseStatus(output) {
   const fields = output.split("\0");
@@ -101,13 +97,13 @@ export function parseStatus(output) {
 function status(path) {
   const entries = parseStatus(git(path, "status", "--porcelain", "-z", "--untracked-files=all", "--ignored=matching", "--ignore-submodules=none"))
     .flatMap((entry) =>
-      entry.kind === "!!" && entry.name.endsWith("/") && !rebuildable(entry.name)
+      entry.kind === "!!" && entry.name.endsWith("/") && !rebuildable(entry.name, path)
         ? git(path, "ls-files", "-z", "--others", "--ignored", "--exclude-standard", "--", entry.name)
           .split("\0")
           .filter(Boolean)
           .map((name) => ({ kind: "!!", name }))
         : [entry])
-    .filter(({ kind, name }) => kind !== "!!" || !rebuildable(name));
+    .filter(({ kind, name }) => kind !== "!!" || !rebuildable(name, path));
   return {
     dirty: [...entries.map(({ name }) => name), ...submoduleWork(path)],
     modified: entries.filter(({ kind }) => kind !== "??" && kind !== "!!").map(({ name }) => name),
@@ -124,7 +120,7 @@ function submoduleWork(path) {
       const dir = join(path, sub);
       const ignored = git(dir, "ls-files", "-z", "--others", "--ignored", "--exclude-standard", "--directory", "--no-empty-directory")
         .split("\0")
-        .filter((name) => name && !rebuildable(name))
+        .filter((name) => name && !rebuildable(name, dir))
         .map((name) => `${sub}/${name}`);
       const unpushed = Number(git(dir, "rev-list", "--count", "HEAD", "--branches", "--not", "--remotes"));
       return unpushed ? [...ignored, `${sub} (${unpushed} unpushed commit(s))`] : ignored;

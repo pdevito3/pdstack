@@ -5,7 +5,8 @@ import { tmpdir } from "node:os";
 import { delimiter, join } from "node:path";
 import { after, describe, test } from "node:test";
 
-import { parseStatus, parseWorktrees, plan, rebuildable } from "./post-merge-cleanup.mjs";
+import { parseStatus, parseWorktrees, plan } from "./post-merge-cleanup.mjs";
+import { rebuildable } from "./worktree-audit.mjs";
 
 const pr = { number: 7, state: "MERGED", headRefName: "feat", headRefOid: "f1", baseRefName: "main", isCrossRepository: false };
 const tree = (path, branch, extra = {}) => ({ path, branch, locked: null, prunable: false, primary: false, dirty: [], modified: [], derivedData: [], ...extra });
@@ -95,10 +96,23 @@ describe("plan", () => {
 test("rebuildable accepts build output and not user files", () => {
   assert.ok(rebuildable("build/App.o"));
   assert.ok(rebuildable("Modules/Core/.build/debug"));
-  assert.ok(rebuildable("src/App/bin/Debug/net10.0/App.dll"));
-  assert.ok(rebuildable("src/App/obj/project.assets.json"));
   assert.ok(!rebuildable(".swiftpm/configuration/registries.json"));
   assert.ok(!rebuildable(".env"));
+});
+
+test("rebuildable accepts bin/ and obj/ only beside a .NET project file", () => {
+  const root = mkdtempSync(join(tmpdir(), "rebuildable-"));
+  try {
+    mkdirSync(join(root, "src", "App"), { recursive: true });
+    writeFileSync(join(root, "src", "App", "App.csproj"), "<Project />");
+    assert.ok(rebuildable("src/App/bin/Debug/net10.0/App.dll", root));
+    assert.ok(rebuildable("src/App/obj/", root));
+    assert.ok(!rebuildable("tools/bin/deploy.sh", root));
+    assert.ok(!rebuildable("src/bin/deploy.sh", root));
+    assert.ok(!rebuildable("src/App/bin/App.dll"), "no root, so bin/ counts as work");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test("parseStatus keeps names exact and skips the source path of a rename", () => {

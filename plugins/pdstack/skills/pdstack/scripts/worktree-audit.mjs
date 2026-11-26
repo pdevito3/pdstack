@@ -49,9 +49,27 @@ const GH_PR_LIST = ["pr", "list", "--author", "@me", "--state", "all", "--limit"
 // artifact. Any other ignored path, such as `.env`, may exist nowhere else.
 export const DISPOSABLE = new Set([
   ".build", ".cache", ".dart_tool", ".DS_Store", ".gradle", ".lake", ".lycheecache", ".mypy_cache", ".next", ".nuxt",
-  ".parcel-cache", ".pytest_cache", ".ruff_cache", ".svelte-kit", ".tox", ".turbo", ".venv", "__pycache__", "bin", "build",
-  "coverage", "DerivedData", "dist", "node_modules", "obj", "target", "venv",
+  ".parcel-cache", ".pytest_cache", ".ruff_cache", ".svelte-kit", ".tox", ".turbo", ".venv", "__pycache__", "build",
+  "coverage", "DerivedData", "dist", "node_modules", "target", "venv",
 ]);
+// `bin/` and `obj/` are .NET output only beside a project file. A hand-written `bin/` of scripts has none.
+const DOTNET_OUTPUT = new Set(["bin", "obj"]);
+const DOTNET_PROJECT = /\.(cs|fs|vb)proj$/;
+
+// `name` is relative to `root`. Without a root, `bin/` and `obj/` count as work.
+export function rebuildable(name, root) {
+  const parts = name.split("/");
+  return parts.some((part, i) =>
+    DISPOSABLE.has(part) || (root && DOTNET_OUTPUT.has(part) && hasDotnetProject(join(root, ...parts.slice(0, i)))));
+}
+
+function hasDotnetProject(dir) {
+  try {
+    return readdirSync(dir).some((file) => DOTNET_PROJECT.test(file));
+  } catch {
+    return false;
+  }
+}
 
 export function classify(facts) {
   const { locked, dirty, orphans, pr, recent, ancestry, head } = facts;
@@ -288,13 +306,12 @@ function dirtyState(path) {
     .split("\n").filter(Boolean);
   const untracked = lines.filter((line) => line.startsWith("??")).length;
   const ignoredLines = lines.filter((line) => line.startsWith("!!"));
-  const keepIgnored = (name) => !name.split("/").some((part) => DISPOSABLE.has(part));
-  let ignored = ignoredLines.filter((line) => keepIgnored(line.slice(3).replace(/^"|"$/g, ""))).length;
+  let ignored = ignoredLines.filter((line) => !rebuildable(line.slice(3).replace(/^"|"$/g, ""), path)).length;
   // Superproject status omits ignored files in initialized submodules, even with --ignore-submodules=none.
   if (statSync(join(path, ".gitmodules"), { throwIfNoEntry: false })) {
     const nested = git(path, "submodule", "foreach", "--quiet", "--recursive",
       "git ls-files --others --ignored --exclude-standard --directory --no-empty-directory -z");
-    ignored += nested.split("\0").filter((name) => name && keepIgnored(name)).length;
+    ignored += nested.split("\0").filter((name) => name && !rebuildable(name)).length;
   }
   return { wip: lines.length - untracked - ignoredLines.length, untracked, ignored };
 }
