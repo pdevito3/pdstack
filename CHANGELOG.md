@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.10.0](https://github.com/pdevito3/pdstack/compare/v0.9.0...v0.10.0) (2026-11-26)
+
+
+### Features
+
+* **provenance:** add humanlayer/skills feed with show-me ([#63](https://github.com/pdevito3/pdstack/issues/63)) ([27fe466](https://github.com/pdevito3/pdstack/commit/27fe4661ace82b55687f895cdae4c5228b9e45a3))
+
+
+### Bug Fixes
+
+* **pdstack:** stop finished agents and count .NET bin/ and obj/ as build output ([#68](https://github.com/pdevito3/pdstack/issues/68)) ([7653bea](https://github.com/pdevito3/pdstack/commit/7653beacec2eda67e52e9f7d100808e91d1212b7))
+
 ## [0.9.0](https://github.com/pdevito3/pdstack/compare/v0.8.0...v0.9.0) (2026-11-20)
 
 
